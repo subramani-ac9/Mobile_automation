@@ -1,0 +1,6 @@
+[32mINFO    [0m TestLogin_test_welcome_page_elements_visibility:logger_config.py:130 ================================================================================
+[32mINFO    [0m TestLogin_test_welcome_page_elements_visibility:logger_config.py:131 TEST COMPLETED: test_welcome_page_elements_visibility - Duration: 6.85s
+[32mINFO    [0m TestLogin_test_welcome_page_elements_visibility:logger_config.py:132 ================================================================================
+[32mINFO    [0m TestLogin_test_welcome_page_elements_visibility:test_login.py:78 Starting test cleanup
+[32mINFO    [0m utils.driver_manager:driver_manager.py:47 Appium driver closed successfully
+[32mINFO    [0m TestLogin_test_welcome_page_elements_visibility:test_login.py:80 Test cleanup completed

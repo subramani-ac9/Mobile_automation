@@ -1,0 +1,556 @@
+product_id,title,product_type,format,id,tenant_id,username,first_name,last_name,email,type,status,is_nda_signed,type-2
+1237100,Art of Living Part 1,course,in-person,20000002,5306526529902621696,Amit K Singh,Amit,K Singh,amitksingh77@gmail.com,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,20000002,5306526529902621696,Amit K Singh,Amit,K Singh,amitksingh77@gmail.com,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,20000002,5306526529902621696,Amit K Singh,Amit,K Singh,amitksingh77@gmail.com,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,20000002,5306526529902621696,Amit K Singh,Amit,K Singh,amitksingh77@gmail.com,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5336241676593825990,5306526529902621696,Jasbir1 Singh,Jasbir1,Singh,jas@wavespot.net,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336241676786686153,5306526529902621696,Jasbir1 Singh,Jasbir1,Singh,jasbir.singh@artofliving.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5373996308661464601,5306526529902621696,Pradeep Test Account,,Pradeep Test Account,pradeep3chandran+12@gmail.com,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5373996308661464601,5306526529902621696,Pradeep Test Account,,Pradeep Test Account,pradeep3chandran+12@gmail.com,teacher,inactive,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386162222387845240,5306526529902621696,Auto Test2,Auto,Test2,autotest+2@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5381017820534980950,5306526529902621696,Test Teacher Eligibility,Test,Teacher Eligibility,,teacher,inactive,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5381017820534980950,5306526529902621696,Test Teacher Eligibility,Test,Teacher Eligibility,,teacher,inactive,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5381017820534980950,5306526529902621696,Test Teacher Eligibility,Test,Teacher Eligibility,,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5381017820534980950,5306526529902621696,Test Teacher Eligibility,Test,Teacher Eligibility,,teacher,inactive,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336240140413129305,5306526529902621696,B Kaviya,B,Kaviya,kaviya.balakrishnan+22@winfomi.com,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5381208314833586186,5306526529902621696,Teacher GLAD-03-03,,Teacher GLAD-03-03,test.glad.0303@gmail.com,teacher,inactive,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5381208314833586186,5306526529902621696,Teacher GLAD-03-03,,Teacher GLAD-03-03,test.glad.0303@gmail.com,teacher,inactive,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5386171624356094111,5306526529902621696,Auto Test41,Auto,Test41,autotest+41@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171624356094111,5306526529902621696,Auto Test41,Auto,Test41,autotest+41@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386162222387845240,5306526529902621696,Auto Test2,Auto,Test2,autotest+2@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171624498981024,5306526529902621696,Auto Test42,Auto,Test42,autotest+42@abovecloud9.ai,teacher,inactive,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171624791992482,5306526529902621696,Auto Test44,Auto,Test44,autotest+44@abovecloud9.ai,teacher,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171624867525795,5306526529902621696,Auto Test45,Auto,Test45,autotest+45@abovecloud9.ai,teacher,inactive,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336242393501534278,5306526529902621696,Praj Amraotikar,Praj,Amraotikar,prajaktaa@artofliving.org,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5386171624935249060,5306526529902621696,Auto Test46,Auto,Test46,autotest+46@abovecloud9.ai,teacher,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5336240540852424284,5306526529902621696,Tushar Gandhi(Test),Tushar,Gandhi(Test),tushargandhi2011@gmail.com,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336240540852424284,5306526529902621696,Tushar Gandhi(Test),Tushar,Gandhi(Test),tushargandhi2011@gmail.com,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336240612977168032,5306526529902621696,PriyaAsst Teacher Prasad,PriyaAsst Teacher,Prasad,priya18pp+100901@gmail.com,assistant-teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336240626424019773,5306526529902621696,Sumitra Prasath,Sumitra,Prasath,sumitra.prasath@artofliving.org,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336240788508722408,5306526529902621696,Vivek QAteacher Jha,Vivek QAteacher,Jha,vivek.jha+qa@artofliving.org,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336240867957222732,5306526529902621696,Lavaanyateacher Test,Lavaanyateacher,Test,lavaanya@gmail.com,teacher,inactive,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336240943664523729,5306526529902621696,S. Yadav,S.,Yadav,sandeepkhoj@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5386171624993370277,5306526529902621696,Auto Test47,Auto,Test47,autotest+47@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171624993370277,5306526529902621696,Auto Test47,Auto,Test47,autotest+47@abovecloud9.ai,teacher,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5336240944545099228,5306526529902621696,Rituka Tuteja,Rituka,Tuteja,ritukatuteja12@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336240944545099228,5306526529902621696,Rituka Tuteja,Rituka,Tuteja,ritukatuteja12@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336241203602038941,5306526529902621696,AOL Dev 4,AOL,Dev 4,aol.developer.4+45999@gmail.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336241203602038941,5306526529902621696,AOL Dev 4,AOL,Dev 4,aol.developer.4+45999@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336241203602038941,5306526529902621696,AOL Dev 4,AOL,Dev 4,aol.developer.4+45999@gmail.com,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5336241204105630883,5306526529902621696,Vedika Tonde,Vedika,Tonde,vedika.aolauto0831@artofliving.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,20000008,5306526529902621696,Nivedha S (NOT USED),Nivedha,S (NOT USED),nivedha@abovecloud9.ai,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336241204105630883,5306526529902621696,Vedika Tonde,Vedika,Tonde,vedika.aolauto0831@artofliving.org,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336241204105630883,5306526529902621696,Vedika Tonde,Vedika,Tonde,vedika.aolauto0831@artofliving.org,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,20000008,5306526529902621696,Nivedha S (NOT USED),Nivedha,S (NOT USED),nivedha@abovecloud9.ai,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336241524911326145,5306526529902621696,Kaajal QA Teacher Desai,Kaajal QA Teacher,Desai,kaajal.desai+qateacher@artofliving.org,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,20000008,5306526529902621696,Nivedha S (NOT USED),Nivedha,S (NOT USED),nivedha@abovecloud9.ai,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,20000008,5306526529902621696,Nivedha S (NOT USED),Nivedha,S (NOT USED),nivedha@abovecloud9.ai,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,20000008,5306526529902621696,Nivedha S (NOT USED),Nivedha,S (NOT USED),nivedha@abovecloud9.ai,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,20000008,5306526529902621696,Nivedha S (NOT USED),Nivedha,S (NOT USED),nivedha@abovecloud9.ai,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336241524911326145,5306526529902621696,Kaajal QA Teacher Desai,Kaajal QA Teacher,Desai,kaajal.desai+qateacher@artofliving.org,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336241524911326145,5306526529902621696,Kaajal QA Teacher Desai,Kaajal QA Teacher,Desai,kaajal.desai+qateacher@artofliving.org,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336242393501534278,5306526529902621696,Praj Amraotikar,Praj,Amraotikar,prajaktaa@artofliving.org,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336241524911326145,5306526529902621696,Kaajal QA Teacher Desai,Kaajal QA Teacher,Desai,kaajal.desai+qateacher@artofliving.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336241525431773126,5306526529902621696,Jenita Desai,Jenita,Desai,jenita.desai+qateacher@artofliving.org,assistant-teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336241525431773126,5306526529902621696,Jenita Desai,Jenita,Desai,jenita.desai+qateacher@artofliving.org,assistant-teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336242393501534278,5306526529902621696,Praj Amraotikar,Praj,Amraotikar,prajaktaa@artofliving.org,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336241525431773126,5306526529902621696,Jenita Desai,Jenita,Desai,jenita.desai+qateacher@artofliving.org,assistant-teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336241525431773126,5306526529902621696,Jenita Desai,Jenita,Desai,jenita.desai+qateacher@artofliving.org,assistant-teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336241598487758948,5306526529902621696,Sky Campus Team,Sky Campus,Team,skycampushappiness@iahv.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5510841582888593462,5306526529902621696,Kishore AC9,Kishore,AC9,kishore@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5366773432842143005,5306526529902621696,userfeb13 userfeb13,userfeb13,userfeb13,userfeb11@yopmail.com,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5366773432842143005,5306526529902621696,userfeb13 userfeb13,userfeb13,userfeb13,userfeb11@yopmail.com,teacher,inactive,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5381097302964832272,5306526529902621696,Adarsh K,Adarsh,K,adarsh@abovecloud9.ai.com,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5381097302964832272,5306526529902621696,Adarsh K,Adarsh,K,adarsh@abovecloud9.ai.com,teacher,inactive,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336241598487758948,5306526529902621696,Sky Campus Team,Sky Campus,Team,skycampushappiness@iahv.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5381097302964832272,5306526529902621696,Adarsh K,Adarsh,K,adarsh@abovecloud9.ai.com,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5352265242024349708,5306526529902621696,Rachel Harvey,Rachel,Harvey,rgsanchez317@gmail.com,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5352265242024349708,5306526529902621696,Rachel Harvey,Rachel,Harvey,rgsanchez317@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5352265242024349708,5306526529902621696,Rachel Harvey,Rachel,Harvey,rgsanchez317@gmail.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5352265242024349708,5306526529902621696,Rachel Harvey,Rachel,Harvey,rgsanchez317@gmail.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5352265242024349708,5306526529902621696,Rachel Harvey,Rachel,Harvey,rgsanchez317@gmail.com,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5352265242024349708,5306526529902621696,Rachel Harvey,Rachel,Harvey,rgsanchez317@gmail.com,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5352265242024349708,5306526529902621696,Rachel Harvey,Rachel,Harvey,rgsanchez317@gmail.com,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5352265242024349708,5306526529902621696,Rachel Harvey,Rachel,Harvey,rgsanchez317@gmail.com,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5352270285129805837,5306526529902621696,Tila Foss,Tila,Foss,tila2e@gmail.com,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5352270285129805837,5306526529902621696,Tila Foss,Tila,Foss,tila2e@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5352270285129805837,5306526529902621696,Tila Foss,Tila,Foss,tila2e@gmail.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5352270285129805837,5306526529902621696,Tila Foss,Tila,Foss,tila2e@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336241598487758948,5306526529902621696,Sky Campus Team,Sky Campus,Team,skycampushappiness@iahv.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5352270285129805837,5306526529902621696,Tila Foss,Tila,Foss,tila2e@gmail.com,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336241598487758948,5306526529902621696,Sky Campus Team,Sky Campus,Team,skycampushappiness@iahv.org,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5352270285129805837,5306526529902621696,Tila Foss,Tila,Foss,tila2e@gmail.com,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5336241598487758948,5306526529902621696,Sky Campus Team,Sky Campus,Team,skycampushappiness@iahv.org,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5352270285129805837,5306526529902621696,Tila Foss,Tila,Foss,tila2e@gmail.com,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5352270285129805837,5306526529902621696,Tila Foss,Tila,Foss,tila2e@gmail.com,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5480349485840657421,5306526529902621696,Ankit Dhandhania Ankit Dhandhania,Ankit Dhandhania,Ankit Dhandhania,ankit.dhandhania@in.artofliving.org,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5480349485840657421,5306526529902621696,Ankit Dhandhania Ankit Dhandhania,Ankit Dhandhania,Ankit Dhandhania,ankit.dhandhania@in.artofliving.org,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5480349485840657421,5306526529902621696,Ankit Dhandhania Ankit Dhandhania,Ankit Dhandhania,Ankit Dhandhania,ankit.dhandhania@in.artofliving.org,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5480349485840657421,5306526529902621696,Ankit Dhandhania Ankit Dhandhania,Ankit Dhandhania,Ankit Dhandhania,ankit.dhandhania@in.artofliving.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5480349485840657421,5306526529902621696,Ankit Dhandhania Ankit Dhandhania,Ankit Dhandhania,Ankit Dhandhania,ankit.dhandhania@in.artofliving.org,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336241598487758948,5306526529902621696,Sky Campus Team,Sky Campus,Team,skycampushappiness@iahv.org,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5480349485840657421,5306526529902621696,Ankit Dhandhania Ankit Dhandhania,Ankit Dhandhania,Ankit Dhandhania,ankit.dhandhania@in.artofliving.org,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5480349485840657421,5306526529902621696,Ankit Dhandhania Ankit Dhandhania,Ankit Dhandhania,Ankit Dhandhania,ankit.dhandhania@in.artofliving.org,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5480349485840657421,5306526529902621696,Ankit Dhandhania Ankit Dhandhania,Ankit Dhandhania,Ankit Dhandhania,ankit.dhandhania@in.artofliving.org,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5468705871980808192,5306526529902621696,thangaraj meetup teacher thangaraj meetup teacher,thangaraj meetup teacher,thangaraj meetup teacher,thangaraj+1@abovecloud9.ai,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386162014870311031,5306526529902621696,Auto Test1,Auto,Test1,autotest+1@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386162014870311031,5306526529902621696,Auto Test1,Auto,Test1,autotest+1@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5488504457543059457,5306526529902621696,Thangaraj10 C,Thangaraj10,C,thangaraj+10@abovecloud9.ai,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,20000009,5306526529902621696,Rahulnisanth Muthukumar,Rahulnisanth,Muthukumar,rahulnisanth@abovecloud9.ai,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,20000009,5306526529902621696,Rahulnisanth Muthukumar,Rahulnisanth,Muthukumar,rahulnisanth@abovecloud9.ai,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5488504457543059457,5306526529902621696,Thangaraj10 C,Thangaraj10,C,thangaraj+10@abovecloud9.ai,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5488504457543059457,5306526529902621696,Thangaraj10 C,Thangaraj10,C,thangaraj+10@abovecloud9.ai,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5488504457543059457,5306526529902621696,Thangaraj10 C,Thangaraj10,C,thangaraj+10@abovecloud9.ai,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5510841582888593462,5306526529902621696,Kishore AC9,Kishore,AC9,kishore@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5336241598487758948,5306526529902621696,Sky Campus Team,Sky Campus,Team,skycampushappiness@iahv.org,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336241598487758948,5306526529902621696,Sky Campus Team,Sky Campus,Team,skycampushappiness@iahv.org,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5510841582888593462,5306526529902621696,Kishore AC9,Kishore,AC9,kishore@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336240460473011622,5306526529902621696,Priya Prasadteacher,Priya,Prasadteacher,priya.prasad@artofliving.org,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5510841582888593462,5306526529902621696,Kishore AC9,Kishore,AC9,kishore@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5510841582888593462,5306526529902621696,Kishore AC9,Kishore,AC9,kishore@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5510841582888593462,5306526529902621696,Kishore AC9,Kishore,AC9,kishore@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5510841582888593462,5306526529902621696,Kishore AC9,Kishore,AC9,kishore@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5510841582888593462,5306526529902621696,Kishore AC9,Kishore,AC9,kishore@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,20000009,5306526529902621696,Rahulnisanth Muthukumar,Rahulnisanth,Muthukumar,rahulnisanth@abovecloud9.ai,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,20000017,5306526529902621696,Maciej Smolarczyk,Maciej,Smolarczyk,maciej.smolarczyk@blocklabs.eu,teacher,inactive,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,20000017,5306526529902621696,Maciej Smolarczyk,Maciej,Smolarczyk,maciej.smolarczyk@blocklabs.eu,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,20000017,5306526529902621696,Maciej Smolarczyk,Maciej,Smolarczyk,maciej.smolarczyk@blocklabs.eu,teacher,inactive,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,20000017,5306526529902621696,Maciej Smolarczyk,Maciej,Smolarczyk,maciej.smolarczyk@blocklabs.eu,teacher,inactive,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,20000017,5306526529902621696,Maciej Smolarczyk,Maciej,Smolarczyk,maciej.smolarczyk@blocklabs.eu,teacher,inactive,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,20000017,5306526529902621696,Maciej Smolarczyk,Maciej,Smolarczyk,maciej.smolarczyk@blocklabs.eu,teacher,inactive,FALSE,assistant
+8115690,Art of Living Part 1,course,online,20000017,5306526529902621696,Maciej Smolarczyk,Maciej,Smolarczyk,maciej.smolarczyk@blocklabs.eu,teacher,inactive,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,20000017,5306526529902621696,Maciej Smolarczyk,Maciej,Smolarczyk,maciej.smolarczyk@blocklabs.eu,teacher,inactive,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5336241684387090742,5306526529902621696,Shubhra Bhatnagar,Shubhra,Bhatnagar,shubhra.bhatnagar@artofliving.org,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336241684387090742,5306526529902621696,Shubhra Bhatnagar,Shubhra,Bhatnagar,shubhra.bhatnagar@artofliving.org,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336241684387090742,5306526529902621696,Shubhra Bhatnagar,Shubhra,Bhatnagar,shubhra.bhatnagar@artofliving.org,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336240612977168032,5306526529902621696,PriyaAsst Teacher Prasad,PriyaAsst Teacher,Prasad,priya18pp+100901@gmail.com,assistant-teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5377460510189593665,5306526529902621696,Teacher AC9 Test Teachers,Teacher,AC9 Test Teachers,vetha.teacher.test.user@ac9.ai,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5377460510189593665,5306526529902621696,Teacher AC9 Test Teachers,Teacher,AC9 Test Teachers,vetha.teacher.test.user@ac9.ai,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5377460510189593665,5306526529902621696,Teacher AC9 Test Teachers,Teacher,AC9 Test Teachers,vetha.teacher.test.user@ac9.ai,teacher,inactive,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5336241684387090742,5306526529902621696,Shubhra Bhatnagar,Shubhra,Bhatnagar,shubhra.bhatnagar@artofliving.org,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171625068755110,5306526529902621696,Auto Test48,Auto,Test48,autotest+48@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5336241684387090742,5306526529902621696,Shubhra Bhatnagar,Shubhra,Bhatnagar,shubhra.bhatnagar@artofliving.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336242387671059468,5306526529902621696,Test Accumulated Fund,Test,Accumulated Fund,,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386171625068755110,5306526529902621696,Auto Test48,Auto,Test48,autotest+48@abovecloud9.ai,teacher,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171625152791719,5306526529902621696,Auto Test49,Auto,Test49,autotest+49@abovecloud9.ai,teacher,inactive,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171625152791719,5306526529902621696,Auto Test49,Auto,Test49,autotest+49@abovecloud9.ai,teacher,inactive,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171625220448424,5306526529902621696,Auto Test50,Auto,Test50,autotest+50@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625295889577,5306526529902621696,Auto Test51,Auto,Test51,autotest+51@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171625295889577,5306526529902621696,Auto Test51,Auto,Test51,autotest+51@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171625363151018,5306526529902621696,Auto Test52,Auto,Test52,autotest+52@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336242387671059468,5306526529902621696,Test Accumulated Fund,Test,Accumulated Fund,,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386171625363151018,5306526529902621696,Auto Test52,Auto,Test52,autotest+52@abovecloud9.ai,teacher,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171625429881003,5306526529902621696,Auto Test53,Auto,Test53,autotest+53@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171625429881003,5306526529902621696,Auto Test53,Auto,Test53,autotest+53@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171625505145004,5306526529902621696,Auto Test54,Auto,Test54,autotest+54@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625505145004,5306526529902621696,Auto Test54,Auto,Test54,autotest+54@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171625571977389,5306526529902621696,Auto Test55,Auto,Test55,autotest+55@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171625571977389,5306526529902621696,Auto Test55,Auto,Test55,autotest+55@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171625656776878,5306526529902621696,Auto Test56,Auto,Test56,autotest+56@abovecloud9.ai,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386171625656776878,5306526529902621696,Auto Test56,Auto,Test56,autotest+56@abovecloud9.ai,teacher,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171625715275951,5306526529902621696,Auto Test57,Auto,Test57,autotest+57@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171625715275951,5306526529902621696,Auto Test57,Auto,Test57,autotest+57@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171625790686384,5306526529902621696,Auto Test58,Auto,Test58,autotest+58@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625790686384,5306526529902621696,Auto Test58,Auto,Test58,autotest+58@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171625966820529,5306526529902621696,Auto Test59,Auto,Test59,autotest+59@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171625966820529,5306526529902621696,Auto Test59,Auto,Test59,autotest+59@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171626150811826,5306526529902621696,Auto Test60,Auto,Test60,autotest+60@abovecloud9.ai,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386171626150811826,5306526529902621696,Auto Test60,Auto,Test60,autotest+60@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5336242387671059468,5306526529902621696,Test Accumulated Fund,Test,Accumulated Fund,,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336242387671059468,5306526529902621696,Test Accumulated Fund,Test,Accumulated Fund,,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5336242731889285002,5306526529902621696,Pavel Dmitriev,Pavel,Dmitriev,pavel.dmitriev@gmail.com,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336242731889285002,5306526529902621696,Pavel Dmitriev,Pavel,Dmitriev,pavel.dmitriev@gmail.com,teacher,inactive,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336242731889285002,5306526529902621696,Pavel Dmitriev,Pavel,Dmitriev,pavel.dmitriev@gmail.com,teacher,inactive,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,20000009,5306526529902621696,Rahulnisanth Muthukumar,Rahulnisanth,Muthukumar,rahulnisanth@abovecloud9.ai,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,20000009,5306526529902621696,Rahulnisanth Muthukumar,Rahulnisanth,Muthukumar,rahulnisanth@abovecloud9.ai,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,20000009,5306526529902621696,Rahulnisanth Muthukumar,Rahulnisanth,Muthukumar,rahulnisanth@abovecloud9.ai,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336241772233047574,5306526529902621696,Nikhil Jain,Nikhil,Jain,nikhil.jain@artofliving.org,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336242731889285002,5306526529902621696,Pavel Dmitriev,Pavel,Dmitriev,pavel.dmitriev@gmail.com,teacher,inactive,FALSE,assistant
+8115690,Art of Living Part 1,course,online,20000009,5306526529902621696,Rahulnisanth Muthukumar,Rahulnisanth,Muthukumar,rahulnisanth@abovecloud9.ai,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5386162014870311031,5306526529902621696,Auto Test1,Auto,Test1,autotest+1@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5336242467262894228,5306526529902621696,Shubhra Tech01,Shubhra,Tech01,shubhra.bhatnagar+tech01@artofliving.org,member,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5514514227836324957,5306526529902621696,Thangaraj C,Thangaraj,C,thangaraj+6@abovecloud9.ai,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336242467262894228,5306526529902621696,Shubhra Tech01,Shubhra,Tech01,shubhra.bhatnagar+tech01@artofliving.org,member,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5514514227836324957,5306526529902621696,Thangaraj C,Thangaraj,C,thangaraj+6@abovecloud9.ai,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5364562910448770075,5306526529902621696,Vetha AC9,Vetha,AC9,vethaprasath@ac9.ai,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336242467262894228,5306526529902621696,Shubhra Tech01,Shubhra,Tech01,shubhra.bhatnagar+tech01@artofliving.org,member,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336240140413129305,5306526529902621696,B Kaviya,B,Kaviya,kaviya.balakrishnan+22@winfomi.com,teacher,inactive,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5373986789386137109,5306526529902621696,Pradeep Test,,Pradeep Test,,user,inactive,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336242467262894228,5306526529902621696,Shubhra Tech01,Shubhra,Tech01,shubhra.bhatnagar+tech01@artofliving.org,member,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336242467262894228,5306526529902621696,Shubhra Tech01,Shubhra,Tech01,shubhra.bhatnagar+tech01@artofliving.org,member,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5373986789386137109,5306526529902621696,Pradeep Test,,Pradeep Test,,user,inactive,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336242467262894228,5306526529902621696,Shubhra Tech01,Shubhra,Tech01,shubhra.bhatnagar+tech01@artofliving.org,member,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336242467262894228,5306526529902621696,Shubhra Tech01,Shubhra,Tech01,shubhra.bhatnagar+tech01@artofliving.org,member,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336242467262894228,5306526529902621696,Shubhra Tech01,Shubhra,Tech01,shubhra.bhatnagar+tech01@artofliving.org,member,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5373986789386137109,5306526529902621696,Pradeep Test,,Pradeep Test,,user,inactive,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5386171626293821619,5306526529902621696,Auto Test61,Auto,Test61,autotest+61@abovecloud9.ai,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5336245770813779048,5306526529902621696,Tamil Teacher - dev@winfomi.com,Tamil,Teacher - dev@winfomi.com,dev@winfomi.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5373986789386137109,5306526529902621696,Pradeep Test,,Pradeep Test,,user,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5386171626293821619,5306526529902621696,Auto Test61,Auto,Test61,autotest+61@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336245770813779048,5306526529902621696,Tamil Teacher - dev@winfomi.com,Tamil,Teacher - dev@winfomi.com,dev@winfomi.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171626293821619,5306526529902621696,Auto Test61,Auto,Test61,autotest+61@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171626369283252,5306526529902621696,Auto Test62,Auto,Test62,autotest+62@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171626369283252,5306526529902621696,Auto Test62,Auto,Test62,autotest+62@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171626369283252,5306526529902621696,Auto Test62,Auto,Test62,autotest+62@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171626436140213,5306526529902621696,Auto Test63,Auto,Test63,autotest+63@abovecloud9.ai,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5355658024126388246,5306526529902621696,Amit1111 Nair,Amit1111,Nair,raasna.nambiar@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5355658024126388246,5306526529902621696,Amit1111 Nair,Amit1111,Nair,raasna.nambiar@gmail.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5355658024126388246,5306526529902621696,Amit1111 Nair,Amit1111,Nair,raasna.nambiar@gmail.com,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5355658024126388246,5306526529902621696,Amit1111 Nair,Amit1111,Nair,raasna.nambiar@gmail.com,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336245770813779048,5306526529902621696,Tamil Teacher - dev@winfomi.com,Tamil,Teacher - dev@winfomi.com,dev@winfomi.com,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171626436140213,5306526529902621696,Auto Test63,Auto,Test63,autotest+63@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336245770813779048,5306526529902621696,Tamil Teacher - dev@winfomi.com,Tamil,Teacher - dev@winfomi.com,dev@winfomi.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,20000012,5306526529902621696,Sudhagar Chinnaswamy -AC9,Sudhagar,Chinnaswamy -AC9,sudhagar@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,20000012,5306526529902621696,Sudhagar Chinnaswamy -AC9,Sudhagar,Chinnaswamy -AC9,sudhagar@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5514514227836324957,5306526529902621696,Thangaraj C,Thangaraj,C,thangaraj+6@abovecloud9.ai,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5373986789386137109,5306526529902621696,Pradeep Test,,Pradeep Test,,user,inactive,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5373986789386137109,5306526529902621696,Pradeep Test,,Pradeep Test,,user,inactive,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5373986789386137109,5306526529902621696,Pradeep Test,,Pradeep Test,,user,inactive,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5373986789386137109,5306526529902621696,Pradeep Test,,Pradeep Test,,user,inactive,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171626553669814,5306526529902621696,Auto Test64,Auto,Test64,autotest+64@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171626553669814,5306526529902621696,Auto Test64,Auto,Test64,autotest+64@abovecloud9.ai,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5383274376043268283,5306526529902621696,Vetha Test Ac9 Teacher QA,,Vetha Test Ac9 Teacher QA,,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5383274376043268283,5306526529902621696,Vetha Test Ac9 Teacher QA,,Vetha Test Ac9 Teacher QA,,teacher,inactive,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5383274376043268283,5306526529902621696,Vetha Test Ac9 Teacher QA,,Vetha Test Ac9 Teacher QA,,teacher,inactive,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5383274376043268283,5306526529902621696,Vetha Test Ac9 Teacher QA,,Vetha Test Ac9 Teacher QA,,teacher,inactive,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171626553669814,5306526529902621696,Auto Test64,Auto,Test64,autotest+64@abovecloud9.ai,teacher,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171626629310647,5306526529902621696,Auto Test65,Auto,Test65,autotest+65@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171626629310647,5306526529902621696,Auto Test65,Auto,Test65,autotest+65@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171626629310647,5306526529902621696,Auto Test65,Auto,Test65,autotest+65@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171626704980152,5306526529902621696,Auto Test66,Auto,Test66,autotest+66@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171626704980152,5306526529902621696,Auto Test66,Auto,Test66,autotest+66@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171626704980152,5306526529902621696,Auto Test66,Auto,Test66,autotest+66@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171626789231801,5306526529902621696,Auto Test67,Auto,Test67,autotest+67@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171626789231801,5306526529902621696,Auto Test67,Auto,Test67,autotest+67@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171626906313914,5306526529902621696,Auto Test68,Auto,Test68,autotest+68@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171626906313914,5306526529902621696,Auto Test68,Auto,Test68,autotest+68@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171627644281025,5306526529902621696,Auto Test75,Auto,Test75,autotest+75@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171627644281025,5306526529902621696,Auto Test75,Auto,Test75,autotest+75@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171627736194242,5306526529902621696,Auto Test76,Auto,Test76,autotest+76@abovecloud9.ai,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386171627736194242,5306526529902621696,Auto Test76,Auto,Test76,autotest+76@abovecloud9.ai,teacher,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171626906313914,5306526529902621696,Auto Test68,Auto,Test68,autotest+68@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171628122684612,5306526529902621696,Auto Test78,Auto,Test78,autotest+78@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171628122684612,5306526529902621696,Auto Test78,Auto,Test78,autotest+78@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171628197548229,5306526529902621696,Auto Test79,Auto,Test79,autotest+79@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171628197548229,5306526529902621696,Auto Test79,Auto,Test79,autotest+79@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171628273322182,5306526529902621696,Auto Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Te,Auto,Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Te,autotest+80@abovecloud9.ai,member,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386171628273322182,5306526529902621696,Auto Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Te,Auto,Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Te,autotest+80@abovecloud9.ai,member,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5336241284837342577,5306526529902621696,Test1,,Test1,,teacher,inactive,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336241284837342577,5306526529902621696,Test1,,Test1,,teacher,inactive,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5386164970184699013,5306526529902621696,Auto Test15,Auto,Test15,autotest+15@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386164970184699013,5306526529902621696,Auto Test15,Auto,Test15,autotest+15@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171626990346427,5306526529902621696,Auto Test69,Auto,Test69,autotest+69@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171626990346427,5306526529902621696,Auto Test69,Auto,Test69,autotest+69@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386167714274919577,5306526529902621696,Auto Test35,Auto,Test35,autotest+35@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386167714274919577,5306526529902621696,Auto Test35,Auto,Test35,autotest+35@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386164238346229888,5306526529902621696,Auto Test10,Auto,Test10,autotest+10@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386164238346229888,5306526529902621696,Auto Test10,Auto,Test10,autotest+10@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386162431708883065,5306526529902621696,Auto Test3,Auto,Test3,autotest+3@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386162431708883065,5306526529902621696,Auto Test3,Auto,Test3,autotest+3@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386162711250744442,5306526529902621696,Auto Test4,Auto,Test4,autotest+4@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386162867354373243,5306526529902621696,Auto Test5,Auto,Test5,autotest+5@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386162867354373243,5306526529902621696,Auto Test5,Auto,Test5,autotest+5@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386165827534668939,5306526529902621696,Auto Test21,Auto,Test21,autotest+21@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386165827534668939,5306526529902621696,Auto Test21,Auto,Test21,autotest+21@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386164658891986051,5306526529902621696,Auto Test13,Auto,Test13,autotest+13@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386164658891986051,5306526529902621696,Auto Test13,Auto,Test13,autotest+13@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386167880487037082,5306526529902621696,Auto Test36,Auto,Test36,autotest+36@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386167880487037082,5306526529902621696,Auto Test36,Auto,Test36,autotest+36@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386166467442351248,5306526529902621696,Auto Test26,Auto,Test26,autotest+26@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386166467442351248,5306526529902621696,Auto Test26,Auto,Test26,autotest+26@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386165614438338697,5306526529902621696,Auto Test19,Auto,Test19,autotest+19@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386165614438338697,5306526529902621696,Auto Test19,Auto,Test19,autotest+19@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386164408634489985,5306526529902621696,Auto Test11,Auto,Test11,autotest+11@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386164408634489985,5306526529902621696,Auto Test11,Auto,Test11,autotest+11@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386165312465101959,5306526529902621696,Auto Test17,Auto,Test17,autotest+17@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386165312465101959,5306526529902621696,Auto Test17,Auto,Test17,autotest+17@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386167234169394325,5306526529902621696,Auto Test31,Auto,Test31,autotest+31@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386167234169394325,5306526529902621696,Auto Test31,Auto,Test31,autotest+31@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386167963558900891,5306526529902621696,Auto Test37,Auto,Test37,autotest+37@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386167963558900891,5306526529902621696,Auto Test37,Auto,Test37,autotest+37@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386165934270913676,5306526529902621696,Auto Test22,Auto,Test22,autotest+22@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386165934270913676,5306526529902621696,Auto Test22,Auto,Test22,autotest+22@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386166623009156241,5306526529902621696,Auto Test27,Auto,Test27,autotest+27@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386166623009156241,5306526529902621696,Auto Test27,Auto,Test27,autotest+27@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386166179898032270,5306526529902621696,Auto Test24,Auto,Test24,autotest+24@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386166179898032270,5306526529902621696,Auto Test24,Auto,Test24,autotest+24@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386167627720942744,5306526529902621696,Auto Test34,Auto,Test34,autotest+34@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386167627720942744,5306526529902621696,Auto Test34,Auto,Test34,autotest+34@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386163899890788478,5306526529902621696,Auto Test8,Auto,Test8,autotest+8@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386163899890788478,5306526529902621696,Auto Test8,Auto,Test8,autotest+8@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386166298093018255,5306526529902621696,Auto Test25,Auto,Test25,autotest+25@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386166298093018255,5306526529902621696,Auto Test25,Auto,Test25,autotest+25@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386167070809766036,5306526529902621696,Auto Test30,Auto,Test30,autotest+30@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386167070809766036,5306526529902621696,Auto Test30,Auto,Test30,autotest+30@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386167316369699990,5306526529902621696,Auto Test32,Auto,Test32,autotest+32@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386167316369699990,5306526529902621696,Auto Test32,Auto,Test32,autotest+32@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386167515557613719,5306526529902621696,Auto Test33,Auto,Test33,autotest+33@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386167515557613719,5306526529902621696,Auto Test33,Auto,Test33,autotest+33@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386163134690610300,5306526529902621696,Auto Test6,Auto,Test6,autotest+6@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386163134690610300,5306526529902621696,Auto Test6,Auto,Test6,autotest+6@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386165357025280136,5306526529902621696,Auto Test18,Auto,Test18,autotest+18@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386165357025280136,5306526529902621696,Auto Test18,Auto,Test18,autotest+18@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386168121348499612,5306526529902621696,Auto Test38,Auto,Test38,autotest+38@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386168121348499612,5306526529902621696,Auto Test38,Auto,Test38,autotest+38@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386166101338059917,5306526529902621696,Auto Test23,Auto,Test23,autotest+23@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386166101338059917,5306526529902621696,Auto Test23,Auto,Test23,autotest+23@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386163849483522173,5306526529902621696,Auto Test7,Auto,Test7,autotest+7@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386163849483522173,5306526529902621696,Auto Test7,Auto,Test7,autotest+7@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386165072107037830,5306526529902621696,Auto Test16,Auto,Test16,autotest+16@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386165072107037830,5306526529902621696,Auto Test16,Auto,Test16,autotest+16@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386167003155579027,5306526529902621696,Auto Test28,Auto,Test28,autotest+28@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386167003155579027,5306526529902621696,Auto Test28,Auto,Test28,autotest+28@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386164069952988287,5306526529902621696,Auto Test9,Auto,Test9,autotest+9@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386164069952988287,5306526529902621696,Auto Test9,Auto,Test9,autotest+9@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386164592412203138,5306526529902621696,Auto Test12,Auto,Test12,autotest+12@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386164592412203138,5306526529902621696,Auto Test12,Auto,Test12,autotest+12@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386164785803678852,5306526529902621696,Auto Test14,Auto,Test14,autotest+14@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386164785803678852,5306526529902621696,Auto Test14,Auto,Test14,autotest+14@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386165659761953930,5306526529902621696,Auto Test20,Auto,Test20,autotest+20@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386165659761953930,5306526529902621696,Auto Test20,Auto,Test20,autotest+20@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386168335249918110,5306526529902621696,Auto Test40,Auto,Test40,autotest+40@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386168335249918110,5306526529902621696,Auto Test40,Auto,Test40,autotest+40@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386166874944586898,5306526529902621696,Auto Test29,Auto,Test29,autotest+29@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386166874944586898,5306526529902621696,Auto Test29,Auto,Test29,autotest+29@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386168229763545245,5306526529902621696,Auto Test39,Auto,Test39,autotest+39@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386168229763545245,5306526529902621696,Auto Test39,Auto,Test39,autotest+39@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5336240612977168032,5306526529902621696,PriyaAsst Teacher Prasad,PriyaAsst Teacher,Prasad,priya18pp+100901@gmail.com,assistant-teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5336241204105630883,5306526529902621696,Vedika Tonde,Vedika,Tonde,vedika.aolauto0831@artofliving.org,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171626990346427,5306526529902621696,Auto Test69,Auto,Test69,autotest+69@abovecloud9.ai,teacher,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5336246250013113608,5306526529902621696,Sudhagar Chinnaswamy,Sudhagar,Chinnaswamy,sudhagar@gmail.com,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5336246250013113608,5306526529902621696,Sudhagar Chinnaswamy,Sudhagar,Chinnaswamy,sudhagar@gmail.com,teacher,inactive,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336246250013113608,5306526529902621696,Sudhagar Chinnaswamy,Sudhagar,Chinnaswamy,sudhagar@gmail.com,teacher,inactive,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336246250013113608,5306526529902621696,Sudhagar Chinnaswamy,Sudhagar,Chinnaswamy,sudhagar@gmail.com,teacher,inactive,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5352793497726903329,5306526529902621696,Kaviya B372,Kaviya,B372,kavya37b@gmail.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5359122307586111811,5306526529902621696,Nivedha S,Nivedha,S,nivedhas@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5359122307586111811,5306526529902621696,Nivedha S,Nivedha,S,nivedhas@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5359122307586111811,5306526529902621696,Nivedha S,Nivedha,S,nivedhas@abovecloud9.ai,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5359122307586111811,5306526529902621696,Nivedha S,Nivedha,S,nivedhas@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5359122307586111811,5306526529902621696,Nivedha S,Nivedha,S,nivedhas@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5359122307586111811,5306526529902621696,Nivedha S,Nivedha,S,nivedhas@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171627090232508,5306526529902621696,Auto Test70,Auto,Test70,autotest+70@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386164238346229888,5306526529902621696,Auto Test10,Auto,Test10,autotest+10@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386162711250744442,5306526529902621696,Auto Test4,Auto,Test4,autotest+4@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386162867354373243,5306526529902621696,Auto Test5,Auto,Test5,autotest+5@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386165827534668939,5306526529902621696,Auto Test21,Auto,Test21,autotest+21@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386164658891986051,5306526529902621696,Auto Test13,Auto,Test13,autotest+13@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386167880487037082,5306526529902621696,Auto Test36,Auto,Test36,autotest+36@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386166467442351248,5306526529902621696,Auto Test26,Auto,Test26,autotest+26@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386165312465101959,5306526529902621696,Auto Test17,Auto,Test17,autotest+17@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386167963558900891,5306526529902621696,Auto Test37,Auto,Test37,autotest+37@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386165934270913676,5306526529902621696,Auto Test22,Auto,Test22,autotest+22@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386166179898032270,5306526529902621696,Auto Test24,Auto,Test24,autotest+24@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386167627720942744,5306526529902621696,Auto Test34,Auto,Test34,autotest+34@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386163899890788478,5306526529902621696,Auto Test8,Auto,Test8,autotest+8@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386166298093018255,5306526529902621696,Auto Test25,Auto,Test25,autotest+25@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386167070809766036,5306526529902621696,Auto Test30,Auto,Test30,autotest+30@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386167316369699990,5306526529902621696,Auto Test32,Auto,Test32,autotest+32@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386167515557613719,5306526529902621696,Auto Test33,Auto,Test33,autotest+33@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386163134690610300,5306526529902621696,Auto Test6,Auto,Test6,autotest+6@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386165357025280136,5306526529902621696,Auto Test18,Auto,Test18,autotest+18@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386168121348499612,5306526529902621696,Auto Test38,Auto,Test38,autotest+38@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386165072107037830,5306526529902621696,Auto Test16,Auto,Test16,autotest+16@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386167003155579027,5306526529902621696,Auto Test28,Auto,Test28,autotest+28@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386164069952988287,5306526529902621696,Auto Test9,Auto,Test9,autotest+9@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386164592412203138,5306526529902621696,Auto Test12,Auto,Test12,autotest+12@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386164785803678852,5306526529902621696,Auto Test14,Auto,Test14,autotest+14@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171624356094111,5306526529902621696,Auto Test41,Auto,Test41,autotest+41@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171627090232508,5306526529902621696,Auto Test70,Auto,Test70,autotest+70@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171624867525795,5306526529902621696,Auto Test45,Auto,Test45,autotest+45@abovecloud9.ai,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5386171624935249060,5306526529902621696,Auto Test46,Auto,Test46,autotest+46@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625068755110,5306526529902621696,Auto Test48,Auto,Test48,autotest+48@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625152791719,5306526529902621696,Auto Test49,Auto,Test49,autotest+49@abovecloud9.ai,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5386171625220448424,5306526529902621696,Auto Test50,Auto,Test50,autotest+50@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625363151018,5306526529902621696,Auto Test52,Auto,Test52,autotest+52@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625429881003,5306526529902621696,Auto Test53,Auto,Test53,autotest+53@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625505145004,5306526529902621696,Auto Test54,Auto,Test54,autotest+54@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625656776878,5306526529902621696,Auto Test56,Auto,Test56,autotest+56@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625715275951,5306526529902621696,Auto Test57,Auto,Test57,autotest+57@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171625790686384,5306526529902621696,Auto Test58,Auto,Test58,autotest+58@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171626150811826,5306526529902621696,Auto Test60,Auto,Test60,autotest+60@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171627090232508,5306526529902621696,Auto Test70,Auto,Test70,autotest+70@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171627165904061,5306526529902621696,Auto Test71,Auto,Test71,autotest+71@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171627165904061,5306526529902621696,Auto Test71,Auto,Test71,autotest+71@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171627267281086,5306526529902621696,Auto Test72,Auto,Test72,autotest+72@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171627267281086,5306526529902621696,Auto Test72,Auto,Test72,autotest+72@abovecloud9.ai,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386171627267281086,5306526529902621696,Auto Test72,Auto,Test72,autotest+72@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171627736194242,5306526529902621696,Auto Test76,Auto,Test76,autotest+76@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171628122684612,5306526529902621696,Auto Test78,Auto,Test78,autotest+78@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171628273322182,5306526529902621696,Auto Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Te,Auto,Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Test80Te,autotest+80@abovecloud9.ai,member,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386165659761953930,5306526529902621696,Auto Test20,Auto,Test20,autotest+20@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386168335249918110,5306526529902621696,Auto Test40,Auto,Test40,autotest+40@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386166874944586898,5306526529902621696,Auto Test29,Auto,Test29,autotest+29@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386171627425923263,5306526529902621696,Auto Test73,Auto,Test73,autotest+73@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171627425923263,5306526529902621696,Auto Test73,Auto,Test73,autotest+73@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171627425923263,5306526529902621696,Auto Test73,Auto,Test73,autotest+73@abovecloud9.ai,teacher,inactive,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171627543924928,5306526529902621696,Auto Test74,Auto,Test74,autotest+74@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171627543924928,5306526529902621696,Auto Test74,Auto,Test74,autotest+74@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171627543924928,5306526529902621696,Auto Test74,Auto,Test74,autotest+74@abovecloud9.ai,teacher,inactive,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5352793497726903329,5306526529902621696,Kaviya B372,Kaviya,B372,kavya37b@gmail.com,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171627820680387,5306526529902621696,Auto Test77,Auto,Test77,autotest+77@abovecloud9.ai,teacher,inactive,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386171627820680387,5306526529902621696,Auto Test77,Auto,Test77,autotest+77@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171625152791719,5306526529902621696,Auto Test49,Auto,Test49,autotest+49@abovecloud9.ai,teacher,inactive,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5386171624498981024,5306526529902621696,Auto Test42,Auto,Test42,autotest+42@abovecloud9.ai,teacher,inactive,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171624498981024,5306526529902621696,Auto Test42,Auto,Test42,autotest+42@abovecloud9.ai,teacher,inactive,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5336246329394772356,5306526529902621696,Nandan Udiavar,Nandan,Udiavar,nandan.udiavar@artofliving.org,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336246329394772356,5306526529902621696,Nandan Udiavar,Nandan,Udiavar,nandan.udiavar@artofliving.org,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5336246329394772356,5306526529902621696,Nandan Udiavar,Nandan,Udiavar,nandan.udiavar@artofliving.org,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336246329394772356,5306526529902621696,Nandan Udiavar,Nandan,Udiavar,nandan.udiavar@artofliving.org,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5336246329394772356,5306526529902621696,Nandan Udiavar,Nandan,Udiavar,nandan.udiavar@artofliving.org,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336246329394772356,5306526529902621696,Nandan Udiavar,Nandan,Udiavar,nandan.udiavar@artofliving.org,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5336246329394772356,5306526529902621696,Nandan Udiavar,Nandan,Udiavar,nandan.udiavar@artofliving.org,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336246329394772356,5306526529902621696,Nandan Udiavar,Nandan,Udiavar,nandan.udiavar@artofliving.org,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5336241844240074372,5306526529902621696,Kinjal Desai,Kinjal,Desai,kinjal.desai@artofliving.org,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336241844240074372,5306526529902621696,Kinjal Desai,Kinjal,Desai,kinjal.desai@artofliving.org,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5336241844240074372,5306526529902621696,Kinjal Desai,Kinjal,Desai,kinjal.desai@artofliving.org,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5336241762921416105,5306526529902621696,Ankur Rawat,Ankur,Rawat,ankur.rawat@artofliving.org,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5336241762921416105,5306526529902621696,Ankur Rawat,Ankur,Rawat,ankur.rawat@artofliving.org,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5407888340584801289,5306526529902621696,Soorya Akilesh Chithambaram,Soorya Akilesh,Chithambaram,soorya@abovecloud9.ai,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5407888340584801289,5306526529902621696,Soorya Akilesh Chithambaram,Soorya Akilesh,Chithambaram,soorya@abovecloud9.ai,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5393431049970373636,5306526529902621696,Harini Ac9 mar20,Harini,Ac9 mar20,harinishree@abovecloud9.ai,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5393431049970373636,5306526529902621696,Harini Ac9 mar20,Harini,Ac9 mar20,harinishree@abovecloud9.ai,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5386162711250744442,5306526529902621696,Auto Test4,Auto,Test4,autotest+4@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386162711250744442,5306526529902621696,Auto Test4,Auto,Test4,autotest+4@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,20000013,5306526529902621696,Teacher AC-9,Teacher,AC-9,test.auth.1@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,20000013,5306526529902621696,Teacher AC-9,Teacher,AC-9,test.auth.1@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,20000013,5306526529902621696,Teacher AC-9,Teacher,AC-9,test.auth.1@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171624935249060,5306526529902621696,Auto Test46,Auto,Test46,autotest+46@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5386171627820680387,5306526529902621696,Auto Test77,Auto,Test77,autotest+77@abovecloud9.ai,teacher,inactive,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5381082577770443788,5306526529902621696,adrash PORTAL USER,adrash,PORTAL USER,adarsh@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5381082577770443788,5306526529902621696,adrash PORTAL USER,adrash,PORTAL USER,adarsh@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5381082577770443788,5306526529902621696,adrash PORTAL USER,adrash,PORTAL USER,adarsh@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5381082577770443788,5306526529902621696,adrash PORTAL USER,adrash,PORTAL USER,adarsh@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5381082577770443788,5306526529902621696,adrash PORTAL USER,adrash,PORTAL USER,adarsh@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5381082577770443788,5306526529902621696,adrash PORTAL USER,adrash,PORTAL USER,adarsh@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5381082577770443788,5306526529902621696,adrash PORTAL USER,adrash,PORTAL USER,adarsh@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5381082577770443788,5306526529902621696,adrash PORTAL USER,adrash,PORTAL USER,adarsh@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5487559887951102036,5306526529902621696,Gohul AC9,Gohul,AC9,gohul1@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5487559887951102036,5306526529902621696,Gohul AC9,Gohul,AC9,gohul1@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5487559887951102036,5306526529902621696,Gohul AC9,Gohul,AC9,gohul1@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,20000013,5306526529902621696,Teacher AC-9,Teacher,AC-9,test.auth.1@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5487559887951102036,5306526529902621696,Gohul AC9,Gohul,AC9,gohul1@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5487559887951102036,5306526529902621696,Gohul AC9,Gohul,AC9,gohul1@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5487559887951102036,5306526529902621696,Gohul AC9,Gohul,AC9,gohul1@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386164658891986051,5306526529902621696,Auto Test13,Auto,Test13,autotest+13@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5428146681810514944,5306526529902621696,Ishan Palimkar,Ishan,Palimkar,ishan.palimkar@in.artofliving.org,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5428146681810514944,5306526529902621696,Ishan Palimkar,Ishan,Palimkar,ishan.palimkar@in.artofliving.org,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5428146681810514944,5306526529902621696,Ishan Palimkar,Ishan,Palimkar,ishan.palimkar@in.artofliving.org,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5428146681810514944,5306526529902621696,Ishan Palimkar,Ishan,Palimkar,ishan.palimkar@in.artofliving.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5428146681810514944,5306526529902621696,Ishan Palimkar,Ishan,Palimkar,ishan.palimkar@in.artofliving.org,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5428146681810514944,5306526529902621696,Ishan Palimkar,Ishan,Palimkar,ishan.palimkar@in.artofliving.org,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5428146681810514944,5306526529902621696,Ishan Palimkar,Ishan,Palimkar,ishan.palimkar@in.artofliving.org,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5428146681810514944,5306526529902621696,Ishan Palimkar,Ishan,Palimkar,ishan.palimkar@in.artofliving.org,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5428158052778050568,5306526529902621696,Saket Tawde,Saket,Tawde,saket.tawde@gmail.com,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5428158052778050568,5306526529902621696,Saket Tawde,Saket,Tawde,saket.tawde@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5428158052778050568,5306526529902621696,Saket Tawde,Saket,Tawde,saket.tawde@gmail.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5428158052778050568,5306526529902621696,Saket Tawde,Saket,Tawde,saket.tawde@gmail.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5428158052778050568,5306526529902621696,Saket Tawde,Saket,Tawde,saket.tawde@gmail.com,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5428158052778050568,5306526529902621696,Saket Tawde,Saket,Tawde,saket.tawde@gmail.com,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5428158052778050568,5306526529902621696,Saket Tawde,Saket,Tawde,saket.tawde@gmail.com,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5428158052778050568,5306526529902621696,Saket Tawde,Saket,Tawde,saket.tawde@gmail.com,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5350759983678861768,5306526529902621696,Vetha Prasath deleted in Cognito,Vetha,Prasath deleted in Cognito,,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5350759983678861768,5306526529902621696,Vetha Prasath deleted in Cognito,Vetha,Prasath deleted in Cognito,,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5350759983678861768,5306526529902621696,Vetha Prasath deleted in Cognito,Vetha,Prasath deleted in Cognito,,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5350759983678861768,5306526529902621696,Vetha Prasath deleted in Cognito,Vetha,Prasath deleted in Cognito,,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5350759983678861768,5306526529902621696,Vetha Prasath deleted in Cognito,Vetha,Prasath deleted in Cognito,,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5350759983678861768,5306526529902621696,Vetha Prasath deleted in Cognito,Vetha,Prasath deleted in Cognito,,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5350759983678861768,5306526529902621696,Vetha Prasath deleted in Cognito,Vetha,Prasath deleted in Cognito,,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5350759983678861768,5306526529902621696,Vetha Prasath deleted in Cognito,Vetha,Prasath deleted in Cognito,,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,20000013,5306526529902621696,Teacher AC-9,Teacher,AC-9,test.auth.1@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5336240460473011622,5306526529902621696,Priya Prasadteacher,Priya,Prasadteacher,priya.prasad@artofliving.org,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5352793497726903329,5306526529902621696,Kaviya B372,Kaviya,B372,kavya37b@gmail.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5352793497726903329,5306526529902621696,Kaviya B372,Kaviya,B372,kavya37b@gmail.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336240460473011622,5306526529902621696,Priya Prasadteacher,Priya,Prasadteacher,priya.prasad@artofliving.org,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5442692958175132710,5306526529902621696,Vishnu Vishnu,Vishnu,Vishnu,vishnu@uxindia.design,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5442692958175132710,5306526529902621696,Vishnu Vishnu,Vishnu,Vishnu,vishnu@uxindia.design,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5442692958175132710,5306526529902621696,Vishnu Vishnu,Vishnu,Vishnu,vishnu@uxindia.design,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5442692958175132710,5306526529902621696,Vishnu Vishnu,Vishnu,Vishnu,vishnu@uxindia.design,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5442692958175132710,5306526529902621696,Vishnu Vishnu,Vishnu,Vishnu,vishnu@uxindia.design,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5442692958175132710,5306526529902621696,Vishnu Vishnu,Vishnu,Vishnu,vishnu@uxindia.design,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5442692958175132710,5306526529902621696,Vishnu Vishnu,Vishnu,Vishnu,vishnu@uxindia.design,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5442692958175132710,5306526529902621696,Vishnu Vishnu,Vishnu,Vishnu,vishnu@uxindia.design,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336240376183821513,5306526529902621696,Pradeep C,Pradeep,C,pradeep.chandran@winfomi.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5386165312465101959,5306526529902621696,Auto Test17,Auto,Test17,autotest+17@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5386171625220448424,5306526529902621696,Auto Test50,Auto,Test50,autotest+50@abovecloud9.ai,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5442904088331847903,5306526529902621696,test01011 @gmail.com,test01011,@gmail.com,test0101@gmail.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5386171627543924928,5306526529902621696,Auto Test74,Auto,Test74,autotest+74@abovecloud9.ai,teacher,inactive,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5359122307586111811,5306526529902621696,Nivedha S,Nivedha,S,nivedhas@abovecloud9.ai,teacher,inactive,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5336240460473011622,5306526529902621696,Priya Prasadteacher,Priya,Prasadteacher,priya.prasad@artofliving.org,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5443332688025783355,5306526529902621696,ArunKumar CK,ArunKumar,CK,ckarunkumar@gmail.com,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5443332688025783355,5306526529902621696,ArunKumar CK,ArunKumar,CK,ckarunkumar@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5443332688025783355,5306526529902621696,ArunKumar CK,ArunKumar,CK,ckarunkumar@gmail.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5443332688025783355,5306526529902621696,ArunKumar CK,ArunKumar,CK,ckarunkumar@gmail.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5443332688025783355,5306526529902621696,ArunKumar CK,ArunKumar,CK,ckarunkumar@gmail.com,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5443332688025783355,5306526529902621696,ArunKumar CK,ArunKumar,CK,ckarunkumar@gmail.com,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5443332688025783355,5306526529902621696,ArunKumar CK,ArunKumar,CK,ckarunkumar@gmail.com,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5443332688025783355,5306526529902621696,ArunKumar CK,ArunKumar,CK,ckarunkumar@gmail.com,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5464393991791908869,5306526529902621696,Palanvelrajan R V Palanvelrajan R V,Palanvelrajan R V,Palanvelrajan R V,palanivelrajanr@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5442788530089562321,5306526529902621696,Goutham Balakrishnan,Goutham,Balakrishnan,gouthambalki@gmail.com,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5442788530089562321,5306526529902621696,Goutham Balakrishnan,Goutham,Balakrishnan,gouthambalki@gmail.com,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5442788530089562321,5306526529902621696,Goutham Balakrishnan,Goutham,Balakrishnan,gouthambalki@gmail.com,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5442788530089562321,5306526529902621696,Goutham Balakrishnan,Goutham,Balakrishnan,gouthambalki@gmail.com,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5442788530089562321,5306526529902621696,Goutham Balakrishnan,Goutham,Balakrishnan,gouthambalki@gmail.com,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5442788530089562321,5306526529902621696,Goutham Balakrishnan,Goutham,Balakrishnan,gouthambalki@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5442788530089562321,5306526529902621696,Goutham Balakrishnan,Goutham,Balakrishnan,gouthambalki@gmail.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5442788530089562321,5306526529902621696,Goutham Balakrishnan,Goutham,Balakrishnan,gouthambalki@gmail.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5442783131994545194,5306526529902621696,Mohan K,Mohan,K,mohanmk672000@gmail.com,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5442783131994545194,5306526529902621696,Mohan K,Mohan,K,mohanmk672000@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5442783131994545194,5306526529902621696,Mohan K,Mohan,K,mohanmk672000@gmail.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5442783131994545194,5306526529902621696,Mohan K,Mohan,K,mohanmk672000@gmail.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5442783131994545194,5306526529902621696,Mohan K,Mohan,K,mohanmk672000@gmail.com,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5442783131994545194,5306526529902621696,Mohan K,Mohan,K,mohanmk672000@gmail.com,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5442783131994545194,5306526529902621696,Mohan K,Mohan,K,mohanmk672000@gmail.com,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5442783131994545194,5306526529902621696,Mohan K,Mohan,K,mohanmk672000@gmail.com,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5441960171751226398,5306526529902621696,Shakti Sharma,Shakti,Sharma,shakti.sharma1993@gmail.com,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5441960171751226398,5306526529902621696,Shakti Sharma,Shakti,Sharma,shakti.sharma1993@gmail.com,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5441960171751226398,5306526529902621696,Shakti Sharma,Shakti,Sharma,shakti.sharma1993@gmail.com,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5441960171751226398,5306526529902621696,Shakti Sharma,Shakti,Sharma,shakti.sharma1993@gmail.com,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5441960171751226398,5306526529902621696,Shakti Sharma,Shakti,Sharma,shakti.sharma1993@gmail.com,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5441960171751226398,5306526529902621696,Shakti Sharma,Shakti,Sharma,shakti.sharma1993@gmail.com,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5441960171751226398,5306526529902621696,Shakti Sharma,Shakti,Sharma,shakti.sharma1993@gmail.com,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5441960171751226398,5306526529902621696,Shakti Sharma,Shakti,Sharma,shakti.sharma1993@gmail.com,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5464393991791908869,5306526529902621696,Palanvelrajan R V Palanvelrajan R V,Palanvelrajan R V,Palanvelrajan R V,palanivelrajanr@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5464393991791908869,5306526529902621696,Palanvelrajan R V Palanvelrajan R V,Palanvelrajan R V,Palanvelrajan R V,palanivelrajanr@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5464393991791908869,5306526529902621696,Palanvelrajan R V Palanvelrajan R V,Palanvelrajan R V,Palanvelrajan R V,palanivelrajanr@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5464393991791908869,5306526529902621696,Palanvelrajan R V Palanvelrajan R V,Palanvelrajan R V,Palanvelrajan R V,palanivelrajanr@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5464393991791908869,5306526529902621696,Palanvelrajan R V Palanvelrajan R V,Palanvelrajan R V,Palanvelrajan R V,palanivelrajanr@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5464393991791908869,5306526529902621696,Palanvelrajan R V Palanvelrajan R V,Palanvelrajan R V,Palanvelrajan R V,palanivelrajanr@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5464393991791908869,5306526529902621696,Palanvelrajan R V Palanvelrajan R V,Palanvelrajan R V,Palanvelrajan R V,palanivelrajanr@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5377387231738812442,5306526529902621696,Thangaraj C,Thangaraj,C,thangaraj@abovecloud9.ai,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336242652533401300,5306526529902621696,Kaviya Balakrishnan,Kaviya,Balakrishnan,kaviya.balakrishnan@winfomi.com,member,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336242652533401300,5306526529902621696,Kaviya Balakrishnan,Kaviya,Balakrishnan,kaviya.balakrishnan@winfomi.com,member,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336242652533401300,5306526529902621696,Kaviya Balakrishnan,Kaviya,Balakrishnan,kaviya.balakrishnan@winfomi.com,member,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5386162222387845240,5306526529902621696,Auto Test2,Auto,Test2,autotest+2@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5386171624498981024,5306526529902621696,Auto Test42,Auto,Test42,autotest+42@abovecloud9.ai,teacher,inactive,FALSE,primary
+8115690,Art of Living Part 1,course,online,5442904088331847903,5306526529902621696,test01011 @gmail.com,test01011,@gmail.com,test0101@gmail.com,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5376728685477431610,5306526529902621696,VethA B372,VethA,B372,vethaprasath@abovecloud9.ai,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5376728685477431610,5306526529902621696,VethA B372,VethA,B372,vethaprasath@abovecloud9.ai,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5376728685477431610,5306526529902621696,VethA B372,VethA,B372,vethaprasath@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5376728685477431610,5306526529902621696,VethA B372,VethA,B372,vethaprasath@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5468705871980808192,5306526529902621696,thangaraj meetup teacher thangaraj meetup teacher,thangaraj meetup teacher,thangaraj meetup teacher,thangaraj+1@abovecloud9.ai,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5468705871980808192,5306526529902621696,thangaraj meetup teacher thangaraj meetup teacher,thangaraj meetup teacher,thangaraj meetup teacher,thangaraj+1@abovecloud9.ai,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5386162014870311031,5306526529902621696,Auto Test1,Auto,Test1,autotest+1@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5386166874944586898,5306526529902621696,Auto Test29,Auto,Test29,autotest+29@abovecloud9.ai,teacher,active,TRUE,assistant
+1237100,Art of Living Part 1,course,in-person,5336242393501534278,5306526529902621696,Praj Amraotikar,Praj,Amraotikar,prajaktaa@artofliving.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5336242393501534278,5306526529902621696,Praj Amraotikar,Praj,Amraotikar,prajaktaa@artofliving.org,teacher,active,FALSE,assistant
+1237100,Art of Living Part 1,course,in-person,5336240460473011622,5306526529902621696,Priya Prasadteacher,Priya,Prasadteacher,priya.prasad@artofliving.org,teacher,active,TRUE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336240460473011622,5306526529902621696,Priya Prasadteacher,Priya,Prasadteacher,priya.prasad@artofliving.org,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5336240460473011622,5306526529902621696,Priya Prasadteacher,Priya,Prasadteacher,priya.prasad@artofliving.org,teacher,active,TRUE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336240460473011622,5306526529902621696,Priya Prasadteacher,Priya,Prasadteacher,priya.prasad@artofliving.org,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5376728685477431610,5306526529902621696,VethA B372,VethA,B372,vethaprasath@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5376728685477431610,5306526529902621696,VethA B372,VethA,B372,vethaprasath@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5376728685477431610,5306526529902621696,VethA B372,VethA,B372,vethaprasath@abovecloud9.ai,teacher,active,TRUE,assistant
+8115690,Art of Living Part 1,course,online,5376728685477431610,5306526529902621696,VethA B372,VethA,B372,vethaprasath@abovecloud9.ai,teacher,active,TRUE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5336242393501534278,5306526529902621696,Praj Amraotikar,Praj,Amraotikar,prajaktaa@artofliving.org,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5386162222387845240,5306526529902621696,Auto Test2,Auto,Test2,autotest+2@abovecloud9.ai,teacher,active,TRUE,primary
+8115690,Art of Living Part 1,course,online,5386162222387845240,5306526529902621696,Auto Test2,Auto,Test2,autotest+2@abovecloud9.ai,teacher,active,TRUE,primary
+1237100,Art of Living Part 1,course,in-person,5447782102941011983,5306526529902621696,Navaneethan S Navaneethan S,Navaneethan S,Navaneethan S,snavaneethan@abovecloud9.ai,teacher,active,FALSE,primary
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5447782102941011983,5306526529902621696,Navaneethan S Navaneethan S,Navaneethan S,Navaneethan S,snavaneethan@abovecloud9.ai,teacher,active,FALSE,primary
+8115690,Art of Living Part 1,course,online,5447782102941011983,5306526529902621696,Navaneethan S Navaneethan S,Navaneethan S,Navaneethan S,snavaneethan@abovecloud9.ai,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5447782102941011983,5306526529902621696,Navaneethan S Navaneethan S,Navaneethan S,Navaneethan S,snavaneethan@abovecloud9.ai,teacher,active,FALSE,primary
+1237100,Art of Living Part 1,course,in-person,5447782102941011983,5306526529902621696,Navaneethan S Navaneethan S,Navaneethan S,Navaneethan S,snavaneethan@abovecloud9.ai,teacher,active,FALSE,assistant
+5336235432206905423,Sahaj Samadhi Meditation,course,in-person,5447782102941011983,5306526529902621696,Navaneethan S Navaneethan S,Navaneethan S,Navaneethan S,snavaneethan@abovecloud9.ai,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5447782102941011983,5306526529902621696,Navaneethan S Navaneethan S,Navaneethan S,Navaneethan S,snavaneethan@abovecloud9.ai,teacher,active,FALSE,assistant
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5447782102941011983,5306526529902621696,Navaneethan S Navaneethan S,Navaneethan S,Navaneethan S,snavaneethan@abovecloud9.ai,teacher,active,FALSE,assistant
+8115690,Art of Living Part 1,course,online,5336242393501534278,5306526529902621696,Praj Amraotikar,Praj,Amraotikar,prajaktaa@artofliving.org,teacher,active,FALSE,primary
+5336235429413547052,Sahaj Samadhi Meditation,course,in-person,5336242393501534278,5306526529902621696,Praj Amraotikar,Praj,Amraotikar,prajaktaa@artofliving.org,teacher,active,FALSE,primary

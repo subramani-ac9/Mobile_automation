@@ -1,0 +1,36 @@
+[32mINFO    [0m LoginPage:login_page.py:238 Starting login process for user: invalid@example.com
+[32mINFO    [0m LoginPage:login_page.py:137 Entering email: invalid@example.com
+[32mINFO    [0m LoginPage:login_page.py:141 Email entered successfully
+[32mINFO    [0m LoginPage:login_page.py:244 Stopping after username entered for email validation
+[32mINFO    [0m LoginPage:login_page.py:238 Starting login process for user: invalid2@example.com
+[32mINFO    [0m LoginPage:login_page.py:137 Entering email: invalid2@example.com
+[32mINFO    [0m LoginPage:login_page.py:141 Email entered successfully
+[32mINFO    [0m LoginPage:login_page.py:145 Entering password
+[1m[31mERROR   [0m LoginPage:base_page.py:30 Element ('xpath', "//android.widget.EditText[contains(@hint,'Enter password')]") not present on the UI. Exception: Message: 
+Stacktrace:
+NoSuchElementError: An element could not be located on the page using the given search parameters.
+    at AndroidUiautomator2Driver.findElOrEls (/home/subramanimurugan/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/build/lib/commands/find.js:62:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async AndroidUiautomator2Driver.findElOrElsWithProcessing (/home/subramanimurugan/.nvm/versions/node/v24.13.0/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/basedriver/commands/find.js:12:16)
+    at async AndroidUiautomator2Driver.findElement (/home/subramanimurugan/.nvm/versions/node/v24.13.0/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/basedriver/commands/find.js:27:16)
+[1m[31mERROR   [0m LoginPage:base_page.py:88 Exception arisen when trying to click the element ('xpath', "//android.widget.EditText[contains(@hint,'Enter password')]"). Exception Message: Element ('xpath', "//android.widget.EditText[contains(@hint,'Enter password')]") not present on the UI. Exception: Message: 
+Stacktrace:
+NoSuchElementError: An element could not be located on the page using the given search parameters.
+    at AndroidUiautomator2Driver.findElOrEls (/home/subramanimurugan/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/build/lib/commands/find.js:62:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async AndroidUiautomator2Driver.findElOrElsWithProcessing (/home/subramanimurugan/.nvm/versions/node/v24.13.0/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/basedriver/commands/find.js:12:16)
+    at async AndroidUiautomator2Driver.findElement (/home/subramanimurugan/.nvm/versions/node/v24.13.0/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/basedriver/commands/find.js:27:16); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+
+[1m[31mERROR   [0m LoginPage:login_page.py:272 Login failed with exception: Message: Element ('xpath', "//android.widget.EditText[contains(@hint,'Enter password')]") not present on the UI. Exception: Message: 
+Stacktrace:
+NoSuchElementError: An element could not be located on the page using the given search parameters.
+    at AndroidUiautomator2Driver.findElOrEls (/home/subramanimurugan/.appium/node_modules/appium-uiautomator2-driver/node_modules/appium-android-driver/build/lib/commands/find.js:62:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async AndroidUiautomator2Driver.findElOrElsWithProcessing (/home/subramanimurugan/.nvm/versions/node/v24.13.0/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/basedriver/commands/find.js:12:16)
+    at async AndroidUiautomator2Driver.findElement (/home/subramanimurugan/.nvm/versions/node/v24.13.0/lib/node_modules/appium/node_modules/@appium/base-driver/build/lib/basedriver/commands/find.js:27:16); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+[32mINFO    [0m TestLogin_test_login_retry_functionality:logger_config.py:130 ================================================================================
+[32mINFO    [0m TestLogin_test_login_retry_functionality:logger_config.py:131 TEST COMPLETED: test_login_retry_functionality - Duration: 34.65s
+[32mINFO    [0m TestLogin_test_login_retry_functionality:logger_config.py:132 ================================================================================
+[32mINFO    [0m TestLogin_test_login_retry_functionality:test_login.py:78 Starting test cleanup
+[32mINFO    [0m utils.driver_manager:driver_manager.py:47 Appium driver closed successfully
+[32mINFO    [0m TestLogin_test_login_retry_functionality:test_login.py:80 Test cleanup completed

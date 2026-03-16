@@ -1,0 +1,6 @@
+[32mINFO    [0m TestLogin_test_login_with_invalid_password:logger_config.py:130 ================================================================================
+[32mINFO    [0m TestLogin_test_login_with_invalid_password:logger_config.py:131 TEST COMPLETED: test_login_with_invalid_password - Duration: 29.72s
+[32mINFO    [0m TestLogin_test_login_with_invalid_password:logger_config.py:132 ================================================================================
+[32mINFO    [0m TestLogin_test_login_with_invalid_password:test_login.py:78 Starting test cleanup
+[32mINFO    [0m utils.driver_manager:driver_manager.py:47 Appium driver closed successfully
+[32mINFO    [0m TestLogin_test_login_with_invalid_password:test_login.py:80 Test cleanup completed

@@ -1,0 +1,10 @@
+[32mINFO    [0m LoginPage:login_page.py:238 Starting login process for user: 
+[32mINFO    [0m LoginPage:login_page.py:137 Entering email: 
+[32mINFO    [0m LoginPage:login_page.py:141 Email entered successfully
+[32mINFO    [0m LoginPage:login_page.py:244 Stopping after username entered for email validation
+[32mINFO    [0m TestLogin_test_login_with_empty_email:logger_config.py:130 ================================================================================
+[32mINFO    [0m TestLogin_test_login_with_empty_email:logger_config.py:131 TEST COMPLETED: test_login_with_empty_email - Duration: 14.43s
+[32mINFO    [0m TestLogin_test_login_with_empty_email:logger_config.py:132 ================================================================================
+[32mINFO    [0m TestLogin_test_login_with_empty_email:test_login.py:78 Starting test cleanup
+[32mINFO    [0m utils.driver_manager:driver_manager.py:47 Appium driver closed successfully
+[32mINFO    [0m TestLogin_test_login_with_empty_email:test_login.py:80 Test cleanup completed

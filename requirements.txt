@@ -1,0 +1,52 @@
+# Core Testing Framework
+pytest==7.4.3
+pytest-html==4.1.1
+pytest-xdist==3.3.1
+pytest-reportlog==0.3.0
+pytest-metadata==3.1.1
+
+# Mobile Automation
+Appium-Python-Client==3.1.1
+selenium==4.15.2
+webdriver-manager==4.0.1
+
+# Reporting
+allure-pytest==2.13.2
+pytest-cov==4.1.0
+
+# Data Management
+pandas==2.3.1
+numpy==2.3.2
+openpyxl==3.1.5
+
+# Configuration & Environment
+python-dotenv==1.0.0
+pyyaml==6.0.2
+
+# Utilities & Helpers
+requests==2.32.4
+urllib3==2.5.0
+certifi==2025.7.14
+
+# Time & Date Handling
+python-dateutil==2.9.0.post0
+pytz==2025.2
+
+# Development & Debugging
+pytest-timeout==2.3.1
+pytest-rerunfailures==14.0
+pytest-mock==3.14.0
+
+# Image & Screenshot Handling
+Pillow==10.4.0
+
+# Async Support (for advanced scenarios)
+trio==0.30.0
+trio-websocket==0.12.2
+
+# CLI & Terminal
+click==8.1.7
+colorama==0.4.6
+
+# Logging & Monitoring
+structlog==25.1.0 

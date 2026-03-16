@@ -1,0 +1,121 @@
+from appium.webdriver.common.appiumby import AppiumBy
+
+
+class MeetupCreateLocator:
+    android = {
+        "meetup_type": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
+        "select_meetup_txt_box": (AppiumBy.XPATH, '(//android.view.View[@content-desc="Meetup *"]/following-sibling::android.view.View)[1]'),
+        "is_private": (AppiumBy.ACCESSIBILITY_ID, 'Private Meetup'),
+        "max_attendees_txt_field": (AppiumBy.XPATH, '(//android.view.View[contains(@content-desc,"Max Attendees *")]/following-sibling::android.widget.EditText)[1]'),
+        "teacher_ith_txt_field": (AppiumBy.XPATH, lambda ith: f'(//android.view.View[contains(@content-desc,"Select Teacher") and contains(@content-desc,"...")])[{ith}]'),
+        "add_teacher": (AppiumBy.XPATH, '//android.view.View[@content-desc="Add Teacher"]'),
+        "organizer_txt_field": (AppiumBy.XPATH, '(//android.view.View[@content-desc="Organizer(s) *"]/following-sibling::android.view.View)[1]'),
+        "timezone_txt_field": (AppiumBy.XPATH, '(//android.view.View[@content-desc="Timezone *"]/following-sibling::android.view.View)[1]'),
+        "date_ith_txt_field": (AppiumBy.XPATH, lambda ith: f"(//android.view.View[contains(@content-desc, 'Date & Time')]/following-sibling::android.widget.ImageView)[{ith}]"),
+        "msg": (AppiumBy.ACCESSIBILITY_ID,lambda msg: f'{msg}'),
+        "search": (AppiumBy.XPATH, '//android.widget.EditText'),
+        "item": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
+        "date_enter_field": (AppiumBy.XPATH, '//android.widget.EditText'),
+        "date_pencil": (AppiumBy.XPATH, "//android.view.View[contains(@content-desc,'Select date')]/child::android.view.View"),
+        "option_ok": (AppiumBy.ACCESSIBILITY_ID, 'OK'),
+        # "time_ith_txt_field": (AppiumBy.XPATH, lambda ith: f"(//android.view.View[contains(@content-desc, 'Date & Time')]/following-sibling::android.view.View)[{ith}]"),
+        "time_ith_txt_field": (AppiumBy.XPATH, "(//android.view.View[contains(@content-desc,'Date & Time')]/following-sibling::* )[2]"),
+        "time_keyboard": (AppiumBy.XPATH, '//android.widget.Button[@content-desc="Cancel"]/preceding-sibling::android.widget.Button'),
+        "time_hour": (AppiumBy.XPATH,'(//following-sibling::android.widget.EditText)[1]'),
+        "time_min": (AppiumBy.XPATH,'(//following-sibling::android.widget.EditText)[2]'),
+        "time_period": (AppiumBy.XPATH, lambda period: f'//android.widget.RadioButton[@content-desc="{period}"]'),
+        "link_txt_field": (AppiumBy.XPATH, '(//android.view.View[@content-desc="Link *"]/following-sibling::android.widget.EditText)[1]'),
+        "scroll": (AppiumBy.XPATH, "//android.widget.ScrollView"),
+        "location_ith_filed": (AppiumBy.XPATH, lambda ith: f'(//android.view.View[@content-desc="Address *"]/following-sibling::android.widget.EditText)[{ith}]'),
+        "address": (AppiumBy.XPATH, "//android.widget.EditText[contains(@hint, 'Address')]"),
+        "city": (AppiumBy.XPATH, "//android.widget.EditText[contains(@hint, 'City')]"),
+        "state_txt_field": (AppiumBy.XPATH, '//android.view.View[@content-desc="State"]'),
+        "zipcode": (AppiumBy.XPATH, "//android.widget.EditText[@hint = 'ZIP Code']"),   
+        "centerOrState": (AppiumBy.XPATH,lambda val:f'//android.view.View[contains(@content-desc, "{val}")]'),
+        "aol_center_txt_field": (AppiumBy.XPATH, '(//android.view.View[@content-desc="AOL Center *"]/following-sibling::android.view.View)[1]'),
+        "location": (AppiumBy.XPATH, lambda loc: f"//android.widget.EditText[@text='{loc}']"),
+        "add_contact": (AppiumBy.ACCESSIBILITY_ID, 'Add Contact'),
+        "contact_txt_field": (AppiumBy.XPATH, '//android.view.View[@content-desc="Contact"]/following-sibling::android.view.View[1]'),
+        "create_now": (AppiumBy.ACCESSIBILITY_ID, 'Create Now'),
+
+        "new_meetup_header": (AppiumBy.ACCESSIBILITY_ID, 'New Meetup'),
+        "meetup_info_header": (AppiumBy.ACCESSIBILITY_ID, 'Meetup Information'),
+        "select_teacher_header": (AppiumBy.ACCESSIBILITY_ID, 'Select Teacher'),
+        "select_org_header": (AppiumBy.ACCESSIBILITY_ID, 'Select Organizer'),
+        "select_date_header": (AppiumBy.ACCESSIBILITY_ID, 'Event Dates'),
+        "select_date_header": (AppiumBy.ACCESSIBILITY_ID, 'Event Dates'),
+        "location_header": (AppiumBy.ACCESSIBILITY_ID, 'Location'),
+        "meeting_url_header": (AppiumBy.ACCESSIBILITY_ID, 'Meeting URL'),
+        "revenue_header": (AppiumBy.ACCESSIBILITY_ID, 'Revenue & Expense Details'),
+        "max_attendees_err_msg": (AppiumBy.XPATH, '(//android.view.View[@content-desc="Please enter a valid input"])[1]'),
+        "teacher_err_msg": (AppiumBy.ACCESSIBILITY_ID , "Select Teacher"), 
+        "address_err_field": (AppiumBy.XPATH, lambda msg: f'(//android.widget.EditText[@hint="Address"]/following-sibling::android.view.View[@content-desc="{msg}"])[1]'),
+        "city_err_filed": (AppiumBy.XPATH, lambda msg: f'(//android.widget.EditText[@hint="City"]/following-sibling::android.view.View[@content-desc="{msg}"])[1]'),
+        "out_of_range_err": (AppiumBy.ACCESSIBILITY_ID , 'Out of range.'),
+        "final_msg": (AppiumBy.XPATH, '//android.widget.ImageView/following-sibling::android.view.View[1]')
+    }
+
+
+    ios = {
+        "meetup_type": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
+        "select_meetup_txt_box": (AppiumBy.ACCESSIBILITY_ID, 'Select meetup...'),
+        "is_private": (AppiumBy.ACCESSIBILITY_ID, 'Private Meetup'),
+        "max_attendees_txt_field": (AppiumBy.ACCESSIBILITY_ID, 'Max Attendees'),
+        "teacher_ith_txt_field": (AppiumBy.ACCESSIBILITY_ID, lambda ith: 'Select Teacher(Primary)...' if str(ith) == '1' else 'Select Teacher(Additional)...'),
+        "add_teacher": (AppiumBy.ACCESSIBILITY_ID, 'Add Teacher'),
+        "organizer_txt_field": (AppiumBy.XPATH,'(//XCUIElementTypeStaticText[contains(@name, "Organizer(s)")]/following-sibling::XCUIElementTypeStaticText)[1]'),
+        "timezone_txt_field": (AppiumBy.ACCESSIBILITY_ID, 'Select Timezone...'),
+        # "date_ith_txt_field": (AppiumBy.XPATH, lambda ith: f"(//XCUIElementTypeStaticText[contains(@label, 'Date & Time *')]/following-sibling::XCUIElementTypeOther)[{ith}]"),
+        "date_ith_txt_field": (AppiumBy.XPATH, lambda date : f"//XCUIElementTypeStaticText[@name='{date}']"),       
+        # "time_ith_txt_field": (AppiumBy.XPATH, lambda time : f"//XCUIElementTypeStaticText[@name='{time}']"),   
+        "time_ith_txt_field": (AppiumBy.XPATH, "(//XCUIElementTypeStaticText[@name='Date & Time *']/following-sibling::* )[2]"),
+        "msg": (AppiumBy.ACCESSIBILITY_ID,lambda msg: f'{msg}'),
+        "search": (AppiumBy.XPATH, '//XCUIElementTypeTextField'),
+        "search_alt": (AppiumBy.XPATH, '//XCUIElementTypeSearchField'),
+        "item": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
+        "out_of_range_err": (AppiumBy.ACCESSIBILITY_ID, "Invalid maximum attendees"),
+        # "time_dropdown": (AppiumBy.XPATH, lambda dropdown: f"//XCUIElementTypeOther[@name='{dropdown}']"),
+        # "start_time_txt_field": (AppiumBy.XPATH, lambda timeFormat: f'(//XCUIElementTypeOther[@name="Start Time *"]/following-sibling::XCUIElementTypeOther)[1]'),
+        # "date_dropdown": (AppiumBy.XPATH, lambda value: f"//XCUIElementTypeOther[@name='{value}']"),
+        # "start_date_txt_field": (AppiumBy.XPATH, lambda dateFormat: f'(//XCUIElementTypeOther[@name="Start Date *"]/following-sibling::XCUIElementTypeOther)[1]'),
+        # Course-like iOS date/time fields
+        "start_date_field": (AppiumBy.ACCESSIBILITY_ID, 'Start Date'),
+        "start_time_field": (AppiumBy.ACCESSIBILITY_ID, 'Start Time'),
+        "link_txt_field": (AppiumBy.XPATH, '(//XCUIElementTypeOther[@name="Meeting URL *"]/following-sibling::XCUIElementTypeTextField)[1]'),
+        "address": (AppiumBy.ACCESSIBILITY_ID, "Address"),
+        "city": (AppiumBy.ACCESSIBILITY_ID, "City"),
+        "zipcode": (AppiumBy.ACCESSIBILITY_ID, "ZIP Code"),
+        "centerOrState": (AppiumBy.IOS_PREDICATE, lambda val: f'name CONTAINS "{val}"'),
+        "aol_center_txt_field": (AppiumBy.ACCESSIBILITY_ID, 'Select Center...'),
+        "location": (AppiumBy.XPATH, lambda loc: f"//XCUIElementTypeTextField[@value='{loc}']"),
+        "add_contact": (AppiumBy.ACCESSIBILITY_ID, 'Add Contact'),
+        "contact_txt_field": (AppiumBy.ACCESSIBILITY_ID, 'Select Contact...'),
+        "create_now": (AppiumBy.ACCESSIBILITY_ID, 'Create Now'),
+        "new_meetup_header": (AppiumBy.ACCESSIBILITY_ID, 'New Meetup'),
+        "meetup_info_header": (AppiumBy.ACCESSIBILITY_ID, 'Meetup Information'),
+        "select_teacher_header": (AppiumBy.ACCESSIBILITY_ID, 'Select Teacher'),
+        "select_org_header": (AppiumBy.ACCESSIBILITY_ID, 'Select Organizer'),
+        "select_date_header": (AppiumBy.ACCESSIBILITY_ID, 'Event Dates'),
+        "location_header": (AppiumBy.ACCESSIBILITY_ID, 'Location'),
+        "meeting_url_header": (AppiumBy.ACCESSIBILITY_ID, 'Meeting URL'),
+        "revenue_header": (AppiumBy.ACCESSIBILITY_ID, 'Revenue & Expense Details'),
+        "state_txt_field": (AppiumBy.ACCESSIBILITY_ID, 'State'),
+        "scroll": (AppiumBy.IOS_CLASS_CHAIN, "**/XCUIElementTypeScrollView"),
+        "date_pencil": (AppiumBy.ACCESSIBILITY_ID, "Switch to input"),
+        "time_keyboard": (AppiumBy.ACCESSIBILITY_ID, 'Switch to text input mode'),
+        "time_hour": (AppiumBy.ACCESSIBILITY_ID, 'Hour'),
+        "time_min": (AppiumBy.ACCESSIBILITY_ID, 'Minute'),
+        "time_period": (AppiumBy.ACCESSIBILITY_ID, lambda period: f'{period}'),
+        "date_enter_field": (AppiumBy.CLASS_NAME, 'XCUIElementTypeTextField'),
+        "option_ok": (AppiumBy.ACCESSIBILITY_ID, "OK"),
+    }
+
+
+    @classmethod
+    def get_locators(cls, platform):
+        if platform.lower() == 'android':
+            return MeetupCreateLocator.android
+        elif platform.lower() == 'ios':
+            return MeetupCreateLocator.ios
+        else:
+            raise Exception(f"Invalid platform :: {platform}")

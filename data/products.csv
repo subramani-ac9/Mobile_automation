@@ -1,0 +1,9 @@
+id,ext_id,title,format,duration,visibility,max_attendees,duration_unit,is_private
+1237100,a16g0000006Ez38AAC,Art of Living Part 1,in-person,3,Public,10000,days,False
+5435443716573947929,a06g000000TcTY0AAN,Long SKY Meditation Meetup,in-person,60,not-set,10000,minutes,False
+5336235429413547052,a16g0000006FbyjAAC,Sahaj Samadhi Meditation,online,10,Public,10000,days,False
+5336235432206905423,a16g0000006hiMFAAY,Sahaj Samadhi Meditation,in-person,10,Public,10000,days,False
+5435443716431425558,a06g000000TcTXxAAN,Sahaj Samadhi Meditation Meetup,in-person,45,not-set,10000,minutes,False
+5435443715600805897,a06VC0000043aJGYAY,Short SKY Meditation Meetup,in-person,15,not-set,10000,minutes,True
+5435443716826243102,a06g000000W3kxpAAB,Short SKY Meditation Meetup,online,45,not-set,10000,minutes,False
+8115690,a16g0000006Ez3DAAS,Art of Living Part 1,online,3,Public,10000,days,False

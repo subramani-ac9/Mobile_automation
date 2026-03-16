@@ -1,0 +1,26 @@
+[32mINFO    [0m LoginPage:login_page.py:238 Starting login process for user: invalid0@example.com
+[32mINFO    [0m LoginPage:login_page.py:137 Entering email: invalid0@example.com
+[32mINFO    [0m LoginPage:login_page.py:141 Email entered successfully
+[32mINFO    [0m LoginPage:login_page.py:244 Stopping after username entered for email validation
+[32mINFO    [0m LoginPage:login_page.py:238 Starting login process for user: invalid1@example.com
+[32mINFO    [0m LoginPage:login_page.py:137 Entering email: invalid1@example.com
+[32mINFO    [0m LoginPage:login_page.py:141 Email entered successfully
+[32mINFO    [0m LoginPage:login_page.py:244 Stopping after username entered for email validation
+[32mINFO    [0m LoginPage:login_page.py:238 Starting login process for user: invalid2@example.com
+[32mINFO    [0m LoginPage:login_page.py:137 Entering email: invalid2@example.com
+[32mINFO    [0m LoginPage:login_page.py:141 Email entered successfully
+[32mINFO    [0m LoginPage:login_page.py:244 Stopping after username entered for email validation
+[32mINFO    [0m LoginPage:login_page.py:238 Starting login process for user: invalid3@example.com
+[32mINFO    [0m LoginPage:login_page.py:137 Entering email: invalid3@example.com
+[32mINFO    [0m LoginPage:login_page.py:141 Email entered successfully
+[32mINFO    [0m LoginPage:login_page.py:244 Stopping after username entered for email validation
+[32mINFO    [0m LoginPage:login_page.py:238 Starting login process for user: invalid4@example.com
+[32mINFO    [0m LoginPage:login_page.py:137 Entering email: invalid4@example.com
+[32mINFO    [0m LoginPage:login_page.py:141 Email entered successfully
+[32mINFO    [0m LoginPage:login_page.py:244 Stopping after username entered for email validation
+[32mINFO    [0m TestLogin_test_login_retry_functionality:logger_config.py:130 ================================================================================
+[32mINFO    [0m TestLogin_test_login_retry_functionality:logger_config.py:131 TEST COMPLETED: test_login_retry_functionality - Duration: 55.15s
+[32mINFO    [0m TestLogin_test_login_retry_functionality:logger_config.py:132 ================================================================================
+[32mINFO    [0m TestLogin_test_login_retry_functionality:test_login.py:78 Starting test cleanup
+[32mINFO    [0m utils.driver_manager:driver_manager.py:47 Appium driver closed successfully
+[32mINFO    [0m TestLogin_test_login_retry_functionality:test_login.py:80 Test cleanup completed
