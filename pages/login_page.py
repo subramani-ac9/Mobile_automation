@@ -1,6 +1,7 @@
 import time
 import allure
 from constants.locator.login_locator import LoginLocator
+from constants.locator.myevent_locator import MyEventLocator
 from pages.base_page import BasePage
 from appium.webdriver.common.appiumby import AppiumBy
 from selenium.webdriver.support.ui import WebDriverWait
@@ -278,6 +279,7 @@ class LoginPage(BasePage):
         self.logger.info(f"Waiting for login completion (timeout: {timeout}s)")
         from pages.my_events_page import MyEventsPage
         my_events_page = MyEventsPage(self.driver, self.platform)
+        my_events_page_locator = MyEventLocator.get_locators(self.platform)
 
         end_time = time.time() + timeout
         while time.time() < end_time:
@@ -287,12 +289,12 @@ class LoginPage(BasePage):
                     self.logger.debug("Still on login page, waiting...")
                     time.sleep(3)
                     continue
-                
-                # Check if dashboard is loaded
-                if my_events_page.is_dashboard_displayed(tenant):
-                    self.logger.info("Dashboard detected, login successful")
+
+                # Check for Jai Gurudev! title
+                if my_events_page.is_displayed(my_events_page_locator['Jai_Gurudev_title'], 20):
+                    self.logger.info("Jai Gurudev! title detected, login successful")
                     return True
-                    
+
                 # Check for bottom navigation as backup
                 if my_events_page.is_bottom_navigation_displayed():
                     self.logger.info("Bottom navigation detected, login successful")

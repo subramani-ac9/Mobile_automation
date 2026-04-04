@@ -19,13 +19,13 @@ from typing import Dict, List, Optional
 class FieldLabels:
     """Tenant-specific field labels used in UI locators."""
     product: str
-    first_product: str
+    # first_product: str
     max_attendees: str
     is_private_checkbox: str
     city: str
     zipcode: str
     location_search: str
-    first_location: str
+    # first_location: str
     
 
 @dataclass(frozen=True)
@@ -75,13 +75,13 @@ class TenantConfig:
         tenant_name="The Art of Living Foundation (US)",
         field_labels=FieldLabels(
             product="Product",
-            first_product="Product 1",
+            # first_product="Product 1",
             max_attendees="Max Capacity",
             is_private_checkbox="Private Event Checkbox",
             city="City",
             zipcode="Zipcode",
             location_search="Location",
-            first_location="Location 1",
+            # first_location="Location 1",
         ),
         features=TenantFeatures(
             has_languages=False,
@@ -101,13 +101,13 @@ class TenantConfig:
         tenant_name="The Art of Living Foundation (India)",
         field_labels=FieldLabels(
             product="Program",
-            first_product="Program 1",
+            # first_product="Program 1",
             max_attendees="Max Participants",
             is_private_checkbox="Private Program Checkbox",
             city="City/Town/Village",
             zipcode="Pincode",
             location_search="Address",
-            first_location="Address 1",
+            # first_location="Address 1",
         ),
         features=TenantFeatures(
             has_languages=True,

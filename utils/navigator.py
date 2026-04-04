@@ -1,3 +1,4 @@
+from constants.locator.address_locator import AddressLocator
 from pages.login_page import LoginPage
 from pages.onboard_page import OnBoardPage
 from pages.my_events_page import MyEventsPage
@@ -40,6 +41,16 @@ class Navigator:
         my_events_page.click_add_event_button()
         my_events_page.select_create_event_button('Meetup')
 
+
+    def navigate_to_address_page(self, email, password, tenant=None):
+        self.navigate_to_my_events_page(email, password, tenant)
+        self.myevent_locator = MyEventLocator.get_locators(self.platform)
+        self.address_locator = AddressLocator.get_locators(self.platform)
+        self.course_create = CourseCreatePage(self.driver, self.platform)
+        self.course_create.click_element(self.myevent_locator["account_icon"])
+        self.course_create.click_element(self.address_locator["ManageAddress_icon"])
+
+
     def navigate_to_my_events_page(self, email, password, tenant=None):
         self.navigate_to_login()
         
@@ -50,8 +61,7 @@ class Navigator:
         
         # Use default tenant from config if not specified
         if tenant is None:
-            tenant = 'us'
-            
+            tenant = 'us'    
         try:
             self.logger.debug("Checking if login page is displayed")
             if login_page.is_login_page_displayed():
@@ -74,6 +84,7 @@ class Navigator:
         
         self.logger.error("Unexpected state: Not on login page and not logged in")
         return "Login Failure - Unexpected state" 
+
 
     def navigate_to_course_create_page(self, email, password, tenant=None):
         self.logger.info("Navigating to course creation page")
@@ -118,6 +129,13 @@ class Navigator:
         self.locator = LogoutLocator.get_locators(self.platform)
         logout_page = LogoutPage(self.driver, self.platform)
         logout_page.logout()
+
+    def navigate_to_resource_page(self, email, password, tenant=None):
+        self.navigate_to_my_events_page(email, password, tenant)
+        self.locator = MyEventLocator.get_locators(self.platform)
+        my_events_page = MyEventsPage(self.driver, self.platform)
+        my_events_page.click_element(self.locator['resources_icon'])
+
 
         
 

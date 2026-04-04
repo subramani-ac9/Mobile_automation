@@ -19,6 +19,7 @@ class MyEventsPage(BasePage):
     def is_dashboard_displayed(self, tenant):
         try:
             # Use longer timeout for dashboard detection after login transition
+            self.click_element(self.locator['my_events_icon'])
             if(tenant.lower() == 'us'):
                 locator = self.locator['event_template']
             else:
@@ -34,7 +35,7 @@ class MyEventsPage(BasePage):
     @allure.step("Verify bottom navigation is displayed")
     def is_bottom_navigation_displayed(self):
         required_icons = {
-            "Quotes": self.locator["quotes_icon"],
+            "Home": self.locator["home_icon"],
             "Events": self.locator["my_events_icon"],
             "Resources": self.locator["resources_icon"],
             "Account": self.locator["account_icon"]
@@ -43,7 +44,7 @@ class MyEventsPage(BasePage):
         for name, locator in required_icons.items():
             try:
                 # Use longer timeout for navigation elements after login transition
-                if not self.is_displayed(locator, 25):
+                if not self.is_displayed(locator):
                     self.logger.warning(f"Missing bottom navigation icon: {name} with locator: {locator}")
                     return False
                 else:
@@ -193,7 +194,7 @@ class MyEventsPage(BasePage):
     @allure.step("Validate successful login (dashboard and navigation)")
     def validate_successful_login(self, tenant):
         validations = []
-        
+        assert self.is_displayed(self.locator['Jai_Gurudev_title'],20), "Jai Gurudev! title should be displayed"
         self.logger.info("Starting login validation checks...")
         
         self.logger.debug("Checking bottom navigation elements...")
@@ -208,6 +209,7 @@ class MyEventsPage(BasePage):
 
         # -------- Dashboard Check --------
         self.logger.debug("Checking dashboard display...")
+        self.click_element(self.locator["my_events_icon"])
         dashboard_displayed = self.is_dashboard_displayed(tenant)
 
         if dashboard_displayed:
@@ -532,8 +534,122 @@ class MyEventsPage(BasePage):
         except Exception as e:
             self.logger.error(f"Error getting event count: {e}")
             return 0
-        
-    
+
+    def _semantic_label_from_card_element(self, el):
+        if self.platform.lower() == "ios":
+            return el.get_attribute("name") or ""
+        return el.get_attribute("content-desc") or ""
+
+    @allure.step("Collect parsed semantic event cards (event_card|...)")
+    def get_parsed_semantic_event_cards(self):
+        """Return list of dicts from content-desc/name labels starting with event_card|."""
+        loc = self.locator.get("semantic_event_cards")
+        if not loc:
+            return []
+        elements = self.find_elements(loc)
+        out = []
+        for el in elements:
+            desc = self._semantic_label_from_card_element(el)
+            if desc.startswith("event_card|"):
+                out.append(self.parse_event_data(desc))
+        return out
+
+    @allure.step("Verify visible event cards match applied filters (semantic labels)")
+    def verify_visible_cards_match_applied_filters(
+        self,
+        filters: dict,
+        start_date_str=None,
+        end_date_str=None,
+        *,
+        allow_empty: bool = False,
+        reference_date=None,
+        username_for_role_validation: str | None = None,
+    ):
+        from utils.filter_event_card_validation import validate_all_visible_cards
+
+        self.logger.info(
+            "verify_visible_cards_match_applied_filters | categories=%s",
+            list((filters or {}).keys()),
+        )
+        if start_date_str or end_date_str:
+            self.logger.info(
+                "verify_visible_cards_match_applied_filters | custom_dates start=%r end=%r",
+                start_date_str,
+                end_date_str,
+            )
+        if username_for_role_validation:
+            self.logger.info(
+                "verify_visible_cards_match_applied_filters | role_fallback username=%r",
+                username_for_role_validation,
+            )
+
+        self.logger.debug("Collecting semantic event_card| elements from current screen")
+        parsed = self.get_parsed_semantic_event_cards()
+        self.logger.info(
+            "verify_visible_cards_match_applied_filters | parsed_semantic_cards=%d",
+            len(parsed),
+        )
+
+        role_fallback = None
+        if username_for_role_validation:
+            role_fallback = lambda card, allowed: self.verify_role_from_course_details(
+                card.get("code", ""), allowed, username_for_role_validation
+            )
+
+        validate_all_visible_cards(
+            parsed,
+            filters or {},
+            start_date_str,
+            end_date_str,
+            allow_empty=allow_empty,
+            reference_date=reference_date,
+            role_fallback_validator=role_fallback,
+            caller_logger=self.logger,
+        )
+
+    def open_event_card_by_code(self, event_code: str) -> bool:
+        try:
+            loc = self.build_locator(self.locator["event_card_by_code"], event_code)
+            if not self.is_displayed(loc, timeout=5):
+                return False
+            self.click_element(loc)
+            return True
+        except Exception:
+            return False
+
+    def verify_role_from_course_details(self, event_code: str, expected_roles: set[str], username: str) -> bool:
+        """
+        Fallback check for role label ambiguity on card:
+        open card -> course details -> assert username under expected role section.
+        """
+        self.logger.info(
+            "role_fallback | event_code=%r expected_roles=%s username=%r",
+            event_code,
+            sorted(expected_roles),
+            username,
+        )
+        opened = self.open_event_card_by_code(event_code)
+        if not opened:
+            self.logger.warning("role_fallback | could not open event card for code=%r", event_code)
+            return False
+        try:
+            self.course_detils_page.click_course_details()
+            expected = {r.lower() for r in expected_roles}
+            if "teacher" in expected and self.course_detils_page.is_user_present_in_teachers(username):
+                self.logger.info("role_fallback | matched teacher section for %r", username)
+                return True
+            if "organizer" in expected and self.course_detils_page.is_user_present_in_organizers(username):
+                self.logger.info("role_fallback | matched organizer section for %r", username)
+                return True
+            self.logger.warning(
+                "role_fallback | no teacher/organizer match for %r on event %r",
+                username,
+                event_code,
+            )
+            return False
+        finally:
+            self.driver.back()
+            self.driver.back()
 
 
             

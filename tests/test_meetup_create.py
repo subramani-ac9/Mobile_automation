@@ -1,7 +1,9 @@
+import os
 import time, random, string, pytest, re, logging
 import pandas as pd
 from datetime import datetime, timedelta
 from utils.driver_manager import DriverManager
+from utils.googleSheet_helper import read_google_sheet
 from utils.time_zone_util import TimezoneFormatter
 from config.config import TestConfig
 from pages.login_page import LoginPage
@@ -15,6 +17,7 @@ from utils.logger_config import LoggerConfig
 
 class TestMeetupCreate:
     meetup_create_csv = 'data/meetup_create_run1.csv'
+    meetup_data =read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "Meetup")
     product_csv = 'data/products.csv'
 
     @pytest.fixture(autouse=True)
@@ -58,8 +61,8 @@ class TestMeetupCreate:
             duration = end_time - start_time
             status = "COMPLETED"
             
-            # Take screenshot on test failure
-            if hasattr(self, '_outcome') and self._outcome.result.failed:
+            rep_call = getattr(request.node, "rep_call", None)
+            if rep_call is not None and rep_call.failed:
                 take_screenshot(self.driver, f"test_failed_{self.__class__.__name__}")
                 status = "FAILED"
             
@@ -72,7 +75,8 @@ class TestMeetupCreate:
 
     @pytest.mark.data_driven
     @pytest.mark.meetup_create
-    @pytest.mark.parametrize("row", read_csv_as_dict(meetup_create_csv))
+    # @pytest.mark.parametrize("row", read_csv_as_dict(meetup_create_csv))
+    @pytest.mark.parametrize("row", meetup_data)
     def test_create_meetup_with_given_data(self, row):
         if row['event_type'].lower() == 'course': pytest.skip(f"Record skipped!")
         self.nav.navigate_to_meetup_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)

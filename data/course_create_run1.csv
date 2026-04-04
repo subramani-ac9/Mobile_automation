@@ -1,6 +1,8 @@
 Test Case ID,Test case Description,REMARKS,tenant,event_type,ORG_product_id,product_id,product_name,languages,event_mode,is_private,max_attendees,teachers,teaching_assistant,volunteer,organizers,timezone,dates,start_times,end_times,is_change_weekend_timing,weekend_start_time,meeting_url,isUseExistingVenue,ExistingAddressName,addressName,address,city,zipcode,state,aol_center,apex,ic,contribution,modeOfSelectContact,newContactPerson,contact_person,NotifyPersons
-CC_TC_2,,,India,course,8115690,8115690,Happiness Program,"English,Tamil",In-person,TRUE,18,"KR2226, KR2227",KR2225,10000161,KR2229,null,05/05/2026,12:00 AM,,TRUE,01:00 PM,FALSE,TRUE,test hpfy,testdelhi263,Delhiii,Delhi,110001,null,,,,,ByCreatingNewContact,"{
-""name"":""testtt"",
-""phone"":""9384725887"",
+CC_TC_1,,,India,course,8115690,8115690,Happiness Programrr,"English,Tamil",In-person,TRUE,18,"KR2226, KR2227",KR2225,10000161,KR2225,null,06/01/2026,12:00 AM,,TRUE,01:00 PM,FALSE,TRUE,test hpfy,testdelhi263,Delhiii,Delhi,110001,null,,,,,BySearch,"null","testtt",KR2226
+CC_TC_2,create course by creating contact,,India,course,8115690,8115690,Happiness Program,"English,Tamil",In-person,TRUE,18,"KR2226, KR2227",KR2225,10000161,KR2225,null,06/01/2026,04:00 AM,,TRUE,01:00 PM,FALSE,TRUE,test hpfy,testdelhi263,Delhiii,Delhi,110001,null,,,,,ByCreatingNewContact,"{
+""name"":""testing contact"",
+""phone"":""9389725887"",
 ""email"":""test404@gmail.com""
 }","KR2227,KR2226",KR2226
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

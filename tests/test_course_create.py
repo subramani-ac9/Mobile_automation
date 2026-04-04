@@ -1,3 +1,4 @@
+import os
 import time
 from datetime import datetime, timedelta
 from itertools import cycle
@@ -5,8 +6,11 @@ import random
 import pytest
 import pandas as pd
 from pages.course_create_page import CourseCreatePage
+from pages.course_details_page import CourseDetailsPage
+from pages.filters_page import FiltersPage
 from pages.login_page import LoginPage
 from pages.my_events_page import MyEventsPage
+from utils.googleSheet_helper import read_google_sheet
 from utils.helpers import read_csv_as_dict, take_screenshot, write_output_data
 from utils.navigator import Navigator
 from utils.time_zone_util import TimezoneFormatter
@@ -19,6 +23,9 @@ from utils.logger_config import LoggerConfig
 
 class TestCourseCreate:
     course_create_csv = 'data/course_create_run1.csv'
+    course_create_validation_csv = 'data/course_create_validation1.csv'
+    course_create_validation_data = read_csv_as_dict(course_create_validation_csv)
+    search_course_data = read_csv_as_dict('data/search_course.csv')
 
     @pytest.fixture(autouse=True)
     def setup(self, request):
@@ -46,6 +53,8 @@ class TestCourseCreate:
             self.navigator = Navigator(self.driver, TestConfig.MOBILE_PLATFORM)
             self.event_create_message = EventCreateMessage.get_message()
             self.my_events_page = MyEventsPage(self.driver, TestConfig.MOBILE_PLATFORM)
+            self.course_details = CourseDetailsPage(self.driver, TestConfig.MOBILE_PLATFORM)
+            self.filter_page = FiltersPage(self.driver, TestConfig.MOBILE_PLATFORM)
             
             request.node.driver = self.driver  # for Allure screenshot-on-failure hook
             self.logger.info("Test setup completed successfully")
@@ -58,19 +67,22 @@ class TestCourseCreate:
             # Log test completion
             end_time = time.time()
             duration = end_time - start_time
-            status = "COMPLETED"
-            
-            # Take screenshot on test failure
-            if hasattr(self, '_outcome') and self._outcome.result.failed:
-                take_screenshot(self.driver, f"test_failed_{self.__class__.__name__}")
-                status = "FAILED"
-            
-            LoggerConfig.log_test_end(self.logger, test_method_name, duration, status)
+            test_status = "COMPLETED"
+            rep_call = getattr(request.node, "rep_call", None)
+            if rep_call is not None and rep_call.failed:
+                test_status = "FAILED"
+                self.logger.error(f"Test failed: {test_method_name}")
+                take_screenshot(self.driver, f"test_failed_{self.__class__.__name__}_{test_method_name}")
+
+            LoggerConfig.log_test_end(self.logger, test_method_name, duration, test_status)
             
             # Cleanup
-            if hasattr(self, 'driver_manager'):
+            try:
+                self.logger.info("Starting test cleanup")
                 self.driver_manager.quit_driver()
-                self.logger.info("Driver cleanup completed")
+                self.logger.info("Test cleanup completed")
+            except Exception as e:
+                self.logger.error(f"Test cleanup failed: {str(e)}")
 
     @pytest.mark.validated
     @pytest.mark.course_create
@@ -139,18 +151,20 @@ class TestCourseCreate:
         print(f"Errors: {len(df[df['status'] == 'Error'])}")
         print(f"Detailed results written to: {output_csv}")
 
+
     @pytest.mark.validated
     @pytest.mark.course_create
     @pytest.mark.data_driven
     @pytest.mark.smoke
     @pytest.mark.testcase_id("CC_TC_14")
-    @pytest.mark.parametrize("row", read_csv_as_dict('data/course_create_run1.csv')[:1])
+    # @pytest.mark.parametrize("row", read_csv_as_dict('data/course_create_run1.csv')[:1])
+    @pytest.mark.parametrize("row", read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "CourseCreateIndia")[:1])
     def test_create_course_for_india(self, row):
         if row.get("tenant", "").strip().lower() == "us":
             self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
         else:
             self.navigator.navigate_to_course_create_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
-        self.course_create.create_course(row)
+        self.course_create.create_course(row,self.event_create_message["course_create_success_msg"])
         assert self.course_create.is_msg_displayed(
             self.event_create_message["course_create_success_msg"]
         ), "Course creation success message not displayed"
@@ -161,16 +175,129 @@ class TestCourseCreate:
     @pytest.mark.data_driven
     @pytest.mark.smoke
     @pytest.mark.testcase_id("CC_TC_15")
-    @pytest.mark.parametrize("row", read_csv_as_dict('data/course_create_run3.csv')[:1])
+    # @pytest.mark.parametrize("row", read_csv_as_dict('data/course_create_run3.csv')[:1])
+    @pytest.mark.parametrize("row", read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "CourseCreateUS")[:1])
     def test_create_course_for_us(self, row):
         if row.get("tenant", "").strip().lower() == "us":
             self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
         else:
             self.navigator.navigate_to_course_create_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
-        self.course_create.create_course(row)
+        self.course_create.create_course(row,self.event_create_message["course_create_success_msg"])
         assert self.course_create.is_msg_displayed(
             self.event_create_message["course_create_success_msg"]
         ), "Course creation success message not displayed"
+
+    @pytest.mark.validated
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_15")
+    def test_cancel_course(self):
+        searchButton = self.my_events_page.locator["search_button"]
+        searchField = self.course_create.locator["search"]
+        eventCode = "E-064923"
+        self.navigator.navigate_to_my_events_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        self.course_create.cancel_course(eventCode)
+        self.logger.info(f"Course cancelled successfully with event code: {eventCode}")
+        self.logger.info(f"Validating course cancellation with event code: {eventCode}")
+        time.sleep(2)
+        filters =  {
+            "filter_status": "filter_status_cancelled_checkBox",
+        }
+        self.logger.info(f"Applying filters: {filters}")
+        self.filter_page.apply_filter_combination(filters)
+        isCancelled = self.course_create.validate_cancel_course(eventCode)
+        assert isCancelled, "Course cancellation validation failed"
+
+    @pytest.mark.validated
+    @pytest.mark.search_course
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_15")
+    def test_search_field_functionality_us(self):
+        searchButton = self.my_events_page.locator["search_button"]
+        searchField = self.course_create.locator["search"]
+        eventCode = self.search_course_data[0]["code"]
+        self.navigator.navigate_to_my_events_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        self.course_create.enterEventCode(searchButton, searchField, eventCode)
+        assert self.course_create.is_course_displayed(self.course_create.locator["event_cards"], eventCode), f"Course with event code {eventCode} not found on the UI"
+
+    @pytest.mark.validated
+    @pytest.mark.search_course
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_15")
+    def test_search_field_functionality_india(self):
+        searchButton = self.my_events_page.locator["search_button"]
+        searchField = self.course_create.locator["search"]
+        eventCode = self.search_course_data[1]["code"]
+        self.navigator.navigate_to_my_events_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.enterEventCode(searchButton, searchField, eventCode)
+        assert self.course_create.is_course_displayed(self.course_create.locator["event_cards"], eventCode), f"Course with event code {eventCode} not found on the UI"
+
+    @pytest.mark.validated  
+    @pytest.mark.search_course
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_15")
+    def test_search_field_not_found_india(self):
+        searchButton = self.my_events_page.locator["search_button"]
+        searchField = self.course_create.locator["search"]
+        eventCode = self.search_course_data[2]["code"]
+        self.navigator.navigate_to_my_events_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.enterEventCode(searchButton, searchField, eventCode)
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["program_not_found_msg"]
+        ), "program not found message not displayed"
+
+    @pytest.mark.validated
+    @pytest.mark.search_course
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_15")
+    def test_search_field_not_found_us(self):
+        searchButton = self.my_events_page.locator["search_button"]
+        searchField = self.course_create.locator["search"]
+        eventCode = self.search_course_data[2]["code"]
+        self.navigator.navigate_to_my_events_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        self.course_create.enterEventCode(searchButton, searchField, eventCode)
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["event_not_found_msg"]
+        ), "event not found message not displayed"
+    
+    @pytest.mark.validated
+    @pytest.mark.course_create
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_16")
+    def test_create_course_required_teacher(self):
+        row = self.course_create_validation_data[0]
+        print("row:",row)
+        if row.get("tenant", "").strip().lower() == "us":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        else:
+            self.navigator.navigate_to_course_create_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.create_course(row,self.event_create_message["teacher_required_err_msg"])
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["teacher_required_err_msg"]
+        ), "Teacher required error message not displayed"
+
+    @pytest.mark.validated
+    @pytest.mark.course_create
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_17")
+    def test_create_course_required_organizer(self):
+        row = self.course_create_validation_data[1]
+        print("row:",row)
+        if row.get("tenant", "").strip().lower() == "us":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        else:
+            self.navigator.navigate_to_course_create_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.create_course(row,self.event_create_message["teacher_required_err_msg"])
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["teacher_required_err_msg"]
+        ), "Teacher required error message not displayed"
+
 
     @pytest.mark.validated
     @pytest.mark.course_create
@@ -187,6 +314,7 @@ class TestCourseCreate:
         assert str(observed) != "-5", f"Field accepts negative value (-5): observed='{observed}'"
 
     
+
     @pytest.mark.validated
     @pytest.mark.course_create
     @pytest.mark.data_driven

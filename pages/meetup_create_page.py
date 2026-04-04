@@ -1,4 +1,5 @@
 import time
+from typing import List
 import pandas as pd
 import logging
 import allure
@@ -7,14 +8,20 @@ from constants.message.meetup_create_message import MeetupCreateMsg
 from pages.base_page import BasePage
 from selenium.webdriver.support import expected_conditions as EC
 from utils.time_zone_util import TimezoneFormatter
-
-class MeetupCreatePage(BasePage):
+from pages.course_create_page import CourseCreatePage
+class MeetupCreatePage(CourseCreatePage):
 
     def __init__(self, driver, platform: str):
         super().__init__(driver, platform)
         self.locator = MeetupCreateLocator.get_locators(platform)
         self.meetup_msg = MeetupCreateMsg.get_meetup_create_message()
         self.logger = logging.getLogger(__name__)
+
+
+    def parse_list(self,value: str) -> List[str]:
+        if not value:
+            return []
+        return [item.strip() for item in value.split(',') if item.strip()]
 
     
     @allure.step("Select meetup mode: {value}")
@@ -131,14 +138,6 @@ class MeetupCreatePage(BasePage):
         except Exception as e:
             self.logger.error(f"Exception while making meetup as is_private:: {value}, Exception:: {str(e)}")
             raise Exception(f"Unable to check is_private as {value}")
-        
-    def enter_max_attendees(self, value):
-        try:
-            self.click_element(self.locator["max_attendees_txt_field"])
-            self.send_keys(self.locator["max_attendees_txt_field"], str(int(float(value))))
-        except Exception as e:
-            self.logger.error(f"Exception while entering max attendees as {value}, exception:: {str(e)}")
-            raise Exception(f"Unable to enter MaxAttendees {value}")
     
     def click_add_teacher(self):
         try:
@@ -146,36 +145,7 @@ class MeetupCreatePage(BasePage):
         except Exception as e:
             self.logger.error(f"Exception while clicking the add_teacher, exception:: {str(e)}")
             raise Exception(f"Unable to click the add_teacher")
-    
-    def select_n_teachers(self,teachers: list[str]):
-        try:
-            if not teachers or len(teachers) == 0:
-                raise Exception(f"Teachers is empty on the given data")
-            if len(teachers) >= 1 and not teachers[0]:
-                raise Exception(f"Primary teacher is not present on the given data")
-
-            for index, teacher in enumerate(teachers):
-                try:
-                    # Primary teacher uses the main field; additional uses the additional field
-                    ith_key = "1" if index == 0 else "2"
-                    teacherTxtBox = self.build_locator(self.locator["teacher_ith_txt_field"], ith_key)
-                    self.scroll_to_element(self.locator["scroll"],teacherTxtBox)
-                    self.click_element(teacherTxtBox)
-                    time.sleep(3)
-                    self.send_keys(self.locator["search"], teacher, is_necessary=False)
-                    self.driver.press_keycode(66) if self.platform == "android" else self.driver.hide_keyboard(key_name='Done')
-                    teacherValue = self.build_locator(self.locator["item"],teacher)
-                    self.click_element(teacherValue)
-                    if index+1 < len(teachers):
-                        self.scroll_to_element(self.locator["scroll"], self.locator["add_teacher"])
-                        self.click_add_teacher()
-                except Exception as e:
-                    self.logger.error(f"Exception raised while selecting the teacher:: {teacher}, exception:: {str(e)}")
-                    raise Exception(f"Unable to select teacher:: {teacher}")
-
-        except Exception as e:
-            raise Exception(str(e))
-    
+     
     def select_organizer(self, value: str):
         try:
             self.scroll_to_element(self.locator["scroll"],self.locator["organizer_txt_field"])
@@ -188,26 +158,15 @@ class MeetupCreatePage(BasePage):
         except Exception as e:
             self.logger.error(f"Exception raised while selecting organizer as {value}, Exception:: {str(e)}")
             raise Exception(f"Unable to select Organizer as {value}")
-    
-    def select_timezone(self, value):
-        try:
-            self.scroll_to_element(self.locator["scroll"], self.locator["timezone_txt_field"])
-            self.click_element(self.locator["timezone_txt_field"])
-            time.sleep(3)
-            self.driver.press_keycode(66) if self.platform == "android" else self.driver.hide_keyboard(key_name='Done')
-            timezone = self.build_locator(self.locator["item"], value)
-            self.click_element(timezone)
-            print(f"Timezone selected: {timezone}")
-        except Exception as e:
-            self.logger.error(f"Exception raised while selecting timezone as {value}, Exception:: {str(e)}")
-            raise Exception(f"Unable to select TimeZone as {value}")
-    
-    def select_start_date(self, start_date: str, timezone: str = ""):
-        try:
-            if timezone:
-                existing_date = TimezoneFormatter.get_the_current_date_for_given_timezone(timezone)
-                txtField = self.build_locator(self.locator["date_ith_txt_field"], existing_date)
-                self.scroll_to_element(self.locator["scroll"], txtField)
+      
+    def select_start_date(self, start_date: str, recurring: bool = False):
+        try: 
+                print(f"recurring: {recurring}")
+                if recurring:
+                    txtField = self.locator["Ends_On_Date_txt_field"]
+                else:
+                    txtField = self.build_locator(self.locator["date_ith_txt_field"], "1")
+                    self.scroll_to_element(self.locator["scroll"], txtField)
                 self.click_element(txtField)
                 self.click_element(self.locator["date_pencil"])
                 self.click_element(self.locator["date_enter_field"])
@@ -221,13 +180,13 @@ class MeetupCreatePage(BasePage):
     def select_start_time(self, start_time: str, timezone: str = ""):
         try:
             if timezone:
-                current_time = TimezoneFormatter.get_the_current_time_for_given_timezone(timezone)
-                txtField = self.build_locator(self.locator['time_ith_txt_field'], current_time)
+                # current_time = TimezoneFormatter.get_the_current_time_for_given_timezone(timezone)
+                txtField = self.build_locator(self.locator['time_ith_txt_field'], "1")
                 self.scroll_to_element(self.locator["scroll"], txtField)
                 self.click_element(txtField)
                 valueHour,valueMin = start_time.split()[0].split(":")
                 valuePeriod = start_time.split()[1]
-                self.click_element(self.locator['time_keyboard'], 10)
+                # self.click_element(self.locator['time_keyboard'], 10)
                 hour = self.find_element(self.locator['time_hour'])
                 min = self.find_element(self.locator['time_min'])
                 period = self.build_locator(self.locator['time_period'], str(valuePeriod))
@@ -243,13 +202,49 @@ class MeetupCreatePage(BasePage):
     
     def enter_meeting_url(self, url):
         try:
-            self.scroll_to_element(self.locator["scroll"], self.locator["link_txt_field"],ensure=True)
+            self.scroll_to_element(self.locator["scroll"], self.locator["meeting_link_txt_field"],ensure=True)
             time.sleep(2)
-            self.click_element(self.locator["link_txt_field"])
-            self.send_keys(self.locator["link_txt_field"], url)
+            self.click_element(self.locator["meeting_link_txt_field"])
+            self.send_keys(self.locator["meeting_link_txt_field"], url)
         except Exception as e:
             self.logger.error(f"Exception raised while entering MeetingURL as {url}, Exception:: {str(e)}")
             raise Exception (f"Unable to enter MeetingURL as {url}")
+    
+    def _handle_contact_persons(self, data, modeOfSelectContact):
+        """Handle contact person selection or creation."""
+        if not data:
+            raise Exception("No contact person selected")
+        
+        self.scroll_to_element(self.locator["scroll"], self.locator["add_point_of_contact_button"])
+        element = self.find_element(self.locator["add_point_of_contact_button"])
+        location = element.location
+        size = element.size
+        x = location['x'] + 10
+        y = location['y'] + size['height'] // 2
+        self.driver.tap([(x, y)])
+        self.logger.info("Clicked add point of contact button")
+        time.sleep(3)
+    
+        if modeOfSelectContact == "BySearch":
+            self.logger.info("Selecting contact person by search")
+            contact_person = data
+            self.select_contact_person(contact_person)
+            self.logger.info(f"Selected contact person: {contact_person}")
+        elif modeOfSelectContact == "ByExistingTeam":
+            self.logger.info("Selecting contact person from existing team")
+            contact_person_result  = self.build_locator(self.locator["search_result"], data)
+            self.logger.info(f"contact_person_result: {contact_person_result}")
+            if self.is_displayed(contact_person_result, timeout=10):
+                self.click_element(contact_person_result)
+                self.logger.info("Selected contact person from existing team")
+            else:
+                raise Exception("Contact person not found in existing team")
+        
+        self.click_element(self.locator["done_button"], 10)
+        self.logger.info("Clicked done button")
+    
+  
+
     
     def enter_address(self, value):
         try:
@@ -292,43 +287,6 @@ class MeetupCreatePage(BasePage):
         except Exception as e:
             self.logger.error(f"Exception while selecting state as {value}, exception:: {str(e)}")
             raise Exception(f"Unable to select State as {value}")
-    
-    def select_aol_center(self, value):
-        try:
-            self.scroll_to_element(self.locator["scroll"], self.locator["aol_center_txt_field"])
-            self.click_element(self.locator["aol_center_txt_field"])
-            time.sleep(3)
-            # Search not working properly for aol
-            self.send_keys(self.locator["search"], value, timeout=10, is_necessary=False)
-            self.driver.press_keycode(66) if self.platform == "android" else self.driver.hide_keyboard(key_name='Done')
-            center = self.build_locator(self.locator["centerOrState"], value)
-            time.sleep(2)
-            self.click_element(center, 10)
-        except:
-            raise Exception(f"Unable to select aol center as {value}")
-    
-    def select_contact_person(self, value):
-        try:
-            self.click_element(self.locator["add_contact"])
-            self.scroll_to_element(self.locator["scroll"], self.locator["contact_txt_field"])
-            self.click_element(self.locator["contact_txt_field"])
-            time.sleep(3)
-            self.send_keys(self.locator["search"], value, is_necessary=False)
-            self.driver.press_keycode(66) if self.platform == "android" else self.driver.hide_keyboard(key_name='Done')
-            contact = self.build_locator(self.locator["item"], value)
-            self.click_element(contact)
-        except Exception as e:
-            self.logger.error(f"Exception while selecting ContactPerson as {value}, exception:: {str(e)}")
-            raise Exception(f"Unable to select ContactPerson as {value}")
-    
-    @allure.step("Tap Create Now button (Meetup)")
-    def click_create_now_button(self):
-        try:
-            self.scroll_to_element(self.locator["scroll"], self.locator['create_now'])
-            self.click_element(self.locator['create_now'])
-        except:
-            self.logger.error(f"Exception while clicking CreateNow Button, exception:: {str(e)}")
-            raise Exception(f"Unable to click 'Create Now' button")
     
     # use in the cases where you can locate the element using ACCESSIBILITY_ID
     def is_txt_displayed(self, msg: str):
@@ -699,54 +657,173 @@ class MeetupCreatePage(BasePage):
             self.logger.error(f"Exception raised while getting the final page error message, exception:: {str(e)}")
             return False, f"Unable to get the Final Error message"
 
+    def _handle_address(self, data):
+        """Handle address entry for in-person events."""
 
+        if data['isUseExistingVenue'].lower() == 'true':
+            if data['ExistingAddressName']:
+                self.enter_existing_address(data['ExistingAddressName'], data['tenant'])
+                self.logger.info(f"Entered address: {data['ExistingAddressName']}")
+        else:
+            self.scroll_to_element(self.locator["scroll"], self.locator["add_new_address_button"])
+            self.click_element(self.locator["add_new_address_button"])
+            self.logger.info("Clicked add new address button")
+            
+            if data['addressName']:
+                self.enter_addressName(data['addressName'])
+                self.logger.info(f"Entered address Name: {data['addressName']}")
+            
+            if data['zipcode']:
+                self.enter_zipcode(data['zipcode'], data['tenant'])
+                self.logger.info(f"Entered zipcode: {data['zipcode']}")
+            
+            if data['city']:
+                self.enter_city(data['city'], data['tenant'])
+                self.logger.info(f"Entered city: {data['city']}")
+
+            if data['address']:
+                self.enter_address(data['address'])
+                self.logger.info(f"Entered address: {data['address']}")
+            
+            if self.is_displayed(self.locator["create_button"]):
+                self.click_element(self.locator["create_button"])
+                self.logger.info("Address created successfully")
+            else:
+                raise Exception("Done button not found for address creation")
+            
+            self.enter_existing_address(data.address_details["addressName"], data.tenant)
+            self.logger.info(f"Entered address: {data.address_details['addressName']}")
+
+
+    def selectFrequencyOn_After(self, data):
+        try:
+            print(data['EndsChoice'])
+            print(data['FrequencyValue'])
+            print(data['EndsValue'])
+            if(data['EndsChoice'].lower() == 'on'):
+                self.logger.info(f"Selecting Ends On radio button")
+                self.click_element(self.locator["Ends_ON_radioButton"])
+                self.select_start_date(data['EndsValue'],True)
+                self.logger.info(f"Selected start date: {data['EndsValue']}")
+            else:
+                self.logger.info(f"Selecting Ends After radio button")
+                # self.click_element(self.locator["Ends_After_radioButton"])
+                self.click_element(self.locator["Occurence_count_txt_field"])
+                self.enter_search_field_value(self.locator["Occurence_count_txt_field"], data['EndsValue'])
+                self.logger.info(f"Selected occurrence count: {data['EndsValue']}")
+            self.click_element(self.locator["done_button"])
+        except Exception as e:
+            self.logger.error(f"Exception while selecting Daily On After, exception:: {str(e)}")
+            raise Exception(f"Unable to select Daily On After")
+
+    def select_recurring_meetup(self, data):
+        try:
+            self.click_element(self.locator["recurring_count_txt_field"])
+            self.enter_search_field_value(self.locator["recurring_count_txt_field"], data['recurring_count'])
+            time.sleep(2)
+            self.click_element(self.locator["frequency_dropdown"])
+            if data['FrequencyValue']  == 'Daily':
+                self.click_element(self.locator["Frequency_dropdown_Daily"])
+            elif data['FrequencyValue']  == 'Weekly':
+                self.click_element(self.locator["Frequency_dropdown_Weekly"])
+                day = self.build_locator(self.locator["Weekly_select_value"], data['OnValues'])
+                self.click_element(day)
+                self.logger.info(f"Selected weekly day: {data['OnValues']}")
+            elif data['FrequencyValue']  == 'Monthly':
+                self.click_element(self.locator["Frequency_dropdown_Monthly"])
+                self.click_element(self.locator["monthly_dropdown"])
+                if(data['OnValues'] == 'Monthly on Day 19'):
+                    month = self.build_locator(self.locator["Monthly_dropdown_value"], 1)
+                elif(data['OnValues'] == 'Monthly on Third Thursday'):
+                    month = self.build_locator(self.locator["Monthly_dropdown_value"], 2)
+                self.click_element(month)
+                self.logger.info(f"Selected monthly month: {data['OnValues']}")
+            self.selectFrequencyOn_After(data)
+            self.logger.info(f"Selected frequency: {data['FrequencyValue']} on {data['OnValues']}")
+        except Exception as e:
+            self.logger.error(f"Exception while selecting recurring meetup, exception:: {str(e)}")
+            raise Exception(f"Unable to select recurring meetup")
+    
     def create_meetup(self, data, message):
         content = None
+
+        teachers = self.parse_list(data['teachers'])
+        organizers = self.parse_list(data['organizers'])
+        notify_persons = self.parse_list(data['NotifyPersons'])
+        contact_persons = self.parse_list(data['contact_person'])
         try:
-            self.select_meetup_mode_and_product(data['event_mode'], data['product_name'])
             
-            self.check_private_meetup_checkbox(bool(data['is_private']))
-            print('Private meetup checkbox selected')
-            self.enter_max_attendees(data['max_attendees'])
-            print('Max attendees selected')
+            # self.select_meetup_mode_and_product(data['event_mode'], data['product_name'])
+            if data['event_mode']:
+                print(f"Selected event mode: {data['event_mode']}")
+                self.select_event_mode(data['event_mode'])
+                self.logger.info(f"Selected event mode: {data['event_mode']}")
+            
+            # Step 2: Select course
+            if data['product_name']:
+                self.select_product(data['product_name'], data['tenant'])
+                self.logger.info(f"Selected course: {data['product_name']}")
+            
+            # Step 3: Set privacy
+            self.check_is_private(data['is_private'], data['tenant'])
+            self.logger.info(f"Private meetup: {data['is_private']}")
 
-            teachers = []
-            for i in range(1, int(data["max_teachers"]) + 1):
-                teachers.append(data[f'teacher{i}'])
-            self.select_n_teachers(teachers)
-            print('Teachers selected')
+            # Step 5: Select teachers
+            if teachers:
+                self.select_n_teachers(teachers)
+                self.logger.info(f"Selected teachers: {teachers}")
+            
+            # Step 6: Select organizers
+            if organizers:
+                self.select_n_organizers(organizers)
+                self.logger.info(f"Selected organizers: {organizers}")
 
-            self.select_organizer(data['organizer'])
-            print('Organizer selected')
-            self.select_timezone(data['timezone'])
-            print('Timezone selected')
-            self.select_start_date(data['date1'],data['timezone'])
-            print('Start date selected')
-            self.select_start_time(data['start_time1'].upper(),data['timezone'])
-            print('Start time selected')
+            # Step 9: Handle notifications
+            if notify_persons:
+                self._handle_notifications(notify_persons)
 
+            # Step 10: Handle contact persons
+            print(contact_persons[0])
+            self._handle_contact_persons(contact_persons[0],data["modeOfSelectContact"])
+
+            if data['timezone']:
+                self.select_timezone(data['timezone'])
+            self.logger.info(f"Timezone selected: {data['timezone']}")
+            if data['timezone'] and data['dates']:
+                self.select_start_date(data['dates'],False)
+            self.logger.info(f"Start date selected: {data['dates']}")
+            self.select_start_time(data['start_times'].upper(),data['timezone'])
+            self.logger.info(f"Start time selected: {data['start_times']}")
+
+            if(data['isRecurring'].lower() == 'true'):
+                self.scroll_to_element(self.locator["scroll"], self.locator["recurring_meetup_button"])
+                self.logger.info(f"Clicking Recurring meetup button")
+                self.click_element(self.locator["recurring_meetup_button"])
+                time.sleep(2)
+                self.select_recurring_meetup(data)
+                self.logger.info(f"Recurring meetup selected: {data['recurring_count']}")
+
+            # Step 13: Handle address (for in-person events)
             if data['event_mode'].lower() == 'in-person':
-                self.enter_address(data['address'])
-                print('Address selected')
-                self.enter_city(data['city'])
-                print('City selected')
-                self.enter_zipcode(data['zipcode'])
-                print('Zipcode selected')
-                self.select_state(data['state'])
+                self._handle_address(data)
             elif data['event_mode'].lower() == 'online':
                 self.enter_meeting_url(data["meeting_url"])
 
-            self.select_aol_center(data['aol_center'])
-            print('AOL center selected')
+            #     # Step 14: Enter max attendees
+            if data['max_attendees']:
+                self.enter_max_attendees(data['max_attendees'], data['tenant'])
+                self.logger.info(f"Max attendees: {data['max_attendees']}")
 
-            contact = data['contact_person']
-            if contact:
-                self.select_contact_person(contact)
-                print('Contact person selected')
-            self.click_create_now_button()
+            if data['aol_center']:
+                self.select_aol_center(data['aol_center'])
+                self.logger.info(f"Selected AOL center: {data['aol_center']}")
+
+          
+            self.click_create_button()
             print('Create now button clicked')
             time.sleep(1)
             content = self.extract_page_contents()
+            print("contents in meetup success page:",content)
             result = message in content
             self.logger.info(f"Meetup Create is {'passed' if result else 'failed'}")
             self.logger.info(f"Observed Screen content:: {content}")

@@ -30,6 +30,77 @@ class BasePage:
 
         return by, locator
 
+    def enter_search_field_value(self,locator, value):
+        try:
+            self.logger.info(f"Entering product: {value}")
+
+            element = self.find_element(locator)
+            element.click()
+            self.clear_search_field(element)
+            self.driver.execute_script("mobile: type", {"text": value})
+
+            # Trigger search
+            self.driver.press_keycode(66)
+
+            self.logger.info(f"Successfully entered value in search field: {value}")
+
+        except Exception as e:
+            self.logger.error(f"Failed to enter value in search field {value}: {e}")
+            raise Exception(f"Unable to enter value in search field as {value}")
+
+    def get_all_event_cards(self,locator):
+        return self.driver.find_elements(*locator)
+
+    def parse_event_data(self, desc: str):
+        """
+        Example input:
+        event_card|type=course|mode=online|status=open
+
+        Output:
+        {
+            "type": "course",
+            "mode": "online",
+            "status": "open"
+        }
+        """
+        data = {}
+        parts = desc.split("|")
+
+        for part in parts:
+            if "=" in part:
+                key, value = part.split("=", 1)
+                data[key] = value
+
+        return data
+    
+    def enterEventCode(self,searchButton, search_field: str, event_code: str):
+        self.logger.info("clicking the serach icon")
+        self.click_element(searchButton)
+        self.logger.info(f"Entering event code: {event_code}")
+        self.click_element(search_field)
+        self.enter_search_field_value(search_field, event_code)
+        time.sleep(3)
+
+
+    def click_event_row_containing(self, locator, code: str) -> None:
+        loc = self.build_locator(locator, code)
+        self.scroll_to_element_by_touch(loc, max_swipes=20)
+        self.click_element(loc)
+
+    def is_course_displayed(self,locator, event_code: str):
+        self.logger.info(f"Checking if course is displayed on the UI")
+        event_elements = self.get_all_event_cards(locator)
+        if not event_elements:
+            raise Exception("No event cards found")
+
+        for el in event_elements:
+            desc = el.get_attribute("content-desc")
+            event_data = self.parse_event_data(desc)
+            if event_data["code"] == event_code:
+                self.logger.info(f"Course with event code {event_code} found on the UI")
+                return event_data
+        self.logger.error(f"Course with event code {event_code} not found on the UI")
+        raise Exception(f"Course with event code {event_code} not found on the UI")
 
     def find_element(self, value: tuple, timeout: int = 10) -> WebElement:
         try:
@@ -127,13 +198,14 @@ class BasePage:
 
     def send_keys(self, element: WebElement | tuple, message, is_necessary=True, timeout: int = 10) -> None:
         try:
+            text = "" if message is None else str(message)
             if isinstance(element, WebElement):
                 element.clear()
-                element.send_keys(message)
+                element.send_keys(text)
             else:
                 ele = self.find_element(element, timeout)
                 ele.clear()
-                ele.send_keys(message+ '\n')
+                ele.send_keys(text)
             if self.platform == 'android' and is_necessary: self.driver.hide_keyboard()
 
         except Exception as e:
@@ -143,13 +215,14 @@ class BasePage:
     def send_keys_without_enter(self, element: WebElement | tuple, message):
         """Send keys without adding newline character"""
         try:
+            text = "" if message is None else str(message)
             if isinstance(element, WebElement):
                 element.clear()
-                element.send_keys(message)
+                element.send_keys(text)
             else:
                 ele = self.find_element(element)
                 ele.clear()
-                ele.send_keys(message)
+                ele.send_keys(text)
         except Exception as e:
             self.logger.error(f"element:: {element} is not interactable to send keys!. Exception {e}")
             return False
@@ -389,13 +462,27 @@ class BasePage:
 
     
     def extract_page_contents(self):
+        """
+        Collect visible attribute text from page XML in document order (deduped).
+
+        Order matters for debugging: sorting alphabetically hid real UI errors behind
+        unrelated labels (e.g. menu items starting with 'A').
+        """
         try:
             source = self.driver.page_source
-            pattern = re.compile(r'(?:text|content-desc|label|name|value)="([^"]+)"')
+            pattern = re.compile(
+                r'(?:text|content-desc|hint|label|name|value)="([^"]+)"'
+            )
             matches = pattern.findall(source)
-
-            unique_texts = sorted(set(m.strip() for m in matches if m.strip()))
-            return unique_texts
+            seen = set()
+            ordered: list[str] = []
+            for m in matches:
+                s = m.strip()
+                if not s or s in seen:
+                    continue
+                seen.add(s)
+                ordered.append(s)
+            return ordered
 
         except Exception as e:
             raise Exception(f"Could not extract text from page source: {e}") from e

@@ -36,12 +36,13 @@ class CourseCreateLocator:
     android = {
         # Event mode and course selection
         "event_mode": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
-        "course_dropdown": (AppiumBy.ACCESSIBILITY_ID, 'Program Select Dropdown'),
+        "product_dropdown": (AppiumBy.ACCESSIBILITY_ID, 'Program Select Dropdown'),
         "item": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
         "centerOrState": (AppiumBy.XPATH, lambda val: f'//android.view.View[contains(@content-desc, "{val}")]'),
         
         # Private checkbox - uses tenant-specific label
         "is_private": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
+        "search_result": (AppiumBy.ACCESSIBILITY_ID, lambda name: f'{name}'),
         
         # Language selection (India tenant only)
         "language_add_button": (AppiumBy.XPATH, '(//android.view.View[@content-desc="Languages *"]/following-sibling::android.view.View)[1]'),
@@ -81,7 +82,7 @@ class CourseCreateLocator:
         "contact_phone_txt_field": (AppiumBy.XPATH, '(//android.view.View[@content-desc="Mobile Number *"]/following-sibling::android.widget.EditText)[1]'),
         "create_contact_button": (AppiumBy.ACCESSIBILITY_ID, 'Create Contact Button'),
         "contact_searchBox": (AppiumBy.XPATH, '(//android.view.View[@content-desc="Point of contact"]/following-sibling::android.view.View)[1]'),
-        "first_contact_option": (AppiumBy.ACCESSIBILITY_ID, 'teacher 1'),
+        "first_contact_option": (AppiumBy.ACCESSIBILITY_ID, 'organizer 1'),
         
         # Notifications
         "add_notifications_button": (AppiumBy.ACCESSIBILITY_ID, 'Add Notifications Button'),
@@ -174,6 +175,19 @@ class CourseCreateLocator:
         "start_date_field": (AppiumBy.ACCESSIBILITY_ID, 'Start Date'),
         "start_time_field": (AppiumBy.ACCESSIBILITY_ID, 'Start Time'),
         "end_time_field": (AppiumBy.ACCESSIBILITY_ID, 'End Time'),
+
+
+        "final_msg": (AppiumBy.XPATH, '//android.widget.ImageView/following-sibling::android.view.View[1]'),
+        "Events_search_close_button": (AppiumBy.ACCESSIBILITY_ID, 'Events Search Close Button'),
+
+        "event_cards": (AppiumBy.XPATH, '//android.view.View[contains(@content-desc,"event_card")]'),
+        "event_row_contains": (
+            AppiumBy.XPATH,
+            lambda code: (
+                f'//android.view.View[contains(@content-desc,"{code}")] | '
+                f'//android.widget.Button[contains(@content-desc,"{code}")]'
+            ),
+        )
     }
 
 

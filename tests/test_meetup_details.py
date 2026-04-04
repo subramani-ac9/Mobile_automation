@@ -58,8 +58,8 @@ class TestMeetDetails:
             duration = end_time - start_time
             status = "COMPLETED"
             
-            # Take screenshot on test failure
-            if hasattr(self, '_outcome') and self._outcome.result.failed:
+            rep_call = getattr(request.node, "rep_call", None)
+            if rep_call is not None and rep_call.failed:
                 take_screenshot(self.driver, f"test_failed_{self.__class__.__name__}")
                 status = "FAILED"
             

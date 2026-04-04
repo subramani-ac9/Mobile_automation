@@ -7,8 +7,11 @@ from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
 from appium.webdriver.webdriver import WebDriver
 from constants.locator.course_create_locator import CourseCreateLocator
+from constants.locator.course_details_locator import CourseDetailsLocator
+from constants.locator.myevent_locator import MyEventLocator
 from constants.tenant_config import TenantConfig, TenantConfiguration
 from pages.base_page import BasePage
+from pages.course_details_page import CourseDetailsPage
 from pages.my_events_page import MyEventsPage
 from utils.time_zone_util import TimezoneFormatter
 from utils.helpers import take_screenshot
@@ -142,7 +145,11 @@ class CourseCreatePage(BasePage):
 
     def __init__(self, driver: WebDriver, platform: str):
         super().__init__(driver, platform)
-        self.locator = CourseCreateLocator.get_locators(platform)
+        self.locator = {
+            **CourseCreateLocator.get_locators(platform),
+            **MyEventLocator.get_locators(platform),
+            **CourseDetailsLocator.get_locators(platform),
+         }
         from constants.message.event_create_message import EventCreateMessage
         self.event_create_message = EventCreateMessage.get_message()
         self.logger = LoggerConfig.get_logger(self.__class__.__name__)
@@ -201,7 +208,7 @@ class CourseCreatePage(BasePage):
             self.logger.error(f"Failed to select event mode {value}: {e}")
             raise Exception(f"Unable to select event mode as {value} {e}")
 
-    def select_course(self, value: str, tenant: str):
+    def select_product(self, value: str, tenant: str):
         """
         Select a course/product from the dropdown.
         
@@ -210,18 +217,18 @@ class CourseCreatePage(BasePage):
             tenant: Tenant identifier for field label lookup
         """
         try:
-            self.click_element(self.locator["course_dropdown"])
+            self.click_element(self.locator["product_dropdown"])
             self.logger.debug("Clicked on course dropdown")
 
             # Get tenant-specific labels from config
             config = self._get_tenant_config(tenant)
             product_label = config.field_labels.product
-            first_product_label = config.field_labels.first_product
+            # first_product_label = config.field_labels.first_product
             
             product_txt_field = self.build_locator(self.locator["product_txt_field"], product_label)
-            first_product_name = self.build_locator(self.locator["first_product_name"], first_product_label)
+            first_product_name = self.build_locator(self.locator["first_product_name"],value )
             
-            self.logger.debug(f"Using labels - product: {product_label}, first_product: {first_product_label}")
+            self.logger.debug(f"Using labels - product: {product_label}, first_product: {value}")
 
             self.click_element(product_txt_field)
             self.logger.debug("Clicked on course text field")
@@ -295,7 +302,7 @@ class CourseCreatePage(BasePage):
             self.logger.error(f"Failed to enter max attendees {value}: {e}")
             raise Exception(f"Unable to enter max attendees as {value}")
 
-    def select_people(self, names: list[str], add_button, first_result, role_name: str):
+    def select_people(self, names: list[str], add_button, role_name: str):
         """
         Generic method to select teachers / organizers / teaching assistants / volunteers
         """
@@ -303,21 +310,27 @@ class CourseCreatePage(BasePage):
             self.click_add_person_button(add_button,role_name)
 
             self.logger.info(f"Selecting {len(names)} {role_name}(s): {names}")
-
             for name in names:
                 try:
+                    result = self.build_locator(self.locator["search_result"], name)
+                    self.logger.info(f"result: {result}")
                     search_box = self.locator["search"]
                     self.click_element(search_box)
+                    self.logger.info("search box clicked")
                     self.enter_search_field_value(search_box, name)
+                    self.logger.info(f"search field value entered: {name}")
                     time.sleep(3)
-                    if self.is_displayed(first_result, timeout=10):
-                        self.click_element(first_result)
+                    if self.is_displayed(result, timeout=10):
+                        self.logger.info(f"{role_name} found: {name}")
+                        self.click_element(result)
                         self.logger.info(f"{role_name} selected: {name}")
 
                     elif self.is_displayed(self.locator["no_result_msg"], timeout=10):
+                        self.logger.info(f"{role_name} not found: {name}")
                         raise Exception(f"{role_name} '{name}' not found")
 
                     else:
+                        self.logger.info(f"Unexpected search result: {name}")
                         raise Exception("Unexpected search result")
 
                 except Exception as person_error:
@@ -370,7 +383,6 @@ class CourseCreatePage(BasePage):
         self.select_people(
             names=teachers,
             add_button=self.locator["add_teacher"],
-            first_result=self.locator["first_teacher_name"],
             role_name="Teacher"
         )
 
@@ -378,7 +390,6 @@ class CourseCreatePage(BasePage):
         self.select_people(
             names=organizers,
             add_button=self.locator["add_organizer"],
-            first_result=self.locator["first_organizer_name"],
             role_name="Organizer"
         )
 
@@ -386,7 +397,6 @@ class CourseCreatePage(BasePage):
         self.select_people(
             names=organizers,
             add_button=self.locator["add_teaching_assistant"],
-            first_result=self.locator["first_organizer_name"],
             role_name="Teaching Assistant"
         )
 
@@ -394,7 +404,6 @@ class CourseCreatePage(BasePage):
         self.select_people(
             names=organizers,
             add_button=self.locator["add_volunteer"],
-            first_result=self.locator["first_organizer_name"],
             role_name="Volunteer"
         )
 
@@ -594,8 +603,9 @@ class CourseCreatePage(BasePage):
             self.click_element(self.locator["timezone_txt_field"])
             self.enter_search_field_value(self.locator["timezone_dropdown"], value)
             time.sleep(3)
-            if self.is_displayed(self.locator["first_timezone_option"], timeout=10):
-                self.click_element(self.locator["first_timezone_option"])
+            timezone_result = self.build_locator(self.locator["search_result"], value)
+            if self.is_displayed(timezone_result, timeout=10):
+                self.click_element(timezone_result)
             elif self.is_displayed(self.locator["no_result_msg"], timeout=10):
                 self.logger.error(f"Timezone not found: {value}")
                 raise Exception(f"Timezone '{value}' not found")
@@ -622,18 +632,18 @@ class CourseCreatePage(BasePage):
             
             config = self._get_tenant_config(tenant)
             search_label = config.field_labels.location_search
-            first_option_label = config.field_labels.first_location
+            # first_option_label = config.field_labels.first_location
             
             location_searchBox = self.build_locator(self.locator["Location_searchBox"], search_label)
-            first_Location_option = self.build_locator(self.locator["first_Location_option"], first_option_label)
+            location_result = self.build_locator(self.locator["search_result"], value)
             
-            self.logger.debug(f"Using location labels - search: {search_label}, first: {first_option_label}")
+            self.logger.debug(f"Using location labels - search: {search_label}, first: {value}")
 
             self.enter_search_field_value(location_searchBox, value)
             time.sleep(3)
             
-            if self.is_displayed(first_Location_option, timeout=10):
-                self.click_element(first_Location_option)
+            if self.is_displayed(location_result, timeout=10):
+                self.click_element(location_result)
             elif self.is_displayed(self.locator["no_result_msg"], timeout=10):
                 raise Exception(f"Location not found: {value}")
             else:
@@ -721,8 +731,9 @@ class CourseCreatePage(BasePage):
 
             self.enter_search_field_value(self.locator["aol_center_searchBox"], value)
             time.sleep(3)
-            if self.is_displayed(self.locator["first_aol_center_option"], timeout=10):
-                self.click_element(self.locator["first_aol_center_option"])
+            aol_center_result = self.build_locator(self.locator["search_result"], value)
+            if self.is_displayed(aol_center_result, timeout=10):
+                self.click_element(aol_center_result)
             elif self.is_displayed(self.locator["no_result_msg"], timeout=10):
                 raise Exception(f"AOL center not found: {value}")
             else:
@@ -792,20 +803,35 @@ class CourseCreatePage(BasePage):
         except Exception as e:
             raise Exception(f"Unable to select contribution as {value}: {e}")
 
-    def select_contact_person(self, value: str):
+    def select_contact_person(self, contact_names: str):
         try:
-            self.scroll_to_element(self.locator["scroll"], self.locator["contact_searchBox"])
-            self.click_element(self.locator["contact_searchBox"])
-            self.enter_search_field_value(self.locator["contact_searchBox"], value)
-            time.sleep(3)
-            if self.is_displayed(self.locator["first_contact_option"], timeout=10):
-                self.click_element(self.locator["first_contact_option"])
-            elif self.is_displayed(self.locator["no_result_msg"], timeout=10):
-                raise Exception(f"Contact person not found: {value}")
-            else:
-                raise Exception("Unexpected search result")
-        except:
-            raise Exception(f"Unable to select contact person as {value}")
+
+            self.logger.info(f"Selecting contact person: {contact_names}")
+
+            for name in contact_names:
+                try:
+                    search_box = self.locator["search"]
+                    self.click_element(search_box)
+                    self.enter_search_field_value(search_box, name)
+                    time.sleep(3)
+                    contact_person = self.build_locator(self.locator["search_result"], name)
+                    if self.is_displayed(contact_person, timeout=10):
+                        self.click_element(contact_person)
+                        self.logger.info(f"Contact person selected: {name}")
+                    elif self.is_displayed(self.locator["no_result_msg"], timeout=10):
+                        raise Exception(f"Contact person not found: {name}")
+                    else: 
+                        raise Exception("Unexpected search result")
+
+                except Exception as person_error:
+                    self.logger.warning(f"Failed selecting contact person '{name}': {person_error}")
+
+            self.logger.info(f"Successfully selected {len(contact_names)} contact persons")
+
+        except Exception as e:
+            self.logger.error(f"Error while selecting contact persons {contact_names}: {e}")
+            raise
+
 
     def enable_notification_for_person(self,driver, locators, person_name):
 
@@ -865,7 +891,7 @@ class CourseCreatePage(BasePage):
                 valueMin =  [time_tobe_updated[0].split()[0].split(":")[1], time_tobe_updated[1].split()[0].split(":")[1]]
                 valuePeriod = [time_tobe_updated[0].split()[1], time_tobe_updated[1].split()[1]]
                 for i in range(0,2):
-                    self.click_element(self.locator['time_keyboard'], 10)
+                    # self.click_element(self.locator['time_keyboard'], 10)
                     hour = self.find_element(self.locator['time_hour'])
                     min = self.find_element(self.locator['time_min'])
                     period = self.build_locator(self.locator['time_period'], str(valuePeriod[i]))
@@ -948,7 +974,7 @@ class CourseCreatePage(BasePage):
             minute = start_time.split()[0].split(":")[1]
             period = start_time.split()[1]
 
-            self.click_element(self.locator["time_keyboard"], 10)
+            # self.click_element(self.locator["time_keyboard"], 10)
             hour_ele = self.find_element(self.locator["time_hour"])
             min_ele = self.find_element(self.locator["time_min"])
             period_ele = self.build_locator(self.locator["time_period"], period)
@@ -978,7 +1004,7 @@ class CourseCreatePage(BasePage):
                         minute = weekend_start_time.split()[0].split(":")[1]
                         period = weekend_start_time.split()[1]
 
-                        self.click_element(self.locator["time_keyboard"], 10)
+                        # self.click_element(self.locator["time_keyboard"], 10)
                         hour_ele = self.find_element(self.locator["time_hour"])
                         min_ele = self.find_element(self.locator["time_min"])
                         period_ele = self.build_locator(self.locator["time_period"], period)
@@ -1041,11 +1067,12 @@ class CourseCreatePage(BasePage):
                 time_txt_field = self.build_locator(self.locator["time_ith_txt_field"], slot)
                 self.scroll_to_element_by_touch(time_txt_field)
                 self.click_element(time_txt_field)
+                self.logger.info(f"Time {slot} field clicked")
                 valueHour = [time_tobe_updated[0].split()[0].split(":")[0], time_tobe_updated[1].split()[0].split(":")[0]]
                 valueMin = [time_tobe_updated[0].split()[0].split(":")[1], time_tobe_updated[1].split()[0].split(":")[1]]
                 valuePeriod = [time_tobe_updated[0].split()[1], time_tobe_updated[1].split()[1]]
                 for i in range(0, 2):  # 0 = start time, 1 = end time
-                    self.click_element(self.locator["time_keyboard"], 10)
+                    # self.click_element(self.locator["time_keyboard"], 10)
                     hour = self.find_element(self.locator["time_hour"])
                     min_ele = self.find_element(self.locator["time_min"])
                     period = self.build_locator(self.locator["time_period"], str(valuePeriod[i]))
@@ -1054,6 +1081,7 @@ class CourseCreatePage(BasePage):
                     self.click_element(min_ele)
                     self.send_keys(min_ele, valueMin[i], timeout=10, is_necessary=False)
                     self.click_element(period)
+                    self.logger.info(f"Time {slot} set: {time_tobe_updated[i]}")
                     self.click_element(self.locator["option_ok"], 10)
 
                 # Click Add Date to reveal next slot (except after the last day)
@@ -1177,7 +1205,7 @@ class CourseCreatePage(BasePage):
     def scroll_to_create_now_button(self):
         self.scroll_to_element(self.locator['scroll'], self.locator['create_now'])
 
-    def create_course(self, row: Dict[str, Any]) -> str:
+    def create_course(self, row: Dict[str, Any],message: str) -> str:
         """
         Create a course based on the provided test data row.
         
@@ -1215,7 +1243,7 @@ class CourseCreatePage(BasePage):
             
             # Step 2: Select course
             if data.product_name:
-                self.select_course(data.product_name, data.tenant)
+                self.select_product(data.product_name, data.tenant)
                 self.logger.info(f"Selected course: {data.product_name}")
             
             # Step 3: Set privacy
@@ -1274,7 +1302,7 @@ class CourseCreatePage(BasePage):
 
             # Step 13: Handle address (for in-person events)
             if data.event_mode.lower() == 'in-person':
-                self._handle_address(data, config)
+                self._handle_address(data)
 
             # Step 14: Enter max attendees
             if data.max_attendees:
@@ -1287,19 +1315,31 @@ class CourseCreatePage(BasePage):
             # Step 16: Submit course
             self.click_create_button()
             time.sleep(1)
-            
-            # Step 17: Verify result
-            return self._verify_course_creation_result(data.test_case_id)
-            
+
+            content = self.extract_page_contents()
+            print("contents in meetup success page:",content)
+            result = message in content
+            self.logger.info(f"Course Create is {'passed' if result else 'failed'}")
+            self.logger.info(f"Observed Screen content:: {content}")
+            return result, self.__get_error_message(result)
         except Exception as e:
-            try:
-                take_screenshot(self.driver, f"course_creation_error_{test_case_id}")
-            except:
-                pass
+            self.logger.info(f"Observed Screen content:: {content}")
+            return False, f'Course Creation is failed due to {str(e)}'
             
-            error_text = f"Failure - Exception occurred: {str(e)} for test case: {test_case_id}"
-            self.logger.error(error_text)
-            return error_text
+    def get_final_error_msg(self):
+        try:
+            return self.get_txt_from_attr(self.locator["final_msg"]), "Unable to get the Final Error message"
+        except Exception as e:
+            self.logger.error(f"Exception raised while getting the final page error message, exception:: {str(e)}")
+            return False, f"Unable to get the Final Error message"
+
+    def __get_error_message(self, result):
+        if result == False:
+            message, expMsg = self.get_final_error_msg()
+            return f"{message}"
+        else:
+            return f"Observed Content::{self.extract_page_contents()}"
+
     
     def _handle_notifications(self, notify_persons: List[str]):
         """Handle notification settings for persons."""
@@ -1336,13 +1376,14 @@ class CourseCreatePage(BasePage):
             time.sleep(3)
         elif data.mode_of_select_contact == "BySearch":
             self.logger.info("Selecting contact person by search")
-            contact_person = data.contact_persons[0] if data.contact_persons else ""
-            self.select_contact_person(contact_person)
-            self.logger.info(f"Selected contact person: {contact_person}")
+            contact_persons = data.contact_persons if data.contact_persons else []
+            self.select_contact_person(contact_persons)
+            self.logger.info(f"Selected contact persons: {contact_persons}")
         elif data.mode_of_select_contact == "ByExistingTeam":
             self.logger.info("Selecting contact person from existing team")
-            if self.is_displayed(self.locator["first_contact_option"], timeout=10):
-                self.click_element(self.locator["first_contact_option"])
+            contact_person = self.build_locator(self.locator["search_result"], data.contact_persons[0])
+            if self.is_displayed(contact_person, timeout=10):
+                self.click_element(contact_person)
                 self.logger.info("Selected contact person from existing team")
             else:
                 raise Exception("Contact person not found in existing team")
@@ -1350,7 +1391,7 @@ class CourseCreatePage(BasePage):
         self.click_element(self.locator["done_button"], 10)
         self.logger.info("Clicked done button")
     
-    def _handle_address(self, data: CourseData, config: TenantConfiguration):
+    def _handle_address(self, data: CourseData):
         """Handle address entry for in-person events."""
         if data.is_use_existing_venue:
             if data.address_details.get("address"):
@@ -1440,6 +1481,25 @@ class CourseCreatePage(BasePage):
         
         return error_messages
 
+    def isStatusCancelledDisplayed(self,event_code):
+        self.logger.info(f"Checking if course is displayed on the UI")
+        event_elements = self.get_all_event_cards(self.locator["event_cards"])
+        if not event_elements:
+            raise Exception("No event cards found")
+
+        for el in event_elements:
+            desc = el.get_attribute("content-desc")
+            event_data = self.parse_event_data(desc)
+            if event_data["code"] == event_code:
+                if event_data["status"] == "canceled":
+                    self.logger.info(f"Course with event code {event_code} is cancelled")
+                    return True
+                else:
+                    self.logger.error(f"Course with event code {event_code} is not cancelled")
+                    return False
+        self.logger.error(f"Course with event code {event_code} not found on the UI")
+
+
     def get_validation_errors(self) -> list:
         """
         Helper method to collect all current validation errors on the page
@@ -1466,3 +1526,31 @@ class CourseCreatePage(BasePage):
             errors.append("Invalid zipcode")
         
         return errors
+
+    def cancel_course(self, eventCode):
+        searchButton = self.locator["search_button"]
+        searchField = self.locator["search"]
+        self.logger.info(f"Cancelling course with event code: {eventCode}")
+        self.enterEventCode(searchButton, searchField, eventCode)
+        self.click_event_row_containing(self.locator["event_row_contains"], eventCode)
+        self.click_element(self.locator["Event_option_button"])
+        self.click_element(self.locator["Cancel_course_button"])
+        self.click_element(self.locator["confirm_button"])
+        assert self.is_msg_displayed(
+            self.event_create_message["course_cancel_success_msg"]
+        ), "Course cancellation success message not displayed"
+        self.click_element(self.locator["Events_search_close_button"])
+
+    
+    def validate_cancel_course(self, eventCode):
+        self.logger.info(f"Validating course cancellation with event code: {eventCode}")
+        self.enterEventCode(self.locator["search_button"], self.locator["search"], eventCode)
+        isCancelled = self.isStatusCancelledDisplayed(eventCode)
+        if isCancelled:
+            self.logger.info(f"Course cancellation validation result: {isCancelled}")
+            return True
+        else:
+            self.logger.error(f"Course cancellation validation result: {isCancelled}")
+            return False
+
+    

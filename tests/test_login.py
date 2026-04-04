@@ -1,3 +1,4 @@
+import os
 import pytest
 import allure
 import pandas as pd
@@ -7,6 +8,7 @@ from pages.my_events_page import MyEventsPage
 from pages.onboard_page import OnBoardPage
 from pages.logout_page import LogoutPage
 import logging
+from utils.googleSheet_helper import read_google_sheet
 from utils.navigator import Navigator
 from utils.driver_manager import DriverManager
 from config.config import TestConfig
@@ -16,8 +18,7 @@ from utils.logger_config import LoggerConfig
 
 
 class TestLogin:
-    valid_credentials_csv = 'data/valid_credentials.csv'
-    invalid_credentials_csv = 'data/invalid_credentials.csv'
+    valid_credentials_data = read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "Login")
 
     @pytest.fixture(autouse=True)
     def setup(self, request):
@@ -63,9 +64,10 @@ class TestLogin:
         end_time = time.time()
         duration = end_time - start_time
         
-        # Check if test failed
+        # Check if test failed (rep_call set by tests/conftest.py makereport hook)
         test_status = "COMPLETED"
-        if hasattr(self, '_outcome') and self._outcome.result.failed:
+        rep_call = getattr(request.node, "rep_call", None)
+        if rep_call is not None and rep_call.failed:
             test_status = "FAILED"
             self.logger.error(f"Test failed: {test_method_name}")
             take_screenshot(self.driver, f"test_failed_{self.__class__.__name__}_{test_method_name}")
@@ -111,7 +113,7 @@ class TestLogin:
     @pytest.mark.testcase_id("LG_TC_1")
     @pytest.mark.data_driven
     @pytest.mark.login
-    @pytest.mark.parametrize("row", read_csv_as_dict('data/valid_credentials.csv'))
+    @pytest.mark.parametrize("row", valid_credentials_data)
     def test_valid_credentials_data_driven(self, row):
         print(f"testing scenario: {row['test_scenario']} for tenant: {row['tenant']}")
         with allure.step("Navigate to Login screen"):

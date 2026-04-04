@@ -115,6 +115,36 @@ class CourseDetailsPage(BasePage):
         except Exception as e:
             self.logger.error(f"Exception raised while verifying the organizer:: {organizer}, Exception:: {str(e)}")
             raise Exception(f"Organizer:: {organizer} is not present")
+
+    def is_user_present_in_teachers(self, username: str, max_scan: int = 8) -> bool:
+        try:
+            for index in range(1, max_scan + 1):
+                loc = self.build_locator(self.locator['teachers'], username)
+                if not self.is_displayed(loc, timeout=2):
+                    break
+                content = self.get_txt_from_attr(loc).strip()
+                if content and username.lower() in content.lower():
+                    return True
+            return False
+        except Exception:
+            return False
+
+    def is_user_present_in_organizers(self, username: str, max_scan: int = 8) -> bool:
+        print("chevk user is present in organizers")
+        try:
+            for index in range(1, max_scan + 1):
+                loc = self.build_locator(self.locator['organizers'], username)
+                if not self.is_displayed(loc, timeout=2):
+                    print("username is not displayed in is_user_present_in_organizers:", loc)
+                    break
+                content = self.get_txt_from_attr(loc).strip()
+                print("content in is_user_present_in_organizers:", content)
+                print("username in is_user_present_in_organizers:", username)
+                if content and username.lower() in content.lower():
+                    return True
+            return False
+        except Exception:
+            return False
         
     def is_contact_displayed(self, contact):
         try:
