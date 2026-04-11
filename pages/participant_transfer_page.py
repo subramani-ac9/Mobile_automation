@@ -23,24 +23,32 @@ class ParticipantTransferPage(BasePage):
     def _events_search_button(self):
         return self.locator.get("search_button") or self.locator.get("events_search_button")
 
-    @allure.step('Open Events search and type "{term}"')
-    def open_events_search_and_type(self, term: str) -> None:
+    @allure.step("Tap Events search icon (top right)")
+    def tap_events_search_icon(self) -> None:
         btn = self._events_search_button()
         if not btn:
             raise RuntimeError("No Events search button locator for this platform")
-        self.click_element(btn, timeout=20)
-        time.sleep(0.5)
+        self.click_element(btn, timeout=14)
+        time.sleep(0.28)
+
+    @allure.step('Type "{term}" in Events search field')
+    def type_events_search_term(self, term: str) -> None:
         field = self.locator["events_search_field"]
-        self.click_element(field, timeout=15)
-        if self.send_keys_without_enter(field, term) is False:
+        self.click_element(field, timeout=12)
+        if self.send_keys_without_enter(field, term, timeout=12) is False:
             raise RuntimeError(f"Could not type Events search term: {term}")
-        time.sleep(1.0)
+        time.sleep(0.5)
+
+    @allure.step('Open Events search and type "{term}"')
+    def open_events_search_and_type(self, term: str) -> None:
+        self.tap_events_search_icon()
+        self.type_events_search_term(term)
 
     @allure.step('Open first event row matching "{code}"')
     def click_event_row_containing(self, code: str) -> None:
         loc = self.build_locator(self.locator["event_row_contains"], code)
         self.scroll_to_element_by_touch(loc, max_swipes=20)
-        self.click_element(loc, timeout=20)
+        self.click_element(loc, timeout=14)
 
     def _participants_section_locator_keys(self):
         keys = ["participants_section"]
@@ -112,7 +120,7 @@ class ParticipantTransferPage(BasePage):
     def enter_transfer_reason(self, message: str) -> None:
         field = self.locator["transfer_reason_field"]
         self.click_element(field, timeout=10)
-        if self.send_keys_without_enter(field, message) is False:
+        if self.send_keys_without_enter(field, message, timeout=15) is False:
             raise RuntimeError("Could not type transfer reason")
 
     @allure.step("Tap Transfer (top-right) — first: eligible-program picker (id: Transfer)")
@@ -186,7 +194,7 @@ class ParticipantTransferPage(BasePage):
     )
     def apply_eligible_programs_teacher_filter(self) -> None:
         self.click_element(self.locator["eligible_programs_filter"], timeout=15)
-        time.sleep(0.35)
+        time.sleep(0.22)
         if "filter_teachers_option" in self.locator:
             loc = self.locator["filter_teachers_option"]
             if self.is_displayed(loc, timeout=3):
@@ -201,7 +209,7 @@ class ParticipantTransferPage(BasePage):
                 ParticipantTransferLocator.teacher_filter_row_labels(self.platform),
                 "Teachers filter row",
             )
-        time.sleep(0.35)
+        time.sleep(0.22)
         if "teacher_filter_any_one_event" in self.locator:
             self.click_element(self.locator["teacher_filter_any_one_event"], timeout=12)
         else:
@@ -213,7 +221,7 @@ class ParticipantTransferPage(BasePage):
                 ],
                 "Teacher option",
             )
-        time.sleep(0.35)
+        time.sleep(0.22)
         self.tap_show_results()
 
     def tap_show_results(self) -> None:
@@ -240,7 +248,7 @@ class ParticipantTransferPage(BasePage):
             for row in rows[:5]:
                 try:
                     self.long_click_element(row)
-                    time.sleep(0.4)
+                    time.sleep(0.26)
                 except Exception as e:
                     self.logger.debug(f"Long-press row skipped: {e}")
             if self.is_displayed(target, timeout=2):
@@ -250,7 +258,7 @@ class ParticipantTransferPage(BasePage):
                 self.scroll_on_the_element(scroll, direction="down", percent=0.45)
             except Exception:
                 self.scroll_to_element_by_touch(target, max_swipes=2)
-            time.sleep(0.3)
+            time.sleep(0.2)
         raise RuntimeError(f"Target program row not found: {target_code}")
 
     def _find_click_first_silent(self, locators: list) -> bool:
@@ -322,10 +330,21 @@ class ParticipantTransferPage(BasePage):
             self.logger.debug(f"driver.back failed: {e}")
             return False
 
+    @allure.step("Navigate back repeatedly (iOS/Android toolbar + system fallbacks)")
+    def tap_back_with_platform_fallbacks(self, count: int = 2) -> None:
+        """
+        Prefer silent multi-locator back (chevron, Back, Back Button, etc.) and
+        ``driver.back()`` when no toolbar control matches. Use after share sheet or
+        any screen where a single accessibility id like ``Back Button`` is absent.
+        """
+        for _ in range(max(1, count)):
+            self._try_nav_back_once()
+            time.sleep(0.35)
+
     def _events_main_visible(self) -> bool:
         for key in ("event_template", "search_button", "advance_filter"):
             loc = self.locator.get(key)
-            if loc and self.is_displayed(loc, timeout=2):
+            if loc and self.is_displayed(loc, timeout=1.5):
                 return True
         return False
 
@@ -409,7 +428,7 @@ class ParticipantTransferPage(BasePage):
         """Prefer visible back control; fall back to driver.back()."""
         for i in range(steps):
             self._try_nav_back_once()
-            time.sleep(0.5)
+            time.sleep(0.32)
             if self._events_main_visible():
                 self.logger.info("Events main screen reached")
                 return
@@ -420,6 +439,7 @@ class ParticipantTransferPage(BasePage):
     )
     def back_twice_then_close_events_search(self) -> None:
         """Two toolbar backs (iOS: first chevron chain, then Back Button), then search close / recovery."""
+        self.logger.info("Backing twice and closing events search")
         for i in range(2):
             if self.platform.lower() == "ios":
                 locs = (
@@ -438,11 +458,11 @@ class ParticipantTransferPage(BasePage):
                     self.logger.debug(f"System back: {e}")
             else:
                 self.logger.info("Toolbar back tapped")
-            time.sleep(0.55)
+            time.sleep(0.35)
 
         if self._try_tap_events_search_close():
             self.logger.info("Tapped Events search close (or equivalent)")
-            time.sleep(0.35)
+            time.sleep(0.22)
         else:
             self.logger.debug("No Events search close control matched; continuing")
 
@@ -452,21 +472,69 @@ class ParticipantTransferPage(BasePage):
 
         for j in range(5):
             self._try_nav_back_once()
-            time.sleep(0.45)
+            time.sleep(0.28)
             if self._events_main_visible():
                 self.logger.info("Events main visible after extra navigation")
                 return
 
         if self._try_my_events_tab():
-            time.sleep(0.6)
-            if self.is_displayed(self.locator["event_template"], timeout=6):
+            time.sleep(0.38)
+            if self.is_displayed(self.locator["event_template"], timeout=5):
                 self.click_element(self.locator["event_template"])
-            time.sleep(0.5)
+            time.sleep(0.32)
 
         if not self._events_main_visible():
             raise RuntimeError(
                 "Events main not visible after back twice and search close. "
                 "Confirm back chevron and close control labels in Appium Inspector."
+            )
+
+    @allure.step(
+        "Close Events search if shown and recover to Events main (backs already done)"
+    )
+    def finish_return_to_events_main_after_backs(self) -> None:
+        """Use after poster flow (or any flow) that already tapped back twice explicitly."""
+        if self._try_tap_events_search_close():
+            self.logger.info("Tapped Events search close (or equivalent)")
+            time.sleep(0.22)
+        else:
+            self.logger.debug("No Events search close control matched; continuing")
+
+        if self._events_main_visible():
+            self.logger.info("Events main visible")
+            return
+
+        for j in range(5):
+            self._try_nav_back_once()
+            time.sleep(0.28)
+            if self._events_main_visible():
+                self.logger.info("Events main visible after extra navigation")
+                return
+
+        if self._try_my_events_tab():
+            time.sleep(0.38)
+            if self.is_displayed(self.locator["event_template"], timeout=5):
+                self.click_element(self.locator["event_template"])
+            time.sleep(0.32)
+
+        if not self._events_main_visible():
+            self.logger.info(
+                "Events main still not visible; trying navigate_to_events_tab()"
+            )
+            try:
+                self.navigate_to_events_tab()
+                time.sleep(0.5)
+            except Exception as e:
+                self.logger.warning("navigate_to_events_tab recovery failed: %s", e)
+
+        if self._events_main_visible():
+            self.logger.info("Events main visible after bottom-nav / tab recovery")
+            return
+
+        if not self._events_main_visible():
+            raise RuntimeError(
+                "Events main not visible after search close / recovery. "
+                "Confirm Events search close and My Events tab in Appium Inspector."
             )
 
     @allure.step("Ensure Events tab from bottom navigation")
@@ -477,17 +545,17 @@ class ParticipantTransferPage(BasePage):
                 self.driver.back()
             except Exception:
                 pass
-        time.sleep(0.5)
-        if self.is_displayed(self.locator["event_template"], timeout=8):
+        time.sleep(0.32)
+        if self.is_displayed(self.locator["event_template"], timeout=6):
             self.click_element(self.locator["event_template"])
-        time.sleep(1)
+        time.sleep(0.55)
 
     @allure.step('Verify participant "{name}" visible on Participants')
     def is_participant_visible(self, name: str) -> bool:
         loc = self.build_locator(self.locator["participant_by_name"], name)
         scroll = self.locator["course_detail_scroll"]
-        if self.is_displayed(scroll, timeout=10):
-            self.scroll_to_element(scroll, loc, direction="down")
-        else:
+        try:
+            self.scroll_to_element_by_touch(loc, direction="down", max_swipes=20)
+        except Exception:
             self.scroll_to_element_by_touch(loc, max_swipes=12)
         return self.is_displayed(loc, timeout=10)

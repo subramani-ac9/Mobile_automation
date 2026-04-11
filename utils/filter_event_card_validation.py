@@ -43,7 +43,7 @@ OPTION_TO_STATUS: Dict[str, str] = {
     "filter_status_declined_checkBox": "declined",
     "filter_status_active_checkBox": "active",
     "filter_status_inactive_checkBox": "inactive",
-    "filter_status_cancelled_checkBox": "cancelled",
+    "filter_status_cancelled_checkBox": "canceled",
     "filter_status_expense_submitted_checkBox": "expense-submitted",
     "filter_status_expense_declined_checkBox": "expense-declined",
     "filter_status_pending_activation_checkBox": "pending-activation",

@@ -1,4 +1,5 @@
 import json
+import os
 import time, random, string, pytest, re, logging
 import pandas as pd
 from datetime import datetime, timedelta
@@ -8,7 +9,7 @@ from pages.course_create_page import CourseCreatePage
 from utils.driver_manager import DriverManager
 from utils.time_zone_util import TimezoneFormatter
 from config.config import TestConfig
-from utils.helpers import read_csv_as_dict
+from utils.googleSheet_helper import read_google_sheet
 from pages.login_page import LoginPage
 from pages.my_events_page import MyEventsPage
 from pages.onboard_page import OnBoardPage
@@ -21,8 +22,12 @@ from pages.resource_page import ResourcePage
 
 import allure
 class TestResource:
-    resource_data = read_csv_as_dict('data/resource.csv')
+    resource_data = read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "Resource")
     print(f"Resource data: {resource_data}")
+    RESOURCE_PRODUCT_NAME = "Art of Living Part 1"
+    AUDIO_RESOURCE_NAME = "Audio route test"
+    DOCUMENT_RESOURCE_NAME = "[QA] Readme: Long Sudarshan Kriya"
+    VIDEO_RESOURCE_NAME = "4K Cast Test File"
 
     @pytest.fixture(autouse=True)
     def setup(self, request):
@@ -77,14 +82,78 @@ class TestResource:
                 self.driver_manager.quit_driver()
                 self.logger.info("Driver cleanup completed")
 
-    @pytest.mark.data_driven
     @pytest.mark.resource
-    def test_validate_resource_page(self):
+    @pytest.mark.regression 
+    def test_validate_resource_page_authentication(self):
         with allure.step("navigate to resource page"):   
             self.nav.navigate_to_resource_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
-            time.sleep(10)
+        with allure.step("Handle authentication popup"):
+            self.resource_page.handle_authentication_if_present("986532")
+        with allure.step("Validate resource page loaded"):
+            assert self.resource_page.is_resources_page_displayed(), "Resources page not loaded"
 
+    @pytest.mark.resource 
+    @pytest.mark.regression 
+    def test_validate_resource_page_authentication_failure(self):
+        with allure.step("navigate to resource page"):   
+            self.nav.navigate_to_resource_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
+        with allure.step("Handle authentication popup"):
+            self.resource_page.handle_authentication_if_present("98653")
+        with allure.step("Validate resource page loaded"):
+            assert self.resource_page.is_authentication_screen_displayed(), "Authentication screen not displayed"
 
-
-       
     
+    @pytest.mark.resource 
+    @pytest.mark.regression 
+    def test_validate_resource_download_button_displayed(self):
+        with allure.step("navigate to resource list page"):   
+            is_resources_page_displayed = self.nav.navigate_to_resource_list_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
+            assert is_resources_page_displayed, "Resources page not loaded"
+            self.logger.info("Resource list page loaded")
+        self.resource_page.click_resource_product_card(self.RESOURCE_PRODUCT_NAME)
+        self.logger.info("click on one of the resourse from the list")
+        assert self.resource_page.isDownloadButtonDisplayed("audio", self.AUDIO_RESOURCE_NAME), "Download button not displayed"
+        self.logger.info("Download button displayed")
+
+    @pytest.mark.resource 
+    @pytest.mark.regression 
+    def test_validate_resource_delete_button_displayed(self):
+        with allure.step("navigate to resource list page"):   
+            is_resources_page_displayed = self.nav.navigate_to_resource_list_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
+            assert is_resources_page_displayed, "Resources page not loaded"
+            self.logger.info("Resource list page loaded")
+        self.resource_page.click_resource_product_card(self.RESOURCE_PRODUCT_NAME)
+        self.logger.info("click on one of the resourse from the list")
+        self.resource_page.click_resource_download_button("audio", self.AUDIO_RESOURCE_NAME)
+        assert self.resource_page.isPauseDownloadButtonDisplayed("audio", self.AUDIO_RESOURCE_NAME), "Pause download button not displayed"
+        assert self.resource_page.isDeleteButtonDisplayed("audio", self.AUDIO_RESOURCE_NAME), "Delete button not displayed"
+        self.logger.info("Delete button displayed")
+            
+    @pytest.mark.resource 
+    @pytest.mark.regression 
+    def test_validate_resource_pause_download_button_displayed(self):
+        with allure.step("navigate to resource list page"):   
+            is_resources_page_displayed = self.nav.navigate_to_resource_list_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
+            assert is_resources_page_displayed, "Resources page not loaded"
+            self.logger.info("Resource list page loaded")
+        self.resource_page.click_resource_product_card(self.RESOURCE_PRODUCT_NAME)
+        self.logger.info("click on one of the resourse from the list")
+        self.resource_page.click_resource_download_button("audio", self.AUDIO_RESOURCE_NAME)
+        assert self.resource_page.isPauseDownloadButtonDisplayed("audio", self.AUDIO_RESOURCE_NAME), "Pause download button not displayed"
+        self.logger.info("Pause download button displayed")
+           
+    @pytest.mark.resource 
+    @pytest.mark.regression 
+    def test_validate_resource_playing_All_elements_displayed(self):
+        with allure.step("navigate to resource list page"):   
+            is_resources_page_displayed = self.nav.navigate_to_resource_list_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
+            assert is_resources_page_displayed, "Resources page not loaded"
+            self.logger.info("Resource list page loaded")
+        self.resource_page.click_resource_product_card(self.RESOURCE_PRODUCT_NAME)
+        self.logger.info("click on one of the resourse from the list")
+        self.resource_page.click_resource_download_button("audio", self.AUDIO_RESOURCE_NAME)
+        assert self.resource_page.isPauseDownloadButtonDisplayed("audio", self.AUDIO_RESOURCE_NAME), "Pause download button not displayed"
+        assert self.resource_page.isDeleteButtonDisplayed("audio", self.AUDIO_RESOURCE_NAME), "Delete button not displayed"
+        self.resource_page.click_resourse_card("audio", self.AUDIO_RESOURCE_NAME)
+        assert self.resource_page.isAllElementsDispalyed(self.AUDIO_RESOURCE_NAME), "All elements not displayed"
+        self.logger.info("All elements displayed")

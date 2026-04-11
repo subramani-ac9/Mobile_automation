@@ -10,6 +10,10 @@ class TestConfig:
     
     # Platform Selection
     MOBILE_PLATFORM = os.getenv('MOBILE_PLATFORM', 'android').lower()
+
+    # web view configuration
+    CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVER_PATH', '/usr/bin/chromedriver')
+    WEBVIEW_TIMEOUT = int(os.getenv('WEBVIEW_TIMEOUT', 10))
     
     # Android Configuration
     ANDROID_PLATFORM_NAME = os.getenv('ANDROID_PLATFORM_NAME', 'Android')
@@ -116,7 +120,13 @@ class TestConfig:
                 'appActivity': cls.ANDROID_APP_ACTIVITY,
                 'noReset': False,
                 'newCommandTimeout': 3600,
-                'autoGrantPermissions': True
+                'autoGrantPermissions': True,
+
+
+                        # ✅ ADD THESE — required for WebView context switching
+                'ensureWebviewsHavePages': True,
+                'nativeWebScreenshot': True,
+                'chromedriverExecutable': cls.CHROMEDRIVER_PATH,
             }
             
             if cls.ANDROID_APP_PATH:

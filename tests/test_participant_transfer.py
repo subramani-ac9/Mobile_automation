@@ -1,6 +1,5 @@
 """
 End-to-end participant transfer on My Events
-
 - Launch app (fixture), login (geetha@abovecloud9.ai / Admin@ac9 or env vars).
 - Events → search E-064549 → open course → Participants → Hari Krishnan.
 - Transfer & Notes → Transfer → Confirm → reason → top Transfer.
@@ -9,7 +8,6 @@ End-to-end participant transfer on My Events
 - Back twice → Events search close → Events main.
 - Search E-064550 → open → Participants → verify Hari Krishnan → output success message.
 - Back twice → Events search close again → Account → Logout; teardown closes the app.
-
 Run: pytest tests/test_participant_transfer.py -m participant_transfer -s
 """
 import os
@@ -33,9 +31,9 @@ LOGIN_TENANT = "US"
 LOGIN_EMAIL = os.getenv("TRANSFER_TEST_EMAIL", "geetha@abovecloud9.ai")
 LOGIN_PASSWORD = os.getenv("TRANSFER_TEST_PASSWORD", "Admin@ac9")
 
-SOURCE_EVENT_CODE = "E-064550"
-TARGET_EVENT_CODE = "E-064549" 
-PARTICIPANT_NAME = "Hari Krishnan"
+SOURCE_EVENT_CODE = "E-064549"
+TARGET_EVENT_CODE = "E-064550"
+PARTICIPANT_NAME = "Test One"
 TRANSFER_MESSAGE = "Due to fewer participants"
 
 
@@ -107,22 +105,21 @@ class TestParticipantTransfer:
     @pytest.mark.participant_transfer
     @pytest.mark.smoke
     @allure.title("Participant transfer: E-064549 → E-064550")
-    def test_participant_transfer_end_to_end(self):
+    def test_participant_transfer_end_to_end_US(self):
         with allure.step("Login"):
             self.login_to_events_app()
 
         with allure.step("Events, search source course E-064549, open"):
             self.my_events_page.navigate_to_events()
             time.sleep(1)
-            # self.transfer_page.open_events_search_and_type(SOURCE_EVENT_CODE)
-            self.transfer_page.enterEventCode(self.transfer_page.locator["search_button"], self.transfer_page.locator["events_search_field"], SOURCE_EVENT_CODE)
+            self.transfer_page.enterEventCode(SOURCE_EVENT_CODE)
             self.transfer_page.click_event_row_containing(SOURCE_EVENT_CODE)
 
         with allure.step(
             "Participants, participant, Transfer & Notes, Transfer, Confirm, reason, top Transfer"
         ):
             # self.transfer_page.open_participants_section()
-            self.transfer_page.scroll_to_element(self.transfer_page.locator["course_detail_scroll"], self.transfer_page.locator["participants_section"])
+            self.transfer_page.scroll_to_element_by_touch(self.transfer_page.locator["participants_section"])
             self.transfer_page.click_element(self.transfer_page.locator["participants_section"])
             self.transfer_page.open_participant_by_name(PARTICIPANT_NAME)
             assert self.transfer_page.transfer_and_notes_visible(
@@ -148,11 +145,11 @@ class TestParticipantTransfer:
             self.transfer_page.back_twice_then_close_events_search()
 
         with allure.step("Search E-064550, course, Participants, verify transfer"):
-            self.transfer_page.enterEventCode(self.transfer_page.locator["search_button"], self.transfer_page.locator["events_search_field"], TARGET_EVENT_CODE)
+            self.transfer_page.enterEventCode(TARGET_EVENT_CODE)
             # self.transfer_page.open_events_search_and_type(TARGET_EVENT_CODE)
             self.transfer_page.click_event_row_containing(TARGET_EVENT_CODE)
-            self.transfer_page.open_participants_section()
-            self.transfer_page.scroll_to_element(self.transfer_page.locator["course_detail_scroll"], self.transfer_page.locator["participants_section"])
+            # self.transfer_page.open_participants_section()
+            self.transfer_page.scroll_to_element_by_touch(self.transfer_page.locator["participants_section"])
             self.transfer_page.click_element(self.transfer_page.locator["participants_section"])
             assert self.transfer_page.is_participant_visible(
                 PARTICIPANT_NAME
@@ -163,3 +160,73 @@ class TestParticipantTransfer:
         with allure.step("Back twice, close Events search, Account, Logout"):
             self.transfer_page.back_twice_then_close_events_search()
             self.logout_page.logout()
+
+    def reverse_transfer_US(self) -> None:
+        """Transfer participant from E-064550 to E-064549; validate on E-064549."""
+        reverse_reason = os.getenv(
+            "REVERSE_TRANSFER_MESSAGE",
+            "Reverse transfer to original course",
+        )
+
+        with allure.step("Login"):
+            self.login_to_events_app()
+
+        with allure.step("Events, search course E-064550, open"):
+            self.my_events_page.navigate_to_events()
+            time.sleep(1)
+            self.transfer_page.enterEventCode(TARGET_EVENT_CODE)
+            self.transfer_page.click_event_row_containing(TARGET_EVENT_CODE)
+
+        with allure.step(
+            "Participants, participant, Transfer & Notes, Transfer, Confirm, reason, top Transfer"
+        ):
+            # self.transfer_page.open_participants_section()
+            self.transfer_page.scroll_to_element_by_touch(self.transfer_page.locator["participants_section"])
+            self.transfer_page.click_element(self.transfer_page.locator["participants_section"])
+            self.transfer_page.open_participant_by_name(PARTICIPANT_NAME)
+            assert self.transfer_page.transfer_and_notes_visible(
+                timeout=15
+            ), "Transfer and Notes should be visible"
+            self.transfer_page.tap_transfer_on_participant_detail()
+            self.transfer_page.tap_confirm()
+            self.transfer_page.enter_transfer_reason(reverse_reason)
+            self.transfer_page.tap_transfer_top_right()
+
+        with allure.step("Eligible list: Teachers filter, Any One Event, Show Results"):
+            self.transfer_page.apply_eligible_programs_teacher_filter()
+
+        with allure.step(
+            "Long-press to E-064549, open, Transfer, Transfer Initiated, OK"
+        ):
+            self.transfer_page.long_press_until_target_program(SOURCE_EVENT_CODE)
+            time.sleep(1)
+            self.transfer_page.tap_transfer_top_right_after_eligible_selection()
+            self.transfer_page.assert_transfer_initiated_and_ok()
+
+        with allure.step("Back twice, close Events search, Events main"):
+            self.transfer_page.back_twice_then_close_events_search()
+
+        with allure.step("Search E-064549, course, Participants, verify participant"):
+            self.transfer_page.enterEventCode(SOURCE_EVENT_CODE)
+            self.transfer_page.click_event_row_containing(SOURCE_EVENT_CODE)
+            self.transfer_page.scroll_to_element_by_touch(self.transfer_page.locator["participants_section"])
+            self.transfer_page.click_element(self.transfer_page.locator["participants_section"])
+            assert self.transfer_page.is_participant_visible(
+                PARTICIPANT_NAME
+            ), (
+                f"Participant {PARTICIPANT_NAME} should appear under {SOURCE_EVENT_CODE}"
+            )
+            print(
+                "\n========== OUTPUT: Participant Reverse Transfer Successful ==========\n"
+            )
+            self.logger.info("OUTPUT: Participant Reverse Transfer Successful")
+
+        with allure.step("Back twice, close Events search, Account, Logout"):
+            self.transfer_page.back_twice_then_close_events_search()
+            self.logout_page.logout()
+
+    @pytest.mark.participant_transfer
+    @pytest.mark.smoke
+    @allure.title("Participant transfer (reverse): E-064550 → E-064549")
+    def test_reverse_transfer_US(self):
+        self.reverse_transfer_US()

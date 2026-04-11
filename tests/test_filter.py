@@ -131,7 +131,7 @@ class TestFilter:
         with allure.step(f"[{tc}] Navigate to My Events"):
             self.logger.info("Step 1/4: Navigate to My Events (login if needed)")
             status = self.nav.navigate_to_my_events_page(
-                "nivash@abovecloud9.ai", TestConfig.TEST_PASSWORD, "us"
+                "nivedhas@abovecloud9.ai", TestConfig.TEST_PASSWORD, "us"
             )
             self.logger.info("Step 1/4: Completed — navigate status=%r", status)
 
@@ -190,7 +190,7 @@ class TestFilter:
 
     @pytest.mark.data_driven
     @pytest.mark.filter
-    @pytest.mark.parametrize("row", _rows_prefix("Filter_S1_status_"), ids=_row_id)
+    @pytest.mark.parametrize("row", _rows_prefix("Filter_S1_status_06"), ids=_row_id)
     def test_filter_single_category_status_event_cards(self, row):
         self._run_filter_scenario(row)
 

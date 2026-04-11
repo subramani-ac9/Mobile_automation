@@ -17,6 +17,9 @@ class FiltersPage(BasePage):
 
     Never use full-screen touch for categories (it moves the options list first).
     Never use `UiScrollable.instance(N)` for options (N can be the category rail).
+
+    **apply_filter_combination** opens each category, taps that section's **All** checkbox to clear
+    prior selections, then applies the options from the test data.
     """
 
     # Horizontal center of a scroll container below this fraction of screen width ⇒ treat as left rail only.
@@ -24,6 +27,16 @@ class FiltersPage(BasePage):
     # Short visibility poll during scroll loops (default is_displayed waits are too long per iteration).
     _VIS_TIMEOUT = 0.45
     _OPTION_ANCHOR_WAIT = 3
+
+    # Left-rail category key -> right-column "All" option key (clears prior selections in that section).
+    _CATEGORY_TO_ALL_OPTION_KEY = {
+        "filter_type": "filter_type_all_checkBox",
+        "filter_product_type": "filter_product_type_all_checkBox",
+        "filter_mode": "filter_mode_all_checkBox",
+        "filter_schedule": "filter_schedule_all_checkBox",
+        "filter_status": "filter_status_all_checkBox",
+        "filter_role": "filter_role_all_checkBox",
+    }
 
     def __init__(self, driver, platform: str):
         super().__init__(driver, platform)
@@ -105,6 +118,39 @@ class FiltersPage(BasePage):
         except Exception as e:
             self.logger.error(f"Exception raised while clicking the filter category {category}, exception:: {str(e)}")
             raise Exception(f"Unable to click the filter category {category}")
+
+    def select_all_in_open_filter_category(self, category: str) -> None:
+        """
+        After the category header is selected, tap that section's **All** checkbox first so any
+        previously selected options are cleared, then callers apply the intended options from data.
+        """
+        all_key = self._CATEGORY_TO_ALL_OPTION_KEY.get(category)
+        if not all_key or all_key not in self.locators:
+            self.logger.warning("No All-checkbox mapping for category %r; skipping reset step", category)
+            return
+        locator = self.locators[all_key]
+        raw = locator[1]
+        if callable(raw):
+            self.logger.warning("All option %r is dynamic; skipping reset step", all_key)
+            return
+        text = raw
+        try:
+            element = self.scroll_filter_options_to_desc(text)
+            element.click()
+            self.logger.info(
+                "Category %r: tapped All (%s) to clear previous selections",
+                category,
+                all_key,
+            )
+            time.sleep(0.35)
+        except Exception as e:
+            self.logger.error(
+                "Could not tap All for category %r (%s): %s",
+                category,
+                all_key,
+                e,
+            )
+            raise Exception(f"Unable to reset filter category {category} via All checkbox") from e
 
     def _calendar_picker_scroll_rect(self):
         """Lower-screen bounds so scroll gestures target the date sheet, not the filter column."""
@@ -247,6 +293,11 @@ class FiltersPage(BasePage):
                 self.logger.info("apply_filter_combination | selecting category %r", category)
                 self.click_filter_category(category)
                 self.logger.info("apply_filter_combination | category %r header clicked", category)
+                self.select_all_in_open_filter_category(category)
+                self.logger.info(
+                    "apply_filter_combination | category %r reset with All; applying data options",
+                    category,
+                )
 
                 if isinstance(options, list):
                     for j, option in enumerate(options):

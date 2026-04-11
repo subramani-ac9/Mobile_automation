@@ -2,7 +2,7 @@ import csv
 import os
 import datetime
 import logging
-
+import time
 logger = logging.getLogger(__name__)
 
 
@@ -88,3 +88,47 @@ def write_output_data(file_name: str, data):
     except Exception as e:
         logger.error(f"Failed to write output data to {file_name}: {e}")
         raise
+
+# webview helper functions
+
+def switch_to_webview(driver, timeout=10):
+    """
+    Switch from NATIVE_APP to WebView context.
+    Call this BEFORE interacting with any WebView element.
+    """
+    end_time = time.time() + timeout
+    while time.time() < end_time:
+        contexts = driver.contexts
+        wv = next((c for c in contexts if "WEBVIEW" in c), None)
+        if wv:
+            driver.switch_to.context(wv)
+            print(f"✅ Switched to WebView: {wv}")
+            return
+        time.sleep(1)
+    raise Exception(
+        f"❌ WebView context not found after {timeout}s. "
+        f"Available contexts: {driver.contexts}"
+    )
+
+
+def switch_to_native(driver):
+    """
+    Switch back to NATIVE_APP context.
+    Call this BEFORE interacting with any native element.
+    """
+    driver.switch_to.context("NATIVE_APP")
+    print("✅ Switched back to NATIVE_APP")
+
+
+def get_current_context(driver):
+    """Debug helper — print current context."""
+    ctx = driver.current_context
+    print(f"Current context: {ctx}")
+    return ctx
+
+
+def print_all_contexts(driver):
+    """Debug helper — print all available contexts."""
+    contexts = driver.contexts
+    print(f"All contexts: {contexts}")
+    return contexts

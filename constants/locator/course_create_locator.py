@@ -73,7 +73,7 @@ class CourseCreateLocator:
         # Done and navigation buttons
         "done_button": (AppiumBy.ACCESSIBILITY_ID, 'Done Button'),
         "back_button": (AppiumBy.ACCESSIBILITY_ID, 'Back Button'),
-        
+
         # Contact person
         "add_point_of_contact_button": (AppiumBy.ACCESSIBILITY_ID, 'Add Point of contact Button'),
         "add_new_contact_button": (AppiumBy.ACCESSIBILITY_ID, 'Add Contact Button'),

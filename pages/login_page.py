@@ -221,6 +221,8 @@ class LoginPage(BasePage):
 
     def get_password_value(self):
         """Return current text/value in the password field"""
+        if self.is_displayed(self.locator["Show_password_button"]):
+            self.click_element(self.locator["Show_password_button"])
         return self.get_input_value(self.locator["password"]) or ""
     
     def get_field_validation_message(self, field_type):

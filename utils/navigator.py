@@ -14,6 +14,8 @@ from pages.course_create_page import CourseCreatePage
 from config.config import TestConfig
 import logging
 
+from pages.resource_page import ResourcePage
+
 class Navigator:
     def __init__(self, driver, platform: str):
         self.driver = driver
@@ -135,6 +137,15 @@ class Navigator:
         self.locator = MyEventLocator.get_locators(self.platform)
         my_events_page = MyEventsPage(self.driver, self.platform)
         my_events_page.click_element(self.locator['resources_icon'])
+
+    def navigate_to_resource_list_page(self, email, password, tenant=None):
+        self.navigate_to_my_events_page(email, password, tenant)
+        self.locator = MyEventLocator.get_locators(self.platform)
+        my_events_page = MyEventsPage(self.driver, self.platform)
+        my_events_page.click_element(self.locator['resources_icon'])
+        resource_page = ResourcePage(self.driver, self.platform)
+        resource_page.handle_authentication_if_present("986532")
+        return resource_page.is_resources_page_displayed()
 
 
         

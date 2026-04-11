@@ -23,6 +23,8 @@ class LoginLocator:
         "forgot_password_button": (AppiumBy.XPATH, '//android.widget.Button[@content-desc="Forgot Password?"]'),
         "create_account_button": (AppiumBy.XPATH, '//android.widget.Button[@content-desc="Create Account"]'),
         "contact_support_button": (AppiumBy.XPATH, '//android.widget.Button[@content-desc="Contact Support Button"]'),
+        "Show_password_button": (AppiumBy.ACCESSIBILITY_ID, 'Show password'),
+
 
         "country_dropdown": (AppiumBy.XPATH, '//android.view.View[contains(@content-desc, "Country")]'),
         "country_field": (AppiumBy.XPATH, '//android.widget.Button[contains(@content-desc, "The Art of Living Foundation") or contains(@content-desc, "Country")]'),
@@ -47,6 +49,7 @@ class LoginLocator:
         "screen": (AppiumBy.ACCESSIBILITY_ID, 'Sign in to continue to your account'),
         "app_bar": (AppiumBy.XPATH, '//XCUIElementTypeOther[@name="Sign In"]'),
         "forgot_password_button": (AppiumBy.ACCESSIBILITY_ID, 'Forgot Password?'),
+        "Show_password_button": (AppiumBy.ACCESSIBILITY_ID, 'Show password'),
 
         "country_dropdown": (AppiumBy.ACCESSIBILITY_ID, "Country"),
         "country_field": (AppiumBy.ACCESSIBILITY_ID, "Tenant Selector"),

@@ -73,12 +73,14 @@ class BasePage:
 
         return data
     
-    def enterEventCode(self,searchButton, search_field: str, event_code: str):
+    def enterEventCode(self, event_code: str, searchButton : tuple = None, search_field: str = None):
+        from pages.participant_transfer_page import ParticipantTransferPage
+        transfer_page = ParticipantTransferPage(self.driver, self.platform)
         self.logger.info("clicking the serach icon")
-        self.click_element(searchButton)
+        self.click_element(transfer_page.locator["search_button"])
         self.logger.info(f"Entering event code: {event_code}")
-        self.click_element(search_field)
-        self.enter_search_field_value(search_field, event_code)
+        self.click_element(transfer_page.locator["events_search_field"])
+        self.enter_search_field_value(transfer_page.locator["events_search_field"], event_code)
         time.sleep(3)
 
 
@@ -198,33 +200,40 @@ class BasePage:
 
     def send_keys(self, element: WebElement | tuple, message, is_necessary=True, timeout: int = 10) -> None:
         try:
-            text = "" if message is None else str(message)
             if isinstance(element, WebElement):
                 element.clear()
-                element.send_keys(text)
+                element.send_keys(message)
             else:
                 ele = self.find_element(element, timeout)
                 ele.clear()
-                ele.send_keys(text)
+                ele.send_keys(message+ '\n')
             if self.platform == 'android' and is_necessary: self.driver.hide_keyboard()
 
         except Exception as e:
             self.logger.error(f"element:: {element} is not interactable to send keys!. Exception {e}")
             raise 
 
-    def send_keys_without_enter(self, element: WebElement | tuple, message):
-        """Send keys without adding newline character"""
+    def send_keys_without_enter(
+        self, element: WebElement | tuple, message, timeout: int = 10
+    ):
+        """Send keys without adding newline character."""
         try:
-            text = "" if message is None else str(message)
-            if isinstance(element, WebElement):
-                element.clear()
-                element.send_keys(text)
-            else:
-                ele = self.find_element(element)
-                ele.clear()
-                ele.send_keys(text)
+            el = (
+                element
+                if isinstance(element, WebElement)
+                else self.find_element(element, timeout)
+            )
+            try:
+                el.clear()
+            except Exception as ce:
+                # Flutter / iOS often rejects clear(); typing still works.
+                self.logger.debug(f"clear() skipped before send_keys: {ce}")
+            el.send_keys(message)
+            return True
         except Exception as e:
-            self.logger.error(f"element:: {element} is not interactable to send keys!. Exception {e}")
+            self.logger.error(
+                f"element:: {element} is not interactable to send keys!. Exception {e}"
+            )
             return False
 
     def get_element_text(self, value: WebElement | tuple,timeout: int = 10):
@@ -376,6 +385,35 @@ class BasePage:
         self.logger.error(f"Exception while scrolling the element:: {targetEle}")
         return False
 
+    def long_click_element(self, value: WebElement | tuple, duration_ms: int = 1500, timeout: int = 15) -> None:
+        """Long-press on an element (participant transfer / context menus)."""
+        el = value if isinstance(value, WebElement) else self.find_element(value, timeout)
+        try:
+            self.driver.execute_script(
+                "mobile: longClickGesture",
+                {"elementId": el.id, "duration": int(duration_ms)},
+            )
+            return
+        except Exception as e:
+            self.logger.debug(f"mobile: longClickGesture failed: {e}")
+        try:
+            self.driver.execute_script(
+                "mobile: touchAndHold",
+                {"elementId": el.id, "duration": int(duration_ms) / 1000.0},
+            )
+            return
+        except Exception as e2:
+            self.logger.debug(f"mobile: touchAndHold failed: {e2}")
+        rect = el.rect
+        cx = rect["x"] + rect["width"] // 2
+        cy = rect["y"] + rect["height"] // 2
+        actions = ActionChains(self.driver)
+        actions.w3c_actions.pointer_action.move_to_location(cx, cy)
+        actions.w3c_actions.pointer_action.pointer_down()
+        actions.w3c_actions.pointer_action.pause(float(duration_ms) / 1000.0)
+        actions.w3c_actions.pointer_action.pointer_up()
+        actions.perform()
+
     def scroll_to_element_by_touch(self, target_ele: WebElement | tuple, direction: str = 'down', max_swipes: int = 15):
         """
         Scroll by touch (swipe gesture) until the target element is visible.
@@ -399,7 +437,7 @@ class BasePage:
             except Exception:
                 pass
             self.drag_and_drop(center_x, start_y, center_x, end_y)
-            time.sleep(0.3)
+            time.sleep(0.2)
         self.logger.warning(f"Target element not visible after {max_swipes} touch scrolls: {target_ele}")
 
     def __ensure_the_element_present_on_first_phase(self, targetEle, timeout: int = 10, pause: Optional[float] = 0.1):
@@ -462,27 +500,13 @@ class BasePage:
 
     
     def extract_page_contents(self):
-        """
-        Collect visible attribute text from page XML in document order (deduped).
-
-        Order matters for debugging: sorting alphabetically hid real UI errors behind
-        unrelated labels (e.g. menu items starting with 'A').
-        """
         try:
             source = self.driver.page_source
-            pattern = re.compile(
-                r'(?:text|content-desc|hint|label|name|value)="([^"]+)"'
-            )
+            pattern = re.compile(r'(?:text|content-desc|label|name|value)="([^"]+)"')
             matches = pattern.findall(source)
-            seen = set()
-            ordered: list[str] = []
-            for m in matches:
-                s = m.strip()
-                if not s or s in seen:
-                    continue
-                seen.add(s)
-                ordered.append(s)
-            return ordered
+
+            unique_texts = sorted(set(m.strip() for m in matches if m.strip()))
+            return unique_texts
 
         except Exception as e:
             raise Exception(f"Could not extract text from page source: {e}") from e

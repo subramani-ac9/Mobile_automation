@@ -341,9 +341,7 @@ class TestLogin:
         error_displayed = (self.login_page.is_error_msg_displayed(self.login_message['incorrect_username_or_password']))
         assert error_displayed, "Error should be displayed"
         assert self.login_page.is_login_page_displayed(), "Should remain on login page"
-
         persisted_password = self.login_page.get_password_value()
-        
         assert persisted_password == test_password, f"Email should persist after error. Expected: '{test_password}', Got: '{persisted_password}'"
         print(f"Email field persisted: '{persisted_password}'")
 
