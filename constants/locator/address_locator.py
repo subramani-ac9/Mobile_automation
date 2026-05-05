@@ -10,6 +10,12 @@ class AddressLocator:
         "create_button" : (AppiumBy.ACCESSIBILITY_ID, 'Save Button'),
         "state_dropdown" : (AppiumBy.ACCESSIBILITY_ID, 'State Select Dropdown'),
         "state_list" : (AppiumBy.ACCESSIBILITY_ID, lambda state: f'{state}'),
+        "address_row" : (AppiumBy.XPATH, lambda address: f'//android.widget.ImageView[contains(@content-desc,"{address}")]'),
+        "delete_address_button" : (AppiumBy.XPATH, lambda address: f'//android.widget.ImageView[contains(@content-desc,"{address}")]//android.widget.Button[@content-desc="Delete Location Button"]'),
+        "edit_address_button" : (AppiumBy.XPATH, lambda address: f'//android.widget.ImageView[contains(@content-desc,"{address}")]//android.widget.Button[@content-desc="Edit Location Button"]'),
+        "cancel_location_form_button" : (AppiumBy.ACCESSIBILITY_ID, 'Back Button'),
+        "confirm_delete_button" : (AppiumBy.ACCESSIBILITY_ID, 'Confirm Dialog Button'),
+        "close_dialog_button" : (AppiumBy.ACCESSIBILITY_ID, 'Close Dialog Button'),
     }
 
     ios = {**android}

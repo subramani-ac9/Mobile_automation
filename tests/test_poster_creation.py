@@ -29,7 +29,7 @@ from pages.onboard_page import OnBoardPage
 from pages.participant_transfer_page import ParticipantTransferPage
 from pages.poster_creation_page import PosterCreationPage
 from utils.driver_manager import DriverManager
-from utils.helpers import take_screenshot
+from utils.helpers import switch_to_webview, take_screenshot, switch_to_native
 from utils.logger_config import LoggerConfig
 from utils.navigator import Navigator
 
@@ -54,6 +54,15 @@ class TestPosterCreation:
         )
         start_time = time.time()
         LoggerConfig.log_test_start(self.logger, test_method_name, None)
+
+        self.web_locators = {
+    "add_teacher": "[data-testid='Preview-button-18']",
+    "add_contact": "[data-testid='Preview-button-21']",
+    "save_poster": "[data-testid='buttons-Button-1']",
+    "qr_code": "svg[data-testid='ElementRenderer-QRCodeSVG-24']",
+    
+    "poster_url": "div:contains('tinyurl')"  # fallback handled differently
+    }
 
         try:
             self.logger.info("Initializing test setup")
@@ -133,9 +142,12 @@ class TestPosterCreation:
         """
         # self.transfer_page.back_twice_then_close_events_search()
         self.transfer_page.tap_back_with_platform_fallbacks(2)
+        self.logger.info("Backed twice to events main")
         self._tap_cancel_top_right_if_visible()
+        self.logger.info("Tapped cancel top right if visible")
         time.sleep(0.22)
         self._tap_cancel_top_right_if_visible(timeout=0.8)
+        self.logger.info("Tapped cancel top right if visible again")
         assert self.my_events_page.is_events_screen_displayed(), (
             "Events page should be visible after back twice and two cancels"
         )
@@ -152,7 +164,7 @@ class TestPosterCreation:
         with allure.step("Events, search course, open filtered course"):
             self.my_events_page.navigate_to_events()
             time.sleep(0.42)
-            self.transfer_page.open_events_search_and_type(EVENT_CODE)
+            self.transfer_page.enterEventCode(EVENT_CODE)
             self.transfer_page.click_event_row_containing(EVENT_CODE)
 
         with allure.step("Edit event: capture date & time from Date & Time section"):
@@ -171,6 +183,9 @@ class TestPosterCreation:
             self.poster_page.tap_poster_fab_plus()
             self.poster_page.select_template_39()
 
+        switch_to_webview(self.driver)
+        time.sleep(20)
+
         with allure.step(
             "Poster preview date/time vs stored (skipped — locator issues)"
         ):
@@ -185,7 +200,8 @@ class TestPosterCreation:
 
         with allure.step("Save poster; Register here + URL"):
             self.poster_page.tap_save_poster()
-            time.sleep(0.7)
+            time.sleep(10)
+            switch_to_native(self.driver)
             self.poster_page.assert_register_here_contains_url(poster_url)
 
         print(f"\n========== OUTPUT: {SUCCESS_MSG} ==========\n")
@@ -195,9 +211,9 @@ class TestPosterCreation:
             self._leave_poster_flow_to_events_main()
 
         with allure.step("Search again, open course, Course Posters, verify poster"):
-            self.transfer_page.open_events_search_and_type(EVENT_CODE)
+            self.transfer_page.enterEventCode(EVENT_CODE)
             self.transfer_page.click_event_row_containing(EVENT_CODE)
-            self.poster_page.open_course_posters_section()
+            self.poster_page.open_course_posters_section()  
             if self.poster_page.is_poster_available_in_list(timeout=12):
                 print(f"\n========== OUTPUT: {POSTER_AVAILABLE_MSG} ==========\n")
                 self.logger.info("OUTPUT: %s", POSTER_AVAILABLE_MSG)
@@ -305,6 +321,15 @@ class TestPosterCreation:
         with allure.step("Scroll down and open Course Posters"):
             self.poster_page.open_course_posters_section()
 
+        with allure.step("Capture registration link from Course Posters list"):
+            link_loc = self.poster_page.locator.get("link_element")
+            assert link_loc and link_loc[1], (
+                "link_element locator required for share URL validation on this platform"
+            )
+            app_link = self.poster_page._read_element_text(link_loc, timeout=15)
+            assert app_link, "Could not read registration link from poster list"
+            self.logger.info("Captured link from app: %s", app_link)
+
         with allure.step("Click three dots (overflow, top right)"):
             self.poster_page.tap_course_posters_overflow_menu()
 
@@ -333,15 +358,37 @@ class TestPosterCreation:
         with allure.step(
             "Sharing options window (no stable locators; brief wait for sheet)"
         ):
-            time.sleep(0.42)
+            time.sleep(2)
 
         with allure.step(
-            "Tap Course Posters at top to close share options (activityCollectionView XPath)"
+            "Wait for share message; validate link matches Course Posters list"
         ):
-            self.poster_page.tap_course_posters_top_to_close_share_options()
-
-        with allure.step("Pull-to-refresh on Course Posters list"):
-            self.poster_page.pull_to_refresh_course_posters_list()
+            share_loc = self.poster_page.locator.get("share_message_element")
+            assert share_loc and share_loc[1], (
+                "share_message_element locator required for share validation on this platform"
+            )
+            share_message = self.poster_page._read_element_text(share_loc, timeout=15)
+            self.logger.info(
+                "Share sheet text (truncated): %s",
+                (share_message[:240] + "…") if len(share_message) > 240 else share_message,
+            )
+            link_ok = app_link in share_message
+            if not link_ok:
+                stripped = (
+                    app_link.replace("https://", "").replace("http://", "").strip()
+                )
+                link_ok = bool(stripped and stripped in share_message)
+            LoggerConfig.log_assertion(
+                self.logger,
+                "Share sheet contains same registration URL as list",
+                link_ok,
+            )
+            assert link_ok, (
+                f"Link mismatch!\nApp list: {app_link!r}\nShare sheet: {share_message!r}"
+            )
+            self.driver.back()
+        # with allure.step("Pull-to-refresh on Course Posters list"):
+        #     self.poster_page.pull_to_refresh_course_posters_list()
 
         with allure.step(
             "Back twice, Cancel twice — Events main (same sequence as delete_poster)"

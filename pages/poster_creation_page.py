@@ -9,6 +9,9 @@ from constants.locator.myevent_locator import MyEventLocator
 from constants.locator.participant_transfer_locator import ParticipantTransferLocator
 from constants.locator.poster_locators import PosterLocators
 from pages.base_page import BasePage
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class PosterCreationPage(BasePage):
@@ -125,30 +128,72 @@ class PosterCreationPage(BasePage):
 
     @allure.step("Verify Add Teacher, Add Contact, Save Poster are visible")
     def assert_poster_editor_controls_visible(self, timeout: int = 12) -> None:
-        assert self.is_displayed(
-            self.locator["add_teacher_icon"], timeout
-        ), "Add Teacher control not visible"
-        assert self.is_displayed(
-            self.locator["add_contact_icon"], timeout
-        ), "Add Contact control not visible"
-        assert self.is_displayed(
-            self.locator["save_poster_button"], timeout
-        ), "Save Poster not visible"
+        # assert self.is_displayed(
+        #     self.locator["add_teacher_icon"], timeout
+        # ), "Add Teacher control not visible"
+        # assert self.is_displayed(
+        #     self.locator["add_contact_icon"], timeout
+        # ), "Add Contact control not visible"
+        # assert self.is_displayed(
+        #     self.locator["save_poster_button"], timeout
+        # ), "Save Poster not visible"
+        wait = WebDriverWait(self.driver, timeout)
+
+        wait.until(EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "[data-testid='Preview-button-18']")
+        ))
+
+        wait.until(EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "[data-testid='Preview-button-21']")
+        ))
+
+        wait.until(EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "[data-testid='buttons-Button-1']")
+        ))
+
+        self.logger.info("All editor controls visible in WebView")
 
     @allure.step("Verify QR code and URL are present on poster")
     def assert_qr_and_url_visible(self, timeout: int = 12) -> str:
-        assert self.is_displayed(
-            self.locator["poster_qr_code"], timeout
-        ), "QR code not visible on poster"
-        assert self.is_displayed(
-            self.locator["poster_url_text"], timeout
-        ), "URL not visible on poster"
-        return self._read_element_text(self.locator["poster_url_text"], timeout)
+        # assert self.is_displayed(
+        #     self.locator["poster_qr_code"], timeout
+        # ), "QR code not visible on poster"
+        # assert self.is_displayed(
+        #     self.locator["poster_url_text"], timeout
+        # ), "URL not visible on poster"
+        # return self._read_element_text(self.locator["poster_url_text"], timeout)
+        wait = WebDriverWait(self.driver, timeout)
+
+        # QR code
+        wait.until(EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "svg[data-testid='ElementRenderer-QRCodeSVG-23']")
+        ))
+        self.logger.info("QR code visible in WebView")
+        # URL (fallback via page source)
+        page_source = self.driver.page_source
+
+        import re
+        match = re.search(r"https?://tinyurl\.com/[A-Za-z0-9]+", page_source)
+        self.logger.info(f"Match: {match}")
+
+        assert match, "URL not found in WebView"
+        url = match.group(0)
+
+        self.logger.info(f"Poster URL found: {url}")
+        return url
 
     @allure.step("Tap Save Poster")
     def tap_save_poster(self) -> None:
-        self.click_element(self.locator["save_poster_button"], timeout=14)
-        time.sleep(0.5)
+        # self.click_element(self.locator["save_poster_button"], timeout=14)
+        # time.sleep(0.5)
+        wait = WebDriverWait(self.driver, 15)
+
+        save_btn = wait.until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, "[data-testid='buttons-Button-1']")
+        ))
+
+        save_btn.click()
+        self.logger.info("Clicked Save Poster button (WebView)")
 
     @allure.step("Verify Register here line includes poster URL")
     def assert_register_here_contains_url(self, url_fragment: str) -> None:

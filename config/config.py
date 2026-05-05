@@ -40,8 +40,9 @@ class TestConfig:
     ELEMENT_TIMEOUT = int(os.getenv('ELEMENT_TIMEOUT', 10))
     
     # Test Data
-    TEST_EMAIL = os.getenv('TEST_EMAIL', 'KR2227')
+    TEST_EMAIL = os.getenv('TEST_EMAIL', 'nivedhas@abovecloud9.ai')
     TEST_PASSWORD = os.getenv('TEST_PASSWORD', 'Admin@ac9')
+    TEST_USERNAME_INDIA = os.getenv('TEST_USERNAME_INDIA', 'KR2227')
 
     # TEST_EMAIL = os.getenv('TEST_EMAIL', 'gohul1@abovecloud9.ai')
     # TEST_PASSWORD = os.getenv('TEST_PASSWORD', 'Admin@123')

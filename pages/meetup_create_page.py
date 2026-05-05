@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 from typing import List
 import pandas as pd
 import logging
@@ -205,12 +206,13 @@ class MeetupCreatePage(CourseCreatePage):
             self.scroll_to_element(self.locator["scroll"], self.locator["meeting_link_txt_field"],ensure=True)
             time.sleep(2)
             self.click_element(self.locator["meeting_link_txt_field"])
-            self.send_keys(self.locator["meeting_link_txt_field"], url)
+            self.send_keys_without_enter(self.locator["meeting_link_txt_field"], url)
+            self.driver.hide_keyboard()
         except Exception as e:
             self.logger.error(f"Exception raised while entering MeetingURL as {url}, Exception:: {str(e)}")
             raise Exception (f"Unable to enter MeetingURL as {url}")
     
-    def _handle_contact_persons(self, data, modeOfSelectContact):
+    def _handle_contact_persons(self, data: List[str], modeOfSelectContact: str):
         """Handle contact person selection or creation."""
         if not data:
             raise Exception("No contact person selected")
@@ -228,11 +230,12 @@ class MeetupCreatePage(CourseCreatePage):
         if modeOfSelectContact == "BySearch":
             self.logger.info("Selecting contact person by search")
             contact_person = data
+            print(f"contact_person: {contact_person}")
             self.select_contact_person(contact_person)
             self.logger.info(f"Selected contact person: {contact_person}")
         elif modeOfSelectContact == "ByExistingTeam":
             self.logger.info("Selecting contact person from existing team")
-            contact_person_result  = self.build_locator(self.locator["search_result"], data)
+            contact_person_result  = self.build_locator(self.locator["search_result"], data[0])
             self.logger.info(f"contact_person_result: {contact_person_result}")
             if self.is_displayed(contact_person_result, timeout=10):
                 self.click_element(contact_person_result)
@@ -726,16 +729,21 @@ class MeetupCreatePage(CourseCreatePage):
                 self.click_element(self.locator["Frequency_dropdown_Daily"])
             elif data['FrequencyValue']  == 'Weekly':
                 self.click_element(self.locator["Frequency_dropdown_Weekly"])
+                time.sleep(2)
                 day = self.build_locator(self.locator["Weekly_select_value"], data['OnValues'])
-                self.click_element(day)
+                date_obj = datetime.strptime(data['dates'], "%m/%d/%Y")
+                day_name = date_obj.strftime("%A")
+                print(f"day_name: {day_name}")
+                print(f"data['OnValues']: {data['OnValues']}")
+                if day_name != data['OnValues']:
+                    extra_day = self.build_locator(self.locator["Weekly_select_value"], day_name)
+                    self.click_element(extra_day)
+                    self.click_element(day)
                 self.logger.info(f"Selected weekly day: {data['OnValues']}")
             elif data['FrequencyValue']  == 'Monthly':
                 self.click_element(self.locator["Frequency_dropdown_Monthly"])
                 self.click_element(self.locator["monthly_dropdown"])
-                if(data['OnValues'] == 'Monthly on Day 19'):
-                    month = self.build_locator(self.locator["Monthly_dropdown_value"], 1)
-                elif(data['OnValues'] == 'Monthly on Third Thursday'):
-                    month = self.build_locator(self.locator["Monthly_dropdown_value"], 2)
+                month = self.build_locator(self.locator["Monthly_dropdown_value"],data['OnValues'])
                 self.click_element(month)
                 self.logger.info(f"Selected monthly month: {data['OnValues']}")
             self.selectFrequencyOn_After(data)
@@ -783,8 +791,8 @@ class MeetupCreatePage(CourseCreatePage):
                 self._handle_notifications(notify_persons)
 
             # Step 10: Handle contact persons
-            print(contact_persons[0])
-            self._handle_contact_persons(contact_persons[0],data["modeOfSelectContact"])
+            print(contact_persons)
+            self._handle_contact_persons(contact_persons,data["modeOfSelectContact"])
 
             if data['timezone']:
                 self.select_timezone(data['timezone'])

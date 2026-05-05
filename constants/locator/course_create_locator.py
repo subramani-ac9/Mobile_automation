@@ -10,7 +10,6 @@ class LocatorBuilder:
     Helper class to build dynamic locators based on tenant configuration.
     Use this to construct locators with tenant-specific field labels.
     """
-    
     @staticmethod
     def build_xpath_for_field(field_label: str, suffix: str = "") -> str:
         """Build XPATH for a field following the standard pattern."""
@@ -86,8 +85,9 @@ class CourseCreateLocator:
         
         # Notifications
         "add_notifications_button": (AppiumBy.ACCESSIBILITY_ID, 'Add Notifications Button'),
-        "notification_person": (AppiumBy.XPATH, lambda name: f'//android.view.View[contains(@content-desc,"{name}")]'),
-        "enable_notification_button": (AppiumBy.XPATH, lambda name: f'//android.view.View[contains(@content-desc,"{name}")]//android.widget.Button'),
+        "notification_person": (AppiumBy.XPATH, lambda name: f'//android.widget.CheckBox[contains(@content-desc,"{name}")]'),
+        # "enable_notification_button": (AppiumBy.XPATH, lambda name: f'//android.view.View[contains(@content-desc,"{name}")]'),
+        "enable_notification_button": (AppiumBy.XPATH, lambda name: f'//android.widget.CheckBox[contains(@content-desc,"{name}")]'),
         
         # Organizer
         "organizer_txt_field": (AppiumBy.XPATH, '(//android.view.View[@content-desc="Organizer(s) *"]/following-sibling::android.view.View)[1]'),
@@ -138,6 +138,7 @@ class CourseCreateLocator:
         
         # Create/Save button
         "create_button": (AppiumBy.ACCESSIBILITY_ID, 'Save Button'),
+        "edit_event_button": (AppiumBy.ACCESSIBILITY_ID, "Edit Event Button"),
         
         # Dynamic date/time fields
         "date_ith_txt_field": (AppiumBy.ACCESSIBILITY_ID, lambda ith: f"Event Date Field {ith}"),

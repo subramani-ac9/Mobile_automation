@@ -206,7 +206,7 @@ class BasePage:
             else:
                 ele = self.find_element(element, timeout)
                 ele.clear()
-                ele.send_keys(message+ '\n')
+                ele.send_keys(message)
             if self.platform == 'android' and is_necessary: self.driver.hide_keyboard()
 
         except Exception as e:
@@ -419,6 +419,9 @@ class BasePage:
         Scroll by touch (swipe gesture) until the target element is visible.
         Does not require a scroll container locator.
         direction: 'down' = reveal content below (swipe up), 'up' = reveal content above (swipe down).
+
+        Stops early in the current direction when ``page_source`` is unchanged after a swipe
+        (nothing new scrolled into view).
         """
         size = self.driver.get_window_size()
         width = size['width']
@@ -430,6 +433,7 @@ class BasePage:
         else:
             start_y = int(height * 0.2)
             end_y = int(height * 0.8)
+        prev_src: Optional[str] = None
         for _ in range(max_swipes):
             try:
                 if self.is_displayed(target_ele, timeout=2):
@@ -438,6 +442,14 @@ class BasePage:
                 pass
             self.drag_and_drop(center_x, start_y, center_x, end_y)
             time.sleep(0.2)
+            src = self.driver.page_source
+            if prev_src is not None and src == prev_src:
+                self.logger.debug(
+                    "scroll_to_element_by_touch: page unchanged after swipe, stopping (direction=%s)",
+                    direction,
+                )
+                break
+            prev_src = src
         self.logger.warning(f"Target element not visible after {max_swipes} touch scrolls: {target_ele}")
 
     def __ensure_the_element_present_on_first_phase(self, targetEle, timeout: int = 10, pause: Optional[float] = 0.1):

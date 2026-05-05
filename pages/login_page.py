@@ -146,6 +146,7 @@ class LoginPage(BasePage):
         self.logger.info("Entering password")
         self.click_element(self.locator["password"])
 
+        self.driver.hide_keyboard() # hide keyboard if visible
         self.logger.info("Scrolling password field into view")
        # Scroll to the password field
         self.scroll_to_signin()

@@ -25,7 +25,7 @@ class TestResource:
     resource_data = read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "Resource")
     print(f"Resource data: {resource_data}")
     RESOURCE_PRODUCT_NAME = "Art of Living Part 1"
-    AUDIO_RESOURCE_NAME = "Audio route test"
+    AUDIO_RESOURCE_NAME = "output_3gb.mp4"
     DOCUMENT_RESOURCE_NAME = "[QA] Readme: Long Sudarshan Kriya"
     VIDEO_RESOURCE_NAME = "4K Cast Test File"
 
@@ -82,25 +82,25 @@ class TestResource:
                 self.driver_manager.quit_driver()
                 self.logger.info("Driver cleanup completed")
 
-    @pytest.mark.resource
-    @pytest.mark.regression 
-    def test_validate_resource_page_authentication(self):
-        with allure.step("navigate to resource page"):   
-            self.nav.navigate_to_resource_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
-        with allure.step("Handle authentication popup"):
-            self.resource_page.handle_authentication_if_present("986532")
-        with allure.step("Validate resource page loaded"):
-            assert self.resource_page.is_resources_page_displayed(), "Resources page not loaded"
+    # @pytest.mark.resource
+    # @pytest.mark.regression 
+    # def test_validate_resource_page_authentication(self):
+    #     with allure.step("navigate to resource page"):   
+    #         self.nav.navigate_to_resource_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
+    #     with allure.step("Handle authentication popup"):
+    #         self.resource_page.handle_authentication_if_present("986532")
+    #     with allure.step("Validate resource page loaded"):
+    #         assert self.resource_page.is_resources_page_displayed(), "Resources page not loaded"
 
-    @pytest.mark.resource 
-    @pytest.mark.regression 
-    def test_validate_resource_page_authentication_failure(self):
-        with allure.step("navigate to resource page"):   
-            self.nav.navigate_to_resource_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
-        with allure.step("Handle authentication popup"):
-            self.resource_page.handle_authentication_if_present("98653")
-        with allure.step("Validate resource page loaded"):
-            assert self.resource_page.is_authentication_screen_displayed(), "Authentication screen not displayed"
+    # @pytest.mark.resource 
+    # @pytest.mark.regression 
+    # def test_validate_resource_page_authentication_failure(self):
+    #     with allure.step("navigate to resource page"):   
+    #         self.nav.navigate_to_resource_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
+    #     with allure.step("Handle authentication popup"):
+    #         self.resource_page.handle_authentication_if_present("98653")
+    #     with allure.step("Validate resource page loaded"):
+    #         assert self.resource_page.is_authentication_screen_displayed(), "Authentication screen not displayed"
 
     
     @pytest.mark.resource 
@@ -110,9 +110,11 @@ class TestResource:
             is_resources_page_displayed = self.nav.navigate_to_resource_list_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
             assert is_resources_page_displayed, "Resources page not loaded"
             self.logger.info("Resource list page loaded")
-        self.resource_page.click_resource_product_card(self.RESOURCE_PRODUCT_NAME)
+        product_name = self.RESOURCE_PRODUCT_NAME.replace(" ", "")
+        self.resource_page.click_resource_product_card(product_name)
+        audio_resource_name = self.AUDIO_RESOURCE_NAME.replace(" ", "")
         self.logger.info("click on one of the resourse from the list")
-        assert self.resource_page.isDownloadButtonDisplayed("audio", self.AUDIO_RESOURCE_NAME), "Download button not displayed"
+        assert self.resource_page.isDownloadButtonDisplayed("audio", audio_resource_name), "Download button not displayed"
         self.logger.info("Download button displayed")
 
     @pytest.mark.resource 

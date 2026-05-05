@@ -13,7 +13,7 @@ class ResourceLocator:
         "error_text" : (AppiumBy.ID, "com.samsung.android.biometrics.app.setting:id/error"),
         "resources_template" : (AppiumBy.ACCESSIBILITY_ID, 'Resources'),
 
-        "resource_product_card": (AppiumBy.ACCESSIBILITY_ID, lambda product: f'{product}'),
+        "resource_product_card": (AppiumBy.XPATH, lambda product: f'//android.widget.Button[contains(@content-desc,"{product}")]'),
         "resource_list": (AppiumBy.XPATH, lambda resource: f'//android.widget.Button[contains(@content-desc,"{resource}")]'),
         "resource_download_audio": (AppiumBy.XPATH, lambda resource: f'//android.widget.Button[contains(@content-desc,"{resource}")]/android.widget.Button[@content-desc="Download audio"]'),
         "resource_download_video": (AppiumBy.XPATH, lambda resource: f'//android.widget.Button[contains(@content-desc,"{resource}")]/android.widget.Button[@content-desc="Download video"]'),

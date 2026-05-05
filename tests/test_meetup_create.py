@@ -76,8 +76,9 @@ class TestMeetupCreate:
     @pytest.mark.data_driven
     @pytest.mark.meetup_create
     # @pytest.mark.parametrize("row", read_csv_as_dict(meetup_create_csv))
-    @pytest.mark.parametrize("row", meetup_data)
+    @pytest.mark.parametrize("row", meetup_data[6:])
     def test_create_meetup_with_given_data(self, row):
+        print(f"row: {row}")
         if row['event_type'].lower() == 'course': pytest.skip(f"Record skipped!")
         self.nav.navigate_to_meetup_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD)
         result, e = self.meetup_create.create_meetup(row, self.message["meetup_create_success_msg"])

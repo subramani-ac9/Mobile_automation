@@ -5,7 +5,7 @@ class MeetupCreateLocator:
     android = {
         "event_mode": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
         "product_dropdown": (AppiumBy.ACCESSIBILITY_ID, 'Program Select Dropdown'),
-         "is_private": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
+        "is_private": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
 
         # Product/Program selection - uses tenant-specific label
         "product_txt_field": (AppiumBy.XPATH, lambda value: f'//android.view.View[@content-desc="{value}"]/following-sibling::android.widget.EditText[1]'),
@@ -31,8 +31,9 @@ class MeetupCreateLocator:
          # Notifications
         "add_notifications_button": (AppiumBy.ACCESSIBILITY_ID, 'Add Notifications Button'),
         "notification_person": (AppiumBy.XPATH, lambda name: f'//android.view.View[contains(@content-desc,"{name}")]'),
-        "enable_notification_button": (AppiumBy.XPATH, lambda name: f'//android.view.View[contains(@content-desc,"{name}")]//android.widget.Button'),
-        
+        "enable_notification_button": (AppiumBy.XPATH, lambda name: f'//android.view.View[contains(@content-desc,"{name}")]'),
+        # "enable_notification_button": (AppiumBy.XPATH, lambda name: f'//android.widget.CheckBox[contains(@content-desc,"{name}")]'),
+
         # Organizer
         "organizer_txt_field": (AppiumBy.XPATH, '(//android.view.View[@content-desc="Organizer(s) *"]/following-sibling::android.view.View)[1]'),
         
@@ -115,10 +116,10 @@ class MeetupCreateLocator:
         "Ends_After_radioButton" : (AppiumBy.ACCESSIBILITY_ID, 'Ends After Radio Button'),
         "Ends_On_Date_txt_field" : (AppiumBy.ACCESSIBILITY_ID, 'Ends On Date Field'),
         "Occurence_count_txt_field": (AppiumBy.XPATH, '//android.view.View[@content-desc="After"]/following-sibling::android.widget.EditText[1]'),
-        "Frequency_dropdown_Daily": (AppiumBy.ACCESSIBILITY_ID, 'Frequency Dropdown Item 1'),
-        "Frequency_dropdown_Weekly": (AppiumBy.ACCESSIBILITY_ID, 'Frequency Dropdown Item 2'),
-        "Frequency_dropdown_Monthly": (AppiumBy.ACCESSIBILITY_ID, 'Frequency Dropdown Item 3'),
-        "Monthly_dropdown_value": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'Monthly Dropdown Item {value}'),
+        "Frequency_dropdown_Daily": (AppiumBy.ACCESSIBILITY_ID, 'Daily'),
+        "Frequency_dropdown_Weekly": (AppiumBy.ACCESSIBILITY_ID, 'Weekly'),
+        "Frequency_dropdown_Monthly": (AppiumBy.ACCESSIBILITY_ID, 'Monthly'),
+        "Monthly_dropdown_value": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
         "Weekly_select_value" : (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),
   
         "item": (AppiumBy.ACCESSIBILITY_ID, lambda value: f'{value}'),

@@ -152,7 +152,7 @@ class TestLogin:
         self.navigator.navigate_to_login()
 
         assert self.login_page.is_login_page_displayed(), "Login page should be displayed"
-        self.login_page.login("nivash@abovecloud9.ai", "wrongpassword",stop_after_password=True)
+        self.login_page.login("geetha@abovecloud9.ai", "wrongpassword",stop_after_password=True)
         error_message = (
                 self.login_page.is_error_msg_displayed(self.login_message['incorrect_username_or_password'])
                 )
@@ -185,7 +185,7 @@ class TestLogin:
         self.navigator.navigate_to_login()
 
         assert self.login_page.is_login_page_displayed(), "Login page should be displayed"
-        self.login_page.login("nivash@abovecloud9.ai","",stop_after_password=True)
+        self.login_page.login("geetha@abovecloud9.ai","",stop_after_password=True)
         error_message = self.login_page.is_error_msg_displayed(self.login_message['empty_pass_msg'])
         assert error_message, "Validation error should be displayed for empty password"
         assert self.login_page.is_login_page_displayed(), "Should remain on login page after failed login"
@@ -208,7 +208,7 @@ class TestLogin:
         print("test_login_page_elements_visibility")
         self.navigator.navigate_to_login()
         assert self.login_page.is_login_page_displayed(), "Login page should be displayed"
-        self.login_page.login("nivash@abovecloud9.ai","",stop_after_email=True)
+        self.login_page.login("geetha@abovecloud9.ai","",stop_after_email=True)
         validations = self.login_page.validate_login_page_elements()
         for validation in validations:
             assert "not visible" not in validation.lower(), f"Element validation failed: {validation}"
@@ -242,7 +242,7 @@ class TestLogin:
         self.navigator.navigate_to_login()
 
         assert self.login_page.is_login_page_displayed(), "Login page should be displayed"
-        self.login_page.enter_email("nivash@abovecloud9.ai")
+        self.login_page.enter_email("geetha@abovecloud9.ai")
         self.login_page.click_element(self.login_page.locator["continue"])
         for i in range(3):
             self.login_page.enter_password(f"invalidpassword{i}")

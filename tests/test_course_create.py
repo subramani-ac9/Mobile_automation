@@ -22,10 +22,13 @@ from utils.logger_config import LoggerConfig
 
 
 class TestCourseCreate:
+
+    CANCEL_COURSE_EVENT_CODE = "E-064923"
     course_create_csv = 'data/course_create_run1.csv'
     course_create_validation_csv = 'data/course_create_validation1.csv'
     course_create_validation_data = read_csv_as_dict(course_create_validation_csv)
     search_course_data = read_csv_as_dict('data/search_course.csv')
+    course_create_us_data = read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "CourseCreateUS")
 
     @pytest.fixture(autouse=True)
     def setup(self, request):
@@ -50,10 +53,10 @@ class TestCourseCreate:
             self.driver = self.driver_manager.start_driver()
             self.login_page = LoginPage(self.driver, TestConfig.MOBILE_PLATFORM)
             self.course_create = CourseCreatePage(self.driver, platform=TestConfig.MOBILE_PLATFORM)
+            self.course_details = CourseDetailsPage(self.driver, platform=TestConfig.MOBILE_PLATFORM)
             self.navigator = Navigator(self.driver, TestConfig.MOBILE_PLATFORM)
             self.event_create_message = EventCreateMessage.get_message()
             self.my_events_page = MyEventsPage(self.driver, TestConfig.MOBILE_PLATFORM)
-            self.course_details = CourseDetailsPage(self.driver, TestConfig.MOBILE_PLATFORM)
             self.filter_page = FiltersPage(self.driver, TestConfig.MOBILE_PLATFORM)
             
             request.node.driver = self.driver  # for Allure screenshot-on-failure hook
@@ -160,15 +163,12 @@ class TestCourseCreate:
     # @pytest.mark.parametrize("row", read_csv_as_dict('data/course_create_run1.csv')[:1])
     @pytest.mark.parametrize("row", read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "CourseCreateIndia")[:1])
     def test_create_course_for_india(self, row):
-        if row.get("tenant", "").strip().lower() == "us":
-            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
-        else:
-            self.navigator.navigate_to_course_create_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
+        if row.get("tenant", "").strip().lower() == "india":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
         self.course_create.create_course(row,self.event_create_message["course_create_success_msg"])
         assert self.course_create.is_msg_displayed(
             self.event_create_message["course_create_success_msg"]
         ), "Course creation success message not displayed"
-
 
     @pytest.mark.validated
     @pytest.mark.course_create
@@ -176,12 +176,12 @@ class TestCourseCreate:
     @pytest.mark.smoke
     @pytest.mark.testcase_id("CC_TC_15")
     # @pytest.mark.parametrize("row", read_csv_as_dict('data/course_create_run3.csv')[:1])
-    @pytest.mark.parametrize("row", read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "CourseCreateUS")[:1])
+    @pytest.mark.parametrize("row", read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "CourseCreateUS")[0:6])
     def test_create_course_for_us(self, row):
         if row.get("tenant", "").strip().lower() == "us":
             self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
         else:
-            self.navigator.navigate_to_course_create_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
         self.course_create.create_course(row,self.event_create_message["course_create_success_msg"])
         assert self.course_create.is_msg_displayed(
             self.event_create_message["course_create_success_msg"]
@@ -192,9 +192,7 @@ class TestCourseCreate:
     @pytest.mark.smoke
     @pytest.mark.testcase_id("CC_TC_15")
     def test_cancel_course(self):
-        searchButton = self.my_events_page.locator["search_button"]
-        searchField = self.course_create.locator["search"]
-        eventCode = "E-064923"
+        eventCode = self.CANCEL_COURSE_EVENT_CODE
         self.navigator.navigate_to_my_events_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
         self.course_create.cancel_course(eventCode)
         self.logger.info(f"Course cancelled successfully with event code: {eventCode}")
@@ -230,7 +228,7 @@ class TestCourseCreate:
         searchButton = self.my_events_page.locator["search_button"]
         searchField = self.course_create.locator["search"]
         eventCode = self.search_course_data[1]["code"]
-        self.navigator.navigate_to_my_events_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
+        self.navigator.navigate_to_my_events_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
         self.course_create.enterEventCode(searchButton, searchField, eventCode)
         assert self.course_create.is_course_displayed(self.course_create.locator["event_cards"], eventCode), f"Course with event code {eventCode} not found on the UI"
 
@@ -243,7 +241,7 @@ class TestCourseCreate:
         searchButton = self.my_events_page.locator["search_button"]
         searchField = self.course_create.locator["search"]
         eventCode = self.search_course_data[2]["code"]
-        self.navigator.navigate_to_my_events_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
+        self.navigator.navigate_to_my_events_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
         self.course_create.enterEventCode(searchButton, searchField, eventCode)
         assert self.course_create.is_msg_displayed(
             self.event_create_message["program_not_found_msg"]
@@ -264,18 +262,42 @@ class TestCourseCreate:
             self.event_create_message["event_not_found_msg"]
         ), "event not found message not displayed"
     
+
+
+    @pytest.mark.validated
+    @pytest.mark.course_create
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_16")
+    def test_create_course_required_product(self):
+        row = self.course_create_us_data[6]
+        print("row:",row)
+        if row.get("tenant", "").strip().lower() == "us":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        else:
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
+         # Step 16: Submit course
+        self.course_create.click_create_button()
+        time.sleep(1)
+        content = self.course_create.extract_page_contents()
+        print("contents in course create page:",content)
+        result = self.event_create_message["product_error_msg"] in content
+        self.logger.info(f"Testcase:CC_TC_16 is {'passed' if result else 'failed'}")
+        self.logger.info(f"Observed Screen content: {content}")
+        assert result, "Product required error message not displayed"
+
     @pytest.mark.validated
     @pytest.mark.course_create
     @pytest.mark.data_driven
     @pytest.mark.smoke
     @pytest.mark.testcase_id("CC_TC_16")
     def test_create_course_required_teacher(self):
-        row = self.course_create_validation_data[0]
+        row = self.course_create_us_data[6]
         print("row:",row)
         if row.get("tenant", "").strip().lower() == "us":
             self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
         else:
-            self.navigator.navigate_to_course_create_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
         self.course_create.create_course(row,self.event_create_message["teacher_required_err_msg"])
         assert self.course_create.is_msg_displayed(
             self.event_create_message["teacher_required_err_msg"]
@@ -287,17 +309,34 @@ class TestCourseCreate:
     @pytest.mark.smoke
     @pytest.mark.testcase_id("CC_TC_17")
     def test_create_course_required_organizer(self):
-        row = self.course_create_validation_data[1]
+        row = self.course_create_us_data[7]
         print("row:",row)
         if row.get("tenant", "").strip().lower() == "us":
             self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
         else:
-            self.navigator.navigate_to_course_create_page("KR2227", TestConfig.TEST_PASSWORD, 'india')
-        self.course_create.create_course(row,self.event_create_message["teacher_required_err_msg"])
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.create_course(row,self.event_create_message["organizer_err_msg"])
         assert self.course_create.is_msg_displayed(
-            self.event_create_message["teacher_required_err_msg"]
-        ), "Teacher required error message not displayed"
+            self.event_create_message["organizer_err_msg"]
+        ), "Organizer required error message not displayed"
 
+
+    @pytest.mark.validated
+    @pytest.mark.course_create
+    @pytest.mark.data_driven
+    @pytest.mark.regression
+    @pytest.mark.testcase_id("CC_TC_12")
+    def test_create_course_required_contact(self):
+        row = self.course_create_us_data[8]
+        print("row:",row)
+        if row.get("tenant", "").strip().lower() == "us":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        else:
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.create_course(row,self.event_create_message["contact_err_msg"])
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["contact_err_msg"]
+        ), "Contact person required error not displayed"
 
     @pytest.mark.validated
     @pytest.mark.course_create
@@ -343,18 +382,7 @@ class TestCourseCreate:
             self.event_create_message["center_err_msg"]
         ), "Center required error not displayed"
 
-    @pytest.mark.validated
-    @pytest.mark.course_create
-    @pytest.mark.data_driven
-    @pytest.mark.regression
-    @pytest.mark.testcase_id("CC_TC_12")
-    @pytest.mark.parametrize("row", read_csv_as_dict('data/course_create_run1.csv')[:1])
-    def test_error_message_when_contact_missing(self, row):
-        row["contact_person"] = ""
-        self.course_create.create_course(row)
-        assert self.course_create.is_error_message_displayed(
-            self.event_create_message["contact_err_msg"]
-        ), "Contact person required error not displayed"
+   
 
     @pytest.mark.validated
     @pytest.mark.course_create
@@ -1073,3 +1101,10 @@ class TestCourseCreate:
         assert self.course_create.is_msg_displayed(
             self.event_create_message["course_create_success_msg"]
         ), "Course creation success message not displayed"
+
+
+    @pytest.mark.parametrize("row", read_google_sheet(os.getenv("GOOGLE_SHEET_NAME"), "CourseCreateUS")[:1])
+    def test_get_course_details(self, row):
+        eventCode = "E-044116"
+        self.navigator.navigate_to_my_events_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        self.course_create.get_course_details_page(eventCode,row)

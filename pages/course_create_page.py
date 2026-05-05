@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
 from appium.webdriver.webdriver import WebDriver
+from config.config import TestConfig
 from constants.locator.course_create_locator import CourseCreateLocator
 from constants.locator.course_details_locator import CourseDetailsLocator
 from constants.locator.myevent_locator import MyEventLocator
@@ -152,6 +153,7 @@ class CourseCreatePage(BasePage):
          }
         from constants.message.event_create_message import EventCreateMessage
         self.event_create_message = EventCreateMessage.get_message()
+        self.course_details = CourseDetailsPage(self.driver, platform)
         self.logger = LoggerConfig.get_logger(self.__class__.__name__)
         self._tenant_config: Optional[TenantConfiguration] = None
     
@@ -1047,7 +1049,9 @@ class CourseCreatePage(BasePage):
                 txtField = self.build_locator(self.locator["date_ith_txt_field"], slot)
                 self.scroll_to_element_by_touch(txtField)
                 self.click_element(txtField)
+                self.logger.info(f"Date {slot} field clicked")
                 self.click_element(self.locator["date_pencil"])
+                self.logger.info(f"Date {slot} pencil clicked")
                 self.click_element(self.locator["date_enter_field"])
                 self.send_keys(self.locator["date_enter_field"], date_tobe_updated, timeout=10, is_necessary=False)
                 ok = self.find_element(self.locator["option_ok"], 5)
@@ -1319,12 +1323,12 @@ class CourseCreatePage(BasePage):
             content = self.extract_page_contents()
             print("contents in meetup success page:",content)
             result = message in content
-            self.logger.info(f"Course Create is {'passed' if result else 'failed'}")
-            self.logger.info(f"Observed Screen content:: {content}")
+            self.logger.info(f"Testcase:{test_case_id} is {'passed' if result else 'failed'}")
+            self.logger.info(f"Observed Screen content: {content}")
             return result, self.__get_error_message(result)
         except Exception as e:
-            self.logger.info(f"Observed Screen content:: {content}")
-            return False, f'Course Creation is failed due to {str(e)}'
+            self.logger.info(f"Observed Screen content: {content}")
+            return False, f'Testcase:{test_case_id} is failed due to {str(e)}'
             
     def get_final_error_msg(self):
         try:
@@ -1357,8 +1361,9 @@ class CourseCreatePage(BasePage):
     def _handle_contact_persons(self, data: CourseData, config: TenantConfiguration):
         """Handle contact person selection or creation."""
         if not data.contact_persons and not data.new_contact_person:
-            raise Exception("No contact person selected")
-        
+            self.logger.warning("No contact person selected")
+            return 
+
         self.scroll_to_element(self.locator["scroll"], self.locator["add_point_of_contact_button"])
         element = self.find_element(self.locator["add_point_of_contact_button"])
         location = element.location
@@ -1531,7 +1536,7 @@ class CourseCreatePage(BasePage):
         searchButton = self.locator["search_button"]
         searchField = self.locator["search"]
         self.logger.info(f"Cancelling course with event code: {eventCode}")
-        self.enterEventCode(searchButton, searchField, eventCode)
+        self.enterEventCode(eventCode,searchButton, searchField)
         self.click_event_row_containing(self.locator["event_row_contains"], eventCode)
         self.click_element(self.locator["Event_option_button"])
         self.click_element(self.locator["Cancel_course_button"])
@@ -1544,7 +1549,7 @@ class CourseCreatePage(BasePage):
     
     def validate_cancel_course(self, eventCode):
         self.logger.info(f"Validating course cancellation with event code: {eventCode}")
-        self.enterEventCode(self.locator["search_button"], self.locator["search"], eventCode)
+        self.enterEventCode(eventCode,self.locator["search_button"], self.locator["search"])
         isCancelled = self.isStatusCancelledDisplayed(eventCode)
         if isCancelled:
             self.logger.info(f"Course cancellation validation result: {isCancelled}")
@@ -1553,4 +1558,8 @@ class CourseCreatePage(BasePage):
             self.logger.error(f"Course cancellation validation result: {isCancelled}")
             return False
 
-    
+    def get_course_details_page(self, event_code,data: dict):
+        self.logger.info(f"Getting course details page for event code: {event_code}")   
+        self.enterEventCode(event_code)
+        self.click_event_row_containing(self.locator["event_row_contains"], event_code)
+        return self.course_details.verify_course_details(data)

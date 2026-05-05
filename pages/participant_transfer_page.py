@@ -339,6 +339,7 @@ class ParticipantTransferPage(BasePage):
         """
         for _ in range(max(1, count)):
             self._try_nav_back_once()
+            self.logger.info("Tapped back with platform fallbacks---")
             time.sleep(0.35)
 
     def _events_main_visible(self) -> bool:

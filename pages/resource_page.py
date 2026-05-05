@@ -162,6 +162,7 @@ class ResourcePage(BasePage):
         self.logger.info(f"Checking if download button is displayed for {type}: {resourceName}")
         try:
             download_button = self.build_locator(self.locator[f"resource_download_{type}"], resourceName)
+            self.scroll_to_element_by_touch(download_button)
             return self.is_displayed(download_button,20)
         except:
             self.logger.error(f"Failed to check if download button is displayed for {type}: {resourceName}")

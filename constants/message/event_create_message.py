@@ -11,6 +11,7 @@ class EventCreateMessage:
         "product_error_msg": 'Please select a product',
         "max_attendees_exceed_err_msg": lambda val1: f'Max attendees for this event should be less than {val1}',
         "contact_err_msg": 'Please select a contact person',
+        "organizer_err_msg": 'Please select an organizer',
         "center_err_msg": "Please select a Aol Center",
         "state_err_msg": 'Please select a state',
         "timezone_err_msg": 'Please select a Timezone',

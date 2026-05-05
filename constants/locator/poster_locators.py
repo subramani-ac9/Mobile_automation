@@ -14,9 +14,6 @@ class PosterLocators:
         "template_39": (AppiumBy.ACCESSIBILITY_ID, "Template 39"),
         "poster_preview_date": (AppiumBy.ACCESSIBILITY_ID, ""),
         "poster_preview_time": (AppiumBy.ACCESSIBILITY_ID, ""),
-        "add_teacher_icon": (AppiumBy.ACCESSIBILITY_ID, "Teachers Add Teacher"),
-        "add_contact_icon": (AppiumBy.ACCESSIBILITY_ID, "Add Contact Add Contact"),
-        "save_poster_button": (AppiumBy.ACCESSIBILITY_ID, "Save Poster"),
         "poster_qr_code": (AppiumBy.ACCESSIBILITY_ID, ""),
         "poster_url_text": (
             AppiumBy.XPATH,
@@ -39,7 +36,8 @@ class PosterLocators:
     
         "course_posters_close_share_options": (AppiumBy.ACCESSIBILITY_ID, "Course posters"),
         "Events_search_close_button": (AppiumBy.ACCESSIBILITY_ID, 'Events Search Close Button'),
-
+        "link_element": (AppiumBy.XPATH,"//*[contains(@content-desc,'Register here')]/following-sibling::*[contains(@content-desc,'http')]"),
+        "share_message_element": (AppiumBy.XPATH, "//*[contains(@text,'Registration Link')]"),
     }
 
     ios = {
@@ -86,7 +84,14 @@ class PosterLocators:
             '//XCUIElementTypeCollectionView[@name="activityCollectionView"]/XCUIElementTypeOther[1]/XCUIElementTypeOther',
         ),
         "Events_search_close_button": (AppiumBy.ACCESSIBILITY_ID, 'Events Search Close Button'),
-
+        "link_element": (
+            AppiumBy.IOS_PREDICATE,
+            'label CONTAINS "https" OR name CONTAINS "https" OR value CONTAINS "https"',
+        ),
+        "share_message_element": (
+            AppiumBy.IOS_PREDICATE,
+            'label CONTAINS "Registration Link" OR name CONTAINS "Registration Link"',
+        ),
     }
 
     @classmethod

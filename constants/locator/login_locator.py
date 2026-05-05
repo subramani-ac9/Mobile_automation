@@ -10,8 +10,8 @@ class LoginLocator:
             "//android.view.View[@content-desc='Username']/following-sibling::android.view.View"
         ),
         "password":(AppiumBy.XPATH,"//android.view.View[@content-desc='Password']/following-sibling::android.widget.EditText[1]"),
-        "continue" : (AppiumBy.XPATH, "//android.widget.Button[@content-desc='Continue']"),         
-        "signin": (AppiumBy.XPATH, '//android.widget.Button[@content-desc="Log In"]'),
+        "continue" : (AppiumBy.XPATH, "//android.widget.Button[contains(@content-desc, 'Continue')]"),         
+        "signin": (AppiumBy.XPATH, '//android.widget.Button[contains(@content-desc, "Log In")]'),
         "forgot_password": (AppiumBy.XPATH, '//android.widget.Button[@content-desc="Forgot Password?"]'),
         "signup": (AppiumBy.XPATH, '//android.widget.Button[@content-desc="Sign Up"]'),
         "error_msg":(AppiumBy.XPATH, lambda msg: f'/;/android.view.View[@content-desc="{msg}"]'),
@@ -23,7 +23,7 @@ class LoginLocator:
         "forgot_password_button": (AppiumBy.XPATH, '//android.widget.Button[@content-desc="Forgot Password?"]'),
         "create_account_button": (AppiumBy.XPATH, '//android.widget.Button[@content-desc="Create Account"]'),
         "contact_support_button": (AppiumBy.XPATH, '//android.widget.Button[@content-desc="Contact Support Button"]'),
-        "Show_password_button": (AppiumBy.ACCESSIBILITY_ID, 'Show password'),
+        "Show_password_button": (AppiumBy.ACCESSIBILITY_ID, 'Show/Hide Password'),
 
 
         "country_dropdown": (AppiumBy.XPATH, '//android.view.View[contains(@content-desc, "Country")]'),

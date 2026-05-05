@@ -4,7 +4,6 @@ from appium.webdriver.common.appiumby import AppiumBy
 class MyEventLocator:
 
     android = {
-
         "event_template": (AppiumBy.ACCESSIBILITY_ID, 'Events'),
         "Jai_Gurudev_title": (AppiumBy.ACCESSIBILITY_ID, 'Jai Gurudev!'),
         "program_template": (AppiumBy.ACCESSIBILITY_ID, "Programs"),
@@ -27,10 +26,6 @@ class MyEventLocator:
         "filter_mode": (AppiumBy.XPATH, '//android.view.View[contains(@content-desc,"Mode")]'),
         "filter_time": (AppiumBy.XPATH, '//android.view.View[contains(@content-desc,"Time")]'),
         "filter_option": (AppiumBy.ACCESSIBILITY_ID, lambda option: f'{option}'),
-        "date_range": (AppiumBy.ACCESSIBILITY_ID, 'Select Date Range'),
-        "date_pencil": (AppiumBy.XPATH, '(//android.view.View[contains(@content-desc,"Date")]/following-sibling::android.widget.Button)[1]'),
-        "start_date_box": (AppiumBy.XPATH, "//android.widget.EditText[contains(@hint, 'Start')]"),
-        "end_date_box": (AppiumBy.XPATH, "//android.widget.EditText[contains(@hint, 'End')]"),
         "option_ok": (AppiumBy.ACCESSIBILITY_ID, 'OK'),
         "option_cancel": (AppiumBy.ACCESSIBILITY_ID, 'Cancel'),
         'show_result': (AppiumBy.ACCESSIBILITY_ID, 'Show Results'),
@@ -39,7 +34,6 @@ class MyEventLocator:
         # Semantic event list rows: content-desc like event_card|code=...|type=course|mode=...
         "semantic_event_cards": (AppiumBy.XPATH, '//android.view.View[contains(@content-desc,"event_card|")]'),
         "scroll": (AppiumBy.XPATH, "(((//android.view.View[(contains(@content-desc,'Online') or contains(@content-desc,'In-person')) and (contains(@content-desc,'AM') or contains(@content-desc,'PM'))])[1])/parent::*)[1]"),
-        
     }
 
   
@@ -79,7 +73,6 @@ class MyEventLocator:
         "end_date_box": (AppiumBy.XPATH, "//XCUIElementTypeTextField[contains(@name, 'End')]"),
         "option_ok": (AppiumBy.ACCESSIBILITY_ID, 'OK'),
         "option_cancel": (AppiumBy.ACCESSIBILITY_ID, 'Cancel'),
-        
         "event_card": (AppiumBy.XPATH, lambda product,mode,date,time: f"//XCUIElementTypeOther[contains(@name, '{product}') and contains(@name, '{mode}') and contains(@name, '{date}') and contains(@name, '{time}')]"),
         "scroll": (AppiumBy.IOS_CLASS_CHAIN, "**/XCUIElementTypeScrollView"),
     }
