@@ -112,6 +112,22 @@ class BasePage:
         except Exception as e:
             self.logger.error(f"Element {value} not present on the UI. Exception: {e}")
             raise NoSuchElementException(f"Element {value} not present on the UI. Exception: {e}")
+
+    def find_element_by_presence(self, value: tuple, timeout: int = 10) -> WebElement:
+        """
+        Find element by DOM presence only (not necessarily visible).
+        Useful for Flutter/Appium where visibility checks can be flaky.
+        """
+        try:
+            wait = WebDriverWait(self.driver, timeout) if timeout != 10 else self.wait
+            return wait.until(EC.presence_of_element_located(value))
+        except Exception as e:
+            self.logger.error(
+                f"Element {value} not present in DOM. Exception: {e}"
+            )
+            raise NoSuchElementException(
+                f"Element {value} not present in DOM. Exception: {e}"
+            )
     
     def find_elements(self, value: tuple, timeout: int = 10):
         try:

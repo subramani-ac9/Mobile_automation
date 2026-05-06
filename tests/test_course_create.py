@@ -262,9 +262,7 @@ class TestCourseCreate:
             self.event_create_message["event_not_found_msg"]
         ), "event not found message not displayed"
     
-
-
-    @pytest.mark.validated
+    # @pytest.mark.sanity
     @pytest.mark.course_create
     @pytest.mark.data_driven
     @pytest.mark.smoke
@@ -286,7 +284,7 @@ class TestCourseCreate:
         self.logger.info(f"Observed Screen content: {content}")
         assert result, "Product required error message not displayed"
 
-    @pytest.mark.validated
+    # @pytest.mark.sanity
     @pytest.mark.course_create
     @pytest.mark.data_driven
     @pytest.mark.smoke
@@ -303,7 +301,7 @@ class TestCourseCreate:
             self.event_create_message["teacher_required_err_msg"]
         ), "Teacher required error message not displayed"
 
-    @pytest.mark.validated
+    # @pytest.mark.sanity
     @pytest.mark.course_create
     @pytest.mark.data_driven
     @pytest.mark.smoke
@@ -320,8 +318,7 @@ class TestCourseCreate:
             self.event_create_message["organizer_err_msg"]
         ), "Organizer required error message not displayed"
 
-
-    @pytest.mark.validated
+    # @pytest.mark.sanity
     @pytest.mark.course_create
     @pytest.mark.data_driven
     @pytest.mark.regression
@@ -338,6 +335,113 @@ class TestCourseCreate:
             self.event_create_message["contact_err_msg"]
         ), "Contact person required error not displayed"
 
+
+    @pytest.mark.sanity
+    @pytest.mark.course_create
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_16")
+    def test_create_course_required_timezone(self):
+        row = self.course_create_us_data[9]
+        print("row:",row)
+        if row.get("tenant", "").strip().lower() == "us":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        else:
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.create_course(row,self.event_create_message["timezone_err_msg"])
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["timezone_err_msg"]
+        ), "Timezone required error message not displayed"
+
+
+    @pytest.mark.sanity
+    @pytest.mark.course_create
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_16")
+    def test_create_course_required_dateTime(self):
+        row = self.course_create_us_data[10]
+        print("row:",row)
+        if row.get("tenant", "").strip().lower() == "us":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        else:
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.create_course(row,self.event_create_message["dateTime_req_err_msg"])
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["dateTime_req_err_msg"]
+        ), "Date and time required error message not displayed"
+    
+
+    @pytest.mark.sanity
+    @pytest.mark.course_create
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_16")
+    def test_create_course_required_Time(self):
+        row = self.course_create_us_data[11]
+        print("row:",row)
+        if row.get("tenant", "").strip().lower() == "us":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        else:
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.create_course(row,self.event_create_message["start_time_req_err_msg"])
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["start_time_req_err_msg"]
+        ), "Start time required error message not displayed"
+
+    @pytest.mark.sanity
+    @pytest.mark.course_create
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_16")
+    def test_create_course_required_location(self):
+        row = self.course_create_us_data[12]
+        print("row:",row)
+        if row.get("tenant", "").strip().lower() == "us":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        else:
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.create_course(row,self.event_create_message["location_req_err_msg"])
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["location_req_err_msg"]
+        ), "Location required error message not displayed"
+
+
+    @pytest.mark.sanity
+    @pytest.mark.course_create
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_16")
+    def test_create_course_required_max_attendees(self):
+        row = self.course_create_us_data[13]
+        print("row:",row)
+        if row.get("tenant", "").strip().lower() == "us":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        else:
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.create_course(row,self.event_create_message["max_attendees_req_err_msg"])
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["max_attendees_req_err_msg"]
+        ), "Max attendees required error message not displayed"
+
+
+    @pytest.mark.sanity
+    @pytest.mark.course_create
+    @pytest.mark.data_driven
+    @pytest.mark.smoke
+    @pytest.mark.testcase_id("CC_TC_16")
+    def test_create_course_required_aol_center(self):
+        row = self.course_create_us_data[14]
+        print("row:",row)
+        if row.get("tenant", "").strip().lower() == "us":
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_EMAIL, TestConfig.TEST_PASSWORD, 'us')
+        else:
+            self.navigator.navigate_to_course_create_page(TestConfig.TEST_USERNAME_INDIA, TestConfig.TEST_PASSWORD, 'india')
+        self.course_create.create_course(row,self.event_create_message["center_err_msg"])
+        assert self.course_create.is_msg_displayed(
+            self.event_create_message["center_err_msg"]
+        ), "Aol center required error message not displayed"
+
     @pytest.mark.validated
     @pytest.mark.course_create
     @pytest.mark.data_driven
@@ -351,8 +455,6 @@ class TestCourseCreate:
         observed = self.course_create.get_text_from_mark_attendance_text_field()
         self.logger.info(f"Observed: {observed}")
         assert str(observed) != "-5", f"Field accepts negative value (-5): observed='{observed}'"
-
-    
 
     @pytest.mark.validated
     @pytest.mark.course_create

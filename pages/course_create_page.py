@@ -1035,67 +1035,120 @@ class CourseCreatePage(BasePage):
         then click Add Date (except after the last day).
         """
         print(f"[US] dates: {dates}, times: {times}")
+
         try:
             num_days = len(dates)
+
             if num_days != len(times):
                 raise Exception(f"dates and times length mismatch: {num_days} dates vs {len(times)} times")
+
             for index in range(num_days):
                 slot = index + 1
                 date_tobe_updated = dates[index]
                 time_tobe_updated = times[index]
-                self.logger.info(f"[US] Day {slot}/{num_days}: date={date_tobe_updated}, start_time={time_tobe_updated[0]}, end_time={time_tobe_updated[1]}")
 
-                # Enter date for this slot
-                txtField = self.build_locator(self.locator["date_ith_txt_field"], slot)
-                self.scroll_to_element_by_touch(txtField)
-                self.click_element(txtField)
-                self.logger.info(f"Date {slot} field clicked")
-                self.click_element(self.locator["date_pencil"])
-                self.logger.info(f"Date {slot} pencil clicked")
-                self.click_element(self.locator["date_enter_field"])
-                self.send_keys(self.locator["date_enter_field"], date_tobe_updated, timeout=10, is_necessary=False)
-                ok = self.find_element(self.locator["option_ok"], 5)
-                self.click_element(ok)
-                if self.is_msg_displayed(self.event_create_message["past_date_msg"]):
-                    self.logger.info(f"Date {slot} is past date")
-                    return self.event_create_message["past_date_msg"]
-                if self.is_msg_displayed(self.event_create_message["out_of_range_err_msg"]):
-                    self.logger.info(f"Date {slot} is out of range")
-                    return self.event_create_message["out_of_range_err_msg"]
-                if self.is_msg_displayed(self.event_create_message["date_invalid_err_msg"]):
-                    self.logger.info(f"Date {slot} is invalid")
-                    return self.event_create_message["date_invalid_err_msg"]
-                self.logger.info(f"Date {slot} is valid")
+                start_time = time_tobe_updated[0] if len(time_tobe_updated) > 0 else ""
+                end_time = time_tobe_updated[1] if len(time_tobe_updated) > 1 else ""
 
-                # Enter time for this slot (both start and end time for US)
-                time_txt_field = self.build_locator(self.locator["time_ith_txt_field"], slot)
-                self.scroll_to_element_by_touch(time_txt_field)
-                self.click_element(time_txt_field)
-                self.logger.info(f"Time {slot} field clicked")
-                valueHour = [time_tobe_updated[0].split()[0].split(":")[0], time_tobe_updated[1].split()[0].split(":")[0]]
-                valueMin = [time_tobe_updated[0].split()[0].split(":")[1], time_tobe_updated[1].split()[0].split(":")[1]]
-                valuePeriod = [time_tobe_updated[0].split()[1], time_tobe_updated[1].split()[1]]
-                for i in range(0, 2):  # 0 = start time, 1 = end time
-                    # self.click_element(self.locator["time_keyboard"], 10)
-                    hour = self.find_element(self.locator["time_hour"])
-                    min_ele = self.find_element(self.locator["time_min"])
-                    period = self.build_locator(self.locator["time_period"], str(valuePeriod[i]))
-                    self.click_element(hour)
-                    self.send_keys(hour, valueHour[i], timeout=10, is_necessary=False)
-                    self.click_element(min_ele)
-                    self.send_keys(min_ele, valueMin[i], timeout=10, is_necessary=False)
-                    self.click_element(period)
-                    self.logger.info(f"Time {slot} set: {time_tobe_updated[i]}")
-                    self.click_element(self.locator["option_ok"], 10)
+                self.logger.info(
+                    f"[US] Day {slot}/{num_days}: date={date_tobe_updated}, start_time={start_time}, end_time={end_time}"
+                )
 
-                # Click Add Date to reveal next slot (except after the last day)
+                # ✅ Case 1: both date and time empty → skip بالكامل
+                if not date_tobe_updated and not start_time and not end_time:
+                    self.logger.info(f"Skipping slot {slot} as both date and time are empty")
+                    continue
+
+                # =========================
+                # ✅ ENTER DATE (only if present)
+                # =========================
+                if date_tobe_updated:
+                    txtField = self.build_locator(self.locator["date_ith_txt_field"], slot)
+                    self.scroll_to_element_by_touch(txtField)
+                    self.click_element(txtField)
+                    self.logger.info(f"Date {slot} field clicked")
+
+                    self.click_element(self.locator["date_pencil"])
+                    self.logger.info(f"Date {slot} pencil clicked")
+
+                    self.click_element(self.locator["date_enter_field"])
+                    self.send_keys(self.locator["date_enter_field"], date_tobe_updated, timeout=10, is_necessary=False)
+
+                    ok = self.find_element(self.locator["option_ok"], 5)
+                    self.click_element(ok)
+
+                    # Validation checks
+                    if self.is_msg_displayed(self.event_create_message["past_date_msg"]):
+                        self.logger.info(f"Date {slot} is past date")
+                        return self.event_create_message["past_date_msg"]
+
+                    if self.is_msg_displayed(self.event_create_message["out_of_range_err_msg"]):
+                        self.logger.info(f"Date {slot} is out of range")
+                        return self.event_create_message["out_of_range_err_msg"]
+
+                    if self.is_msg_displayed(self.event_create_message["date_invalid_err_msg"]):
+                        self.logger.info(f"Date {slot} is invalid")
+                        return self.event_create_message["date_invalid_err_msg"]
+
+                    self.logger.info(f"Date {slot} is valid")
+
+                # =========================
+                # ✅ ENTER TIME (only if BOTH start & end exist)
+                # =========================
+                if start_time and end_time:
+                    try:
+                        time_txt_field = self.build_locator(self.locator["time_ith_txt_field"], slot)
+                        self.scroll_to_element_by_touch(time_txt_field)
+                        self.click_element(time_txt_field)
+                        self.logger.info(f"Time {slot} field clicked")
+
+                        valueHour = [
+                            start_time.split()[0].split(":")[0],
+                            end_time.split()[0].split(":")[0]
+                        ]
+                        valueMin = [
+                            start_time.split()[0].split(":")[1],
+                            end_time.split()[0].split(":")[1]
+                        ]
+                        valuePeriod = [
+                            start_time.split()[1],
+                            end_time.split()[1]
+                        ]
+
+                        for i in range(2):  # start & end
+                            hour = self.find_element(self.locator["time_hour"])
+                            min_ele = self.find_element(self.locator["time_min"])
+                            period = self.build_locator(self.locator["time_period"], str(valuePeriod[i]))
+
+                            self.click_element(hour)
+                            self.send_keys(hour, valueHour[i], timeout=10, is_necessary=False)
+
+                            self.click_element(min_ele)
+                            self.send_keys(min_ele, valueMin[i], timeout=10, is_necessary=False)
+
+                            self.click_element(period)
+
+                            self.logger.info(f"Time {slot} set: {start_time if i == 0 else end_time}")
+
+                            self.click_element(self.locator["option_ok"], 10)
+
+                    except Exception as e:
+                        raise Exception(f"Invalid time format for slot {slot}: {time_tobe_updated} | Error: {e}")
+
+                else:
+                    self.logger.info(f"Skipping time entry for slot {slot} (missing start/end time)")
+
+                # =========================
+                # ✅ Add next date slot
+                # =========================
                 if index < num_days - 1:
                     self.scroll_to_element_by_touch(self.locator["add_date"])
                     self.click_element(self.locator["add_date"])
-                    self.logger.info(f"Clicked Add Date for next slot")
+                    self.logger.info("Clicked Add Date for next slot")
 
             self.logger.info(f"[US] Completed selecting {num_days} date(s) and time(s)")
             return "success"
+
         except Exception as e:
             raise Exception(f"Unable to select date and time (US): {e}")
 
